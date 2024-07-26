@@ -1,0 +1,202 @@
+/* Feedback container */
+#Feedback {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: hidden; /* Prevent vertical overflow */
+  padding-top: 3%;
+  max-width: 100%;
+}
+
+/* Feedback section */
+.feedback-section {
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* First row animation */
+#first-row {
+  display: flex;
+  overflow: hidden;
+  animation: scrollRight 30s linear infinite;
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Second row animation */
+#second-row {
+  display: flex;
+  overflow: hidden;
+  animation: scrollLeft 30s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Comment card */
+.comment-card {
+  flex: 0 0 auto; /* Prevent the card from shrinking or growing */
+  width: 300px; /* Default card width */
+  margin: 10px; /* Space between cards */
+  border-radius: 10px; /* Add border radius for aesthetics */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  #Feedback {
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+
+  .comment-card {
+    width: calc(100% - 20px); /* Full width on smaller screens */
+    margin: 10px; /* Reset margin */
+  }
+}
+
+/* Modal background */
+.modal-bg {
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the modal */
+  width: 90%; /* Adjust for responsiveness */
+  max-width: 500px; /* Limit maximum width */
+  height: 90%; /* Adjust for responsiveness */
+  max-height: 70%; /* Limit maximum height */
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Adjust z-index */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  width: 100%; /* Full width for responsiveness */
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Adjusted for responsiveness */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.close-btn:hover {
+  color: rgb(0, 0, 0);
+}
+
+/* Feedback textarea */
+.feedback-textarea {
+  width: 100%;
+  height: 70%; /* Adjusted for responsiveness */
+  max-height: 400px; /* Limit maximum height */
+  margin-bottom: 20px;
+  resize: none;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+
+/* Button styles */
+.send-btn,
+.open-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.send-btn:hover,
+.open-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Add padding to the bottom of the container */
+#Feedback {
+  max-height: 50%; /* Limit height */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+}
+
+/* Styles for comment cards */
+.comment-card img {
+  border-radius: 50%;
+}
+
+.comment-card .p-4 {
+  background-color: #f8f9fa;
+}
+
+/* Responsive styles for comment cards */
+@media (min-width: 576px) {
+  .comment-card {
+    width: calc(50% - 20px); /* Two cards on small screens */
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .comment-card {
+    width: calc(33.33% - 20px); /* Three cards on medium screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .comment-card {
+    width: calc(25% - 20px); /* Four cards on large screens */
+  }
+}
+
+/* Styles for comment text */
+.comment-card .p {
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for link buttons */
+.link-muted {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.link-muted:hover {
+  color: #495057;
+}
+
+/* Large font size for #Feed */
+#Feed {
+  font-size: 50px;
+}
+
+/* Additional responsive styles */
+@media (max-width: 576px) {
+  #Feed {
+    font-size: 30px; /* Reduce font size on smaller screens */
+  }
+}

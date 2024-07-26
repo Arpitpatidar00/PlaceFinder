@@ -1,0 +1,262 @@
+/* Placedata.css */
+
+/* Image Container */
+.placecontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+}
+#back {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* Adjust as needed */
+  z-index: 999;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+#back:hover {
+  color: #555; /* Change color on hover */
+}
+#place {
+  margin: 10%;
+  padding: 5%;
+  background-color: #249a92;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.place h1 {
+  margin-bottom: 10px;
+}
+
+.placename {
+  color: #000000;
+  font-size: 20px;
+}
+
+.cityname {
+  color: #000000;
+  font-size: 80px;
+  text-transform: uppercase;
+}
+
+.title {
+  color: #000000;
+}
+
+.description {
+  color: #000000;
+  font-size: 25px;
+}
+
+/* Profile box */
+.profile-box {
+  background-color: #7e6b6b;
+  border: 1px solid #6c5c5c;
+  padding-top: 20%;
+ border-radius: 5px;
+  margin-top: 10px;
+  position: relative;
+  text-decoration: #555;
+}
+
+.profile-box button {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 1px;
+  color: #287d78;
+}
+
+.profile-box button:hover {
+  color: #483f3f;
+}
+
+/* Add Your experience section */
+#experience {
+  margin-top: 20px;
+  margin: 5%;
+}
+
+.experience-share {
+  background-color: #287d78;
+  border-radius: 5px;
+}
+
+#experience label {
+  cursor: pointer;
+}
+
+#experience h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#experience img {
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 200px;
+  max-height: 150px;
+  transition: max-width 0.3s, max-height 0.3s;
+}
+
+#experience img:hover {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+/* Image container */
+.image-container {
+  position: relative;
+  margin: 20px;
+  max-width: 80%;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* Position and style for place name */
+.place-name {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  font-size: 24px;
+  color: #000;
+  border-radius: 5px;
+}
+
+/* Profile box positioning */
+.profile-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 20px;
+}
+
+.profile-box p {
+  margin-bottom: 20px;
+}
+
+.profile-box button {
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.profile-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Driver section */
+.Driver,
+.Guide {
+  cursor: pointer;
+  background: #000000;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Styling for SVG icons */
+.profile-box button svg {
+  vertical-align: middle;
+}
+
+/* Rating.css */
+.rating {
+  background: red;
+}
+
+/* Styling the stars */
+.MuiRating-iconFilled {
+  color: #ffb700;
+}
+
+.MuiRating-iconEmpty {
+  color: #fbf1a9;
+}
+
+/* Styling the label */
+.rating-label {
+  margin-left: 8px;
+  color: #000;
+  font-size: 14px;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .profile-box {
+    width: 95%;
+    max-width: none;
+  }
+
+  #placeuploadedimages {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  #back {
+    top: 10px;
+    left: 10px; /* Adjust as needed */
+    font-size: 20px; /* Adjust as needed */
+  }
+}
+/* comment */
+#comments {
+  overflow-x: auto;
+  padding-top: 1%;
+ 
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Space between cards */
+}
+
+.comment-card {
+  flex: 0 0 auto; /* Prevent the card from shrinking or growing */
+  width: 300px; /* Adjust the card width as needed */
+}
+
+@media (max-width: 768px) {
+  .comment-container {
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: center; /* Center cards on smaller screens */
+  }
+
+  .comment-card {
+    width: calc(100% - 20px); /* Make cards full width on smaller screens */
+    margin-right: 0; /* Reset margin */
+    margin-bottom: 20px; /* Space below each row of cards */
+  }
+}
+

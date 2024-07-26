@@ -1,0 +1,66 @@
+
+@tailwind components;
+@tailwind utilities;
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+
+}
+
+.carousel-item {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.overlay h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.overlay p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 1rem;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}

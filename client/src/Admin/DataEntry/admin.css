@@ -1,0 +1,241 @@
+.app {
+  display: flex;
+  flex-direction: column; /* Default to column for smaller screens */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.Placedata-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.Placedata-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.Placedata-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Placedata-form div {
+  margin-bottom: 15px;
+}
+
+.Placedata-form label {
+  font-weight: bold;
+}
+
+.Placedata-form input[type="text"],
+.Placedata-form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.Placedata-form textarea {
+  resize: vertical;
+  height: 100px; /* Adjust height as needed */
+}
+
+.Placedata-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Placedata-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 100%;
+  height: auto;
+  background-color: #8a8989;
+  padding: 10px;
+}
+
+.sidebar hr {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 0;
+  height: 1.5px;
+  background-color: #000000;
+}
+
+.buttonsdiv {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  /* Add margin between buttons*/
+  /* Align text to the left */
+}
+
+.button.active {
+  background-color: #7c7c7c;
+  /* Change to the color you want for the active button */
+}
+
+.button:hover {
+  background-color: #0a0042;
+}
+
+/* Adjustments for button text */
+.button b {
+  color: rgb(0, 0, 0);
+}
+
+.catbutton {
+  border-radius: 100px;
+}
+
+.catbutton:hover {
+  background-color: #686769;
+}
+
+.headings {
+  display: flex; /* Display headings horizontally */
+  justify-content: space-between; /* Spacing between headings */
+  background: #a7a7a7;
+  border-radius: 5px;
+  padding: 10px; /* Add padding for better spacing */
+}
+
+#allcommentscontainer {
+  display: flex; /* Display comments horizontally */
+  flex-wrap: wrap; /* Allow wrapping of comment containers */
+  gap: 10px; /* Add gap between comment containers */
+}
+
+.comment-container {
+  width: calc(100% - 10px); /* Set width for each comment container */
+  background-color: #f0f0f0; /* Example background color */
+  border-radius: 5px; /* Example border radius */
+}
+
+.comment-info {
+  padding: 5px; /* Padding for comment info */
+  display: flex; /* Display headings horizontally */
+  justify-content: space-between; /* Spacing between headings */
+}
+
+.delete-btn {
+  padding: 5px 10px; /* Adjust padding */
+  background-color: #ff0000; /* Example background color */
+  color: #ffffff; /* Example text color */
+  border: none; /* Remove border */
+  border-radius: 3px; /* Example border radius */
+  cursor: pointer; /* Add cursor pointer */
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row; /* Switch to row for larger screens */
+  }
+
+  .sidebar {
+    width: 300px;
+    height: 100vh; /* Full height for larger screens */
+  }
+
+  .buttonsdiv .button {
+    width: 100%; /* Adjust button width */
+  }
+
+  #allcommentscontainer {
+    margin: 0; /* Remove margin for larger screens */
+  }
+
+  .comment-container {
+    width: calc(33.33% - 20px); /* Adjust width for larger screens */
+  }
+
+  .user-container {
+    width: calc(33.33% - 20px); /* Adjust width for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 40px; /* Increase padding for larger screens */
+  }
+
+  .Placedata-container {
+    max-width: 800px; /* Increase max-width for larger screens */
+  }
+}
+/* UserPage component styles */
+.user-container-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap onto new lines */
+  gap: 10px; /* Space between cards */
+  justify-content: center; /* Center the cards horizontally */
+}
+
+.user-container {
+  flex: 1 1 calc(100% - 20px); /* Full width on small screens with spacing */
+  max-width: 100%; /* Prevents the card from exceeding its container */
+  background-color: #ffffff; /* Background color of card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Card shadow */
+  margin: 10px; /* Margin around each card */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.user-container img {
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  object-fit: cover; /* Ensure the image covers the entire area */
+  border-radius: 50%; /* Make the image circular */
+  display: block; /* Ensure it's treated as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.p-6 {
+  padding: 1.5rem; /* Adjust padding */
+}
+
+/* Responsive adjustments */
+@media (min-width: 576px) {
+  .user-container {
+    flex: 1 1 calc(50% - 20px); /* 2 cards per row on small screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .user-container {
+    flex: 1 1 calc(33.33% - 20px); /* 3 cards per row on medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .user-container {
+    flex: 1 1 calc(25% - 20px); /* 4 cards per row on large screens */
+  }
+}

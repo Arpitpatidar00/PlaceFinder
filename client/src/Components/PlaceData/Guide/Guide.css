@@ -1,0 +1,109 @@
+.guide-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.guide-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.guide-button:hover {
+  background-color: #0056b3;
+}
+
+.guide-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.guide-content {
+  text-align: center;
+}
+
+.guide-image {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.guide-username {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+.user-content .guide-options {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.guide-option {
+  margin: 0 10px;
+  position: relative;
+}
+
+.guide-description {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  left: -50px;
+  width: 300px;
+  z-index: 10;
+}
+
+.guide-details {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.toggle-container {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: background-color 0.4s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+.toggle-input:checked + .toggle-slider {
+  background-color: #2196F3; /* Toggle color when checked */
+}
+
+.toggle-input:checked + .toggle-slider:before {
+  transform: translateX(20px); /* Slider position when checked */
+}

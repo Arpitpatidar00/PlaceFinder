@@ -1,0 +1,214 @@
+.link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+
+/* Driver Interface Container */
+.driver-interface {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: darkcyan;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.driver-interface h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Form Container */
+.driver-interface form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Labels */
+.driver-interface label {
+  margin-bottom: 8px;
+}
+
+/* Form Inputs */
+.driver-interface input[type="text"],
+.driver-interface input[type="number"],
+.driver-interface input[type="time"],
+.driver-interface select {
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Checkbox Container */
+.driver-interface .checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Submit Button */
+.driver-interface button {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  color: #7f0000;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.driver-interface button:hover {
+  background-color: #a8a8a8;
+}
+.guide-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.guide-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.guide-container {
+  text-align: center;
+}
+
+.guide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guide-image {
+  margin-bottom: 20px;
+}
+
+.guide-username {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.user-content,
+.guide-additional-details {
+  margin-top: 20px;
+}
+
+.guide-options {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.guide-option {
+  cursor: pointer;
+}
+
+.guide-description {
+  margin-top: 10px;
+}
+
+.guide-details {
+  margin-top: 20px;
+}
+
+.toggle-container {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: background-color 0.4s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+.toggle-input:checked + .toggle-slider {
+  background-color: #2196F3; /* Toggle color when checked */
+}
+
+.toggle-input:checked + .toggle-slider:before {
+  transform: translateX(20px); /* Slider position when checked */
+}
+/* Guide Interface Container */
+.guide-interface {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: darkcyan;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.guide-interface h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Form Container */
+.guide-interface form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Labels */
+.guide-interface label {
+  margin-bottom: 8px;
+}
+
+/* Form Inputs */
+.guide-interface input[type="text"],
+.guide-interface input[type="number"],
+.guide-interface input[type="time"],
+.guide-interface select {
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Submit Button */
+.guide-interface button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.guide-interface button:hover {
+  background-color: #0056b3;
+}
