@@ -5,7 +5,6 @@ const guideSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   time: {
     type: String,
     required: true
@@ -23,7 +22,7 @@ const guideSchema = new mongoose.Schema({
     required: true
   },
   userData: {
-    type:JSON,
+    type: mongoose.Schema.Types.Mixed, // Allows flexible data types
     required: true
   }
 }, { timestamps: true });

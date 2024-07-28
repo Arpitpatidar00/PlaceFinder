@@ -1,231 +1,4 @@
-// // import React, { useState, useEffect } from "react";
-// // import { motion, AnimatePresence } from "framer-motion";
-// // import { Link, useNavigate } from "react-router-dom";
-// // import { useInView } from "react-intersection-observer";
-// // import { useDispatch } from "react-redux";
-// // import { setPlaceId } from "../../actions/placeActions.js";
-// // import "../Card.css";
 
-// // const CardData = () => {
-// //   const [items, setItems] = useState([]);
-// //   const [selectedId, setSelectedId] = useState(null);
-// //   const [ref, inView] = useInView();
-// //   const dispatch = useDispatch();
-// //   const navigate = useNavigate();
-
-// //   useEffect(() => {
-// //     const fetchData = async () => {
-// //       try {
-// //         const response = await fetch("http://localhost:4000/add/");
-// //         const data = await response.json();
-// //         const shuffledData = data.sort(() => 0.5 - Math.random());
-// //         setItems(shuffledData.slice(0, 12));
-// //       } catch (error) {
-// //         console.error("Error fetching data:", error);
-// //       }
-// //     };
-
-// //     fetchData();
-// //   }, []);
-
-
-
-// //   const handleCardClick = (id) => {
-// //     dispatch(setPlaceId(id));
-// //     navigate(`/details/${id}`);
-// //   };
-
-// //   return (
-// //     <div ref={ref} className={`card-container ${inView ? "visible" : ""}`}>
-// //       {items.map((item) => (
-// //         <div key={item.id} className="card-link" onClick={() => handleCardClick(item.id)}>
-// //           <div className="flip-card">
-// //             <div className="flip-card-inner">
-// //               <div className="flip-card-front">
-// //                 <motion.div
-// //                   layoutId={item.id}
-// //                   initial={{ opacity: 0, y: -50 }}
-// //                   animate={{ opacity: 1, y: 0 }}
-// //                   exit={{ opacity: 0, y: -50 }}
-// //                   className="max-w-sm rounded overflow-hidden shadow-lg m-4 relative card"
-// //                 >
-// //                   <img className="w-full img" src={item.image} alt={item.placeName} />
-// //                   <div className="px-6 py-4 container-card">
-// //                     <motion.h5 className="font-bold text-xl mb-2 placename">{item.placeName}</motion.h5>
-// //                   </div>
-// //                 </motion.div>
-// //               </div>
-// //               <div className="flip-card-back">
-// //                 <p className="title">{item.placeName}</p>
-// //                 <p>{item.description}</p>
-// //               </div>
-// //             </div>
-// //           </div>
-// //         </div>
-// //       ))}
-
-// //       <AnimatePresence>
-// //         {selectedId && (
-// //           <motion.div
-// //             layoutId={selectedId}
-// //             initial={{ opacity: 0, y: -50 }}
-// //             animate={{ opacity: 1, y: 0 }}
-// //             exit={{ opacity: 0, y: -50 }}
-// //             className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75"
-// //             onClick={() => setSelectedId(null)}
-// //           >
-// //             <motion.div
-// //               className="max-w-sm rounded overflow-hidden shadow-lg m-4 bg-white"
-// //               initial={{ opacity: 0, y: -50 }}
-// //               animate={{ opacity: 1, y: 0 }}
-// //               exit={{ opacity: 0, y: -50 }}
-// //               onClick={(e) => e.stopPropagation()}
-// //             >
-// //               <img
-// //                 className="w-full img"
-// //                 src={items.find((item) => item.id === selectedId)?.image}
-// //                 alt={items.find((item) => item.id === selectedId)?.placeName}
-// //               />
-// //               <div className="px-6 py-4">
-// //                 <motion.h5 className="font-bold text-xl mb-2">
-// //                   {items.find((item) => item.id === selectedId)?.placeName}
-// //                 </motion.h5>
-// //                 <motion.p className="text-gray-700 text-base">
-// //                   {items.find((item) => item.id === selectedId)?.description}
-// //                 </motion.p>
-// //               </div>
-// //               <div className="px-6 pt-4 pb-2">
-// //                 <motion.button
-// //                   className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-// //                   onClick={() => setSelectedId(null)}
-// //                 >
-// //                   Close
-// //                 </motion.button>
-// //               </div>
-// //             </motion.div>
-// //           </motion.div>
-// //         )}
-// //       </AnimatePresence>
-// //     </div>
-// //   );
-// // };
-
-// // export default CardData;
-
-// import React, { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useNavigate } from "react-router-dom";
-// import { useInView } from "react-intersection-observer";
-// import { useDispatch } from "react-redux";
-// import { setPlaceId } from "../../actions/placeActions.js";
-// import "../Card.css";
-// import { useAdmin } from "../../Context/AdminContext.js";
-
-
-// const CardData = () => {
-//   const {items, setItems}=useAdmin();
-//   const [selectedId, setSelectedId] = useState(null);
-//   const [ref, inView] = useInView();
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch("http://localhost:4000/add/");
-//         const data = await response.json();
-//         const shuffledData = data.sort(() => 0.5 - Math.random());
-//         setItems(shuffledData.slice(0, 15)); // Limit to 15 items
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   const handleCardClick = (id) => {
-//     dispatch(setPlaceId(id));
-//     navigate(`/details/${id}`);
-//     console.log(id)
-//   };
-
-//   return (
-//     <div ref={ref} className={`card-container ${inView ? "visible" : ""}`}>
-//       {items.map((item) => (
-//         <div key={item.id} className="card-link" onClick={() => handleCardClick(item.id)}>
-//           <div className="flip-card">
-//             <div className="flip-card-inner">
-//               <div className="flip-card-front">
-//                 <motion.div
-//                   layoutId={item.id}
-//                   initial={{ opacity: 0, y: -50 }}
-//                   animate={{ opacity: 1, y: 0 }}
-//                   exit={{ opacity: 0, y: -50 }}
-//                   className="max-w-sm rounded overflow-hidden shadow-lg m-4 relative card"
-//                 >
-//                   <img className="w-full img" src={item.image} alt={item.placeName} />
-//                   <div className="px-6 py-4 container-card">
-//                     <motion.h5 className="font-bold text-xl mb-2 placename">{item.placeName}</motion.h5>
-//                   </div>
-//                 </motion.div>
-//               </div>
-//               <div className="flip-card-back">
-//                 <p className="title">{item.placeName}</p>
-//                 <p>{item.description}</p>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       ))}
-
-//       <AnimatePresence>
-//         {selectedId && (
-//           <motion.div
-//             layoutId={selectedId}
-//             initial={{ opacity: 0, y: -50 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: -50 }}
-//             className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75"
-//             onClick={() => setSelectedId(null)}
-//           >
-//             <motion.div
-//               className="max-w-sm rounded overflow-hidden shadow-lg m-4 bg-white"
-//               initial={{ opacity: 0, y: -50 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               exit={{ opacity: 0, y: -50 }}
-//               onClick={(e) => e.stopPropagation()}
-//             >
-//               <img
-//                 className="w-full img"
-//                 src={items.find((item) => item.id === selectedId)?.image}
-//                 alt={items.find((item) => item.id === selectedId)?.placeName}
-//               />
-//               <div className="px-6 py-4">
-//                 <motion.h5 className="font-bold text-xl mb-2">
-//                   {items.find((item) => item.id === selectedId)?.placeName}
-//                 </motion.h5>
-//                 <motion.p className="text-gray-700 text-base">
-//                   {items.find((item) => item.id === selectedId)?.description}
-//                 </motion.p>
-//               </div>
-//               <div className="px-6 pt-4 pb-2">
-//                 <motion.button
-//                   className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-//                   onClick={() => setSelectedId(null)}
-//                 >
-//                   Close
-//                 </motion.button>
-//               </div>
-//             </motion.div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </div>
-//   );
-// };
-
-// export default CardData;
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -266,19 +39,19 @@ const CardData = () => {
   return (
     <div ref={ref} className={`card-container ${inView ? "visible" : ""}`}>
       {items.map((item) => (
-        <div key={item.id} className="card-link" onClick={() => handleCardClick(item._id)}>
+        <div key={item._id} className="card-link" onClick={() => handleCardClick(item._id)}>
           <div className="flip-card">
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <motion.div
-                  layoutId={item.id}
+                  layoutId={item._id}
                   initial={{ opacity: 0, y: -50 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -50 }}
-                  className="max-w-sm rounded overflow-hidden shadow-lg m-4 relative card"
+                  className="max-w-sm rounded overflow-hidden shadow-lg relative card"
                 >
                   <img className="w-full img" src={item.image} alt={item.placeName} />
-                  <div className="px-6 py-4 container-card">
+                  <div className="container-card">
                     <motion.h5 className="font-bold text-xl mb-2 placename">{item.placeName}</motion.h5>
                   </div>
                 </motion.div>
@@ -303,7 +76,7 @@ const CardData = () => {
             onClick={() => setSelectedId(null)}
           >
             <motion.div
-              className="max-w-sm rounded overflow-hidden shadow-lg m-4 bg-white"
+              className="max-w-sm rounded overflow-hidden shadow-lg bg-white"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
@@ -311,15 +84,15 @@ const CardData = () => {
             >
               <img
                 className="w-full img"
-                src={items.find((item) => item.id === selectedId)?.image}
-                alt={items.find((item) => item.id === selectedId)?.placeName}
+                src={items.find((item) => item._id === selectedId)?.image}
+                alt={items.find((item) => item._id === selectedId)?.placeName}
               />
               <div className="px-6 py-4">
                 <motion.h5 className="font-bold text-xl mb-2">
-                  {items.find((item) => item.id === selectedId)?.placeName}
+                  {items.find((item) => item._id === selectedId)?.placeName}
                 </motion.h5>
                 <motion.p className="text-gray-700 text-base">
-                  {items.find((item) => item.id === selectedId)?.description}
+                  {items.find((item) => item._id === selectedId)?.description}
                 </motion.p>
               </div>
               <div className="px-6 pt-4 pb-2">
@@ -339,3 +112,4 @@ const CardData = () => {
 };
 
 export default CardData;
+

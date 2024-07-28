@@ -135,3 +135,141 @@
     margin-top: 10px;
   }
 }
+.hover-image {
+  transition: transform 0.3s ease;
+}
+
+.hover-image:hover {
+  transform: scale(1.1);
+}
+/* General Styles */
+.gradient-custom-2 {
+  background-color: #9de2ff;
+}
+
+.text-black {
+  color: #000;
+}
+
+/* Card Styles */
+.MDBCard {
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.MDBCardImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-thumbnail {
+  border-radius: 50%;
+}
+
+/* Profile Header */
+.rounded-top {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.d-flex.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ms-4.mt-5.d-flex.flex-column {
+  width: 150px;
+}
+
+/* Adjust width and layout for smaller screens */
+@media (max-width: 768px) {
+  .ms-4.mt-5.d-flex.flex-column {
+      width: 120px;
+  }
+
+  .rounded-top {
+      height: auto;
+  }
+}
+
+.ms-3 {
+  margin-top: 130px;
+}
+
+/* Profile Image Container */
+@media (max-width: 576px) {
+  .ms-3 {
+      margin-top: 1rem;
+  }
+
+  .rounded-top {
+      height: auto;
+      padding: 1rem;
+  }
+
+  .img-thumbnail {
+      width: 100px;
+  }
+}
+
+/* Card Body */
+.p-4 {
+  padding: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.d-flex.justify-content-between.align-items-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Recent Photos */
+.MDBRow {
+  margin: 0;
+}
+
+.MDBCol {
+  padding: 0.5rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.rounded-3 {
+  border-radius: 0.75rem;
+}
+
+/* Hover Effect */
+.hover-image {
+  transition: transform 0.3s ease;
+}
+
+.hover-image:hover {
+  transform: scale(1.1);
+}
+
+/* Button Styles */
+.MDBBtn {
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+/* Modal */
+.MDBModalBody img {
+  width: 100%;
+  height: auto;
+}

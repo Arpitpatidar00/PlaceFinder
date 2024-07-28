@@ -1,10 +1,11 @@
 // models/UserExprence.js
 import mongoose from "mongoose";
 
-const imageSchema = new mongoose.Schema({
-  imageString: String,
-  placeId: String,
+const ImageSchema = new mongoose.Schema({
+  imageString: { type: String, required: true },
+  placeId: { type: String, required: true },
+  userData: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }  // Add this line
 });
 
-const Image = mongoose.model("Image", imageSchema);
-export default Image;
+export default mongoose.model("Image", ImageSchema);
+

@@ -3,7 +3,7 @@ import { TECarousel, TECarouselItem } from 'tw-elements-react';
 import axios from 'axios';
 import './style.css';
 
-export default function VideoCarouselBasicExample() {
+export default function Slider() {
   const [videos, setVideos] = useState([]);
   const carouselRef = useRef(null); // Create a ref for the carousel
 
@@ -33,7 +33,7 @@ export default function VideoCarouselBasicExample() {
   };
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container">x
       <TECarousel
         showControls
         showIndicators

@@ -61,8 +61,7 @@
 //   );
 // }
 
-// export default Adminpanel;
-import React from "react";
+// export default Adminpanel;import React from "react";
 import Sidebar from "./Sidebar";
 import { useAdmin } from "../../Context/AdminContext";
 import Placedata from "./Placedata";
@@ -70,11 +69,9 @@ import Userdata from "./Userdata";
 import VideoUpload from "./Videospage.js";
 import CardData from "./PlaceControll.js";
 import CommentControl from "./Commentcontroler.js";
-import { useAuth } from "../../Context/AuthContext.js";
 
 function Adminpanel() {
-  const { placedata, userdata, videos, items } = useAdmin();
-  const { commentData } = useAuth();
+  const { placedata, userdata, videos, items, comments } = useAdmin();
 
   return (
     <div className="app">
@@ -84,7 +81,7 @@ function Adminpanel() {
         {userdata && <Userdata />}
         {videos && <VideoUpload />}
         {items && <CardData />}
-        {commentData && <CommentControl />}
+        {comments &&  <CommentControl />}
       </div>
     </div>
   );

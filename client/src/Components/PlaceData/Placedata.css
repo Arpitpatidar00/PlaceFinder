@@ -1,13 +1,15 @@
 /* Placedata.css */
 
-/* Image Container */
+/* General Container for the Place Details */
 .placecontainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding-top: 5%;
+  position: relative;
 }
+
+/* Back Button */
 #back {
   position: fixed;
   top: 20px;
@@ -22,72 +24,104 @@
 #back:hover {
   color: #555; /* Change color on hover */
 }
+
+/* Main Place Container */
 #place {
-  margin: 10%;
+  margin: 10% 0;
   padding: 5%;
   background-color: #249a92;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Text Styles in Place Container */
 .place h1 {
   margin-bottom: 10px;
 }
 
-.placename {
+.placename,
+.cityname,
+.title,
+.description {
   color: #000000;
-  font-size: 20px;
 }
 
 .cityname {
-  color: #000000;
   font-size: 80px;
   text-transform: uppercase;
 }
 
 .title {
-  color: #000000;
+  font-size: 30px;
 }
 
 .description {
-  color: #000000;
   font-size: 25px;
 }
 
-/* Profile box */
+/* Profile Box Styling */
 .profile-box {
-  background-color: #7e6b6b;
+  background-color: #eae5e5;
+  border-style: solid;
   border: 1px solid #6c5c5c;
-  padding-top: 20%;
- border-radius: 5px;
-  margin-top: 10px;
-  position: relative;
-  text-decoration: #555;
+  padding: 20px;
+  border-radius: 15px;
+  position: absolute; /* Centered using absolute positioning */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000; /* Ensure it is on top */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Button inside Profile Box */
 .profile-box button {
   border: none;
-  background-color: rgb(255, 255, 255);
+  background: transparent;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 1px;
-  color: #287d78;
+  color: #000000;
+  top: 10px;
+  right: 10px;
 }
 
 .profile-box button:hover {
-  color: #483f3f;
+  color: #000000;
 }
 
-/* Add Your experience section */
+/* Guide and Driver Sections */
+#guide-driver {
+  display: flex;
+  gap: 20px; /* Space between Guide and Driver sections */
+  margin: 20px 0;
+}
+
+.Guide,
+.Driver {
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  color: #000000;
+  
+}
+
+/* Add Your Experience Section */
 #experience {
   margin-top: 20px;
-  margin: 5%;
+  padding: 5%;
+  width: 100%;
 }
 
 .experience-share {
   background-color: #287d78;
   border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #experience label {
@@ -96,13 +130,11 @@
 
 #experience h1 {
   font-size: 20px;
-  margin-bottom: 10px;
   color: #333;
 }
 
 #experience img {
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 10px 10px 0 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   max-width: 200px;
@@ -112,128 +144,33 @@
 
 #experience img:hover {
   max-width: 400px;
-  max-height: 400px;
+  max-height: 300px;
 }
 
-/* Image container */
+/* Image Container */
 .image-container {
   position: relative;
-  margin: 20px;
+  margin: 20px 0;
   max-width: 80%;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(255, 253, 253);
+  border-radius: 15px;
 }
 
 .image-container img {
   width: 100%;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
-/* Position and style for place name */
-.place-name {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px;
-  font-size: 24px;
-  color: #000;
-  border-radius: 5px;
-}
-
-/* Profile box positioning */
-.profile-box {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 400px;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 20px;
-}
-
-.profile-box p {
-  margin-bottom: 20px;
-}
-
-.profile-box button {
-  top: 0;
-  right: 0;
-  background: transparent;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.profile-box button:hover {
-  background-color: #0056b3;
-}
-
-/* Driver section */
-.Driver,
-.Guide {
-  cursor: pointer;
-  background: #000000;
-  border-radius: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 10px;
-}
-
-/* Styling for SVG icons */
-.profile-box button svg {
-  vertical-align: middle;
-}
-
-/* Rating.css */
-.rating {
-  background: red;
-}
-
-/* Styling the stars */
-.MuiRating-iconFilled {
-  color: #ffb700;
-}
-
-.MuiRating-iconEmpty {
-  color: #fbf1a9;
-}
-
-/* Styling the label */
-.rating-label {
-  margin-left: 8px;
-  color: #000;
-  font-size: 14px;
-}
-
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
-  .profile-box {
-    width: 95%;
-    max-width: none;
-  }
-
-  #placeuploadedimages {
-    width: 100%;
-    max-width: none;
-    height: auto;
-    max-height: none;
-  }
-}
-@media screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
-  #back {
-    top: 10px;
-    left: 10px; /* Adjust as needed */
-    font-size: 20px; /* Adjust as needed */
-  }
-}
-/* comment */
+/* Comment Section */
 #comments {
   overflow-x: auto;
   padding-top: 1%;
- 
 }
 
 .comment-container {
@@ -258,5 +195,23 @@
     margin-right: 0; /* Reset margin */
     margin-bottom: 20px; /* Space below each row of cards */
   }
-}
 
+  /* Adjust styles for smaller screens */
+  .profile-box {
+    width: 95%;
+    max-width: none;
+  }
+
+  #placeuploadedimages {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+  }
+
+  #back {
+    top: 10px;
+    left: 10px; /* Adjust as needed */
+    font-size: 20px; /* Adjust as needed */
+  }
+}

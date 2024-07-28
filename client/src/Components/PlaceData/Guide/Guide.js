@@ -96,73 +96,72 @@ const Guide = () => {
         )}
       </div>
       {userData.role === "user" && (
-      <div className="guide-container">
-        {filteredGuides.length > 0 ? (
-          <div>
-            <div className="guide-content">
-              <div
-                className="guide-image"
-                onMouseEnter={handleImageHover}
-                onMouseLeave={handleImageLeave}
-              >
-                <ReactRoundedImage
-                  image={`data:image/png;base64,${currentGuide.userData.image}`}
-                  imageWidth={isImageHovered ? 250 : 150}
-                  imageHeight={isImageHovered ? 250 : 150}
-                />
-                <h1 className="guide-username">
-                  {currentGuide.userData.username}
-                </h1>
-              </div>
-
-              {userData.role === "user" && (
-                <div className="user-content">
-                  <div className="guide-options">
-                    <div className="guide-option">
-                      <IoIosCall
-                        onClick={toggleCallDescription}
-                        size={40}
-                        style={{ cursor: "pointer" }}
-                      />
-                      {showCallDescription && (
-                        <div className="guide-description">
-                          <p>This is the Call Description content.</p>
-                          <h1>Email: {currentGuide.userData.email}</h1>
-                          <h1>Phone NO: {currentGuide.userData.mobileNumber}</h1>
-                        </div>
-                      )}
-                    </div>
-                    <div className="guide-option">
-                      <IoAddSharp
-                        onClick={toggleAddDescription}
-                        size={40}
-                        style={{ cursor: "pointer" }}
-                      />
-                      {showAddDescription && (
-                        <div className="guide-description">
-                          <p>This is the Add Description content.</p>
-                          <h1>Achievements: {currentGuide.certificationAddress}</h1>
-                          <h1>Qualifications: {currentGuide.qualifications}</h1>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="guide-details">
-                    <p>Custom Place: {currentGuide.customPlace}</p>
-                    <p>Hours: {currentGuide.hours}</p>
-                    <p>Price: {currentGuide.price}</p>
-                    <p>Time: {currentGuide.time}</p>
-                    <p>Place ID: {currentGuide.placeId}</p>
-                  </div>
+        <div className="guide-container">
+          {filteredGuides.length > 0 ? (
+            <div>
+              <div className="guide-content">
+                <div
+                  className="guide-image"
+                  onMouseEnter={handleImageHover}
+                  onMouseLeave={handleImageLeave}
+                >
+                  <ReactRoundedImage
+                    image={`data:image/png;base64,${currentGuide.userData.image}`}
+                    imageWidth={isImageHovered ? 250 : 150}
+                    imageHeight={isImageHovered ? 250 : 150}
+                  />
+                  <h1 className="guide-username">
+                    {currentGuide.userData.username}
+                  </h1>
                 </div>
-              )}
+
+                {userData.role === "user" && (
+                  <div className="user-content">
+                    <div className="guide-options">
+                      <div className="guide-option">
+                        <IoIosCall
+                          onClick={toggleCallDescription}
+                          size={40}
+                          style={{ cursor: "pointer" }}
+                        />
+                        {showCallDescription && (
+                          <div className="guide-description">
+                            <p>This is the Call Description content.</p>
+                            <h1>Email: {currentGuide.userData.email}</h1>
+                            <h1>Phone NO: {currentGuide.userData.mobileNumber}</h1>
+                          </div>
+                        )}
+                      </div>
+                      <div className="guide-option">
+                        <IoAddSharp
+                          onClick={toggleAddDescription}
+                          size={40}
+                          style={{ cursor: "pointer" }}
+                        />
+                        {showAddDescription && (
+                          <div className="guide-description">
+                            <p>This is the Add Description content.</p>
+                            <h1>Achievements: {currentGuide.certificationAddress}</h1>
+                            <h1>Qualifications: {currentGuide.qualifications}</h1>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="guide-details">
+                      <p>Custom Place: {currentGuide.customPlace}</p>
+                      <p>Hours: {currentGuide.hours}</p>
+                      <p>Price: {currentGuide.price}</p>
+                      <p>Time: {currentGuide.time}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ) : userData.role === "user" ? (
-          <p>No guides available.</p>
-        ) : null}
-      </div>
-       )}
+          ) : userData.role === "user" ? (
+            <p>No guides available.</p>
+          ) : null}
+        </div>
+      )}
       {userData.role === "guide" && (
         <div className="guide-additional-details">
           <Toggle
@@ -177,7 +176,6 @@ const Guide = () => {
         </div>
       )}
 
-      <p>{isAvailable ? "You are available." : "You are not available."}</p>
     </div>
   );
 };
@@ -195,4 +193,5 @@ const Toggle = ({ checked, onClick }) => {
     </div>
   );
 };
+
 export default Guide;

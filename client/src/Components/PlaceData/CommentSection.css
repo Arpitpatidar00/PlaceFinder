@@ -1,0 +1,130 @@
+.comment-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f1eaea;
+    border-radius: 15px;
+    border: 1px solid black;
+  }
+  
+  .comment-input {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .comment-input img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .comment-input textarea {
+    width: calc(100% - 70px); /* Adjusting for image width and margin */
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+    border-radius: 15px;
+    border: 1px solid black;
+    font-size: 20px;
+  }
+  
+  .comment-input button {
+    align-items: flex-end;
+    padding: 10px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .comment-input button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .comments-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .comment-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+  }
+  
+  .comment-text {
+    margin-top: 15px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .comment-input {
+      flex-direction: column;
+    }
+  
+    .comment-input img {
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+  
+    .comment-input textarea {
+      width: 100%;
+    }
+  
+    .comment-input button {
+      align-self: flex-end;
+    }
+  
+    .comment {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .comment img {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .comment-section {
+      padding: 10px;
+    }
+  
+    .comment-input textarea {
+      height: 80px;
+      font-size: 18px;
+    }
+  
+    .comment-content {
+      font-size: 14px;
+    }
+  
+    .comment-text {
+      margin-top: 10px;
+    }
+  }
+  

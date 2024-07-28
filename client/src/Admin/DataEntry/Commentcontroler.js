@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TERipple } from 'tw-elements-react';
 import "./admin.css";
+import { useAdmin } from "../../Context/AdminContext";
 
 function CommentControl() {
-  const [comments, setComments] = useState([]);
+  const { comments, setComments } = useAdmin();
 
   useEffect(() => {
     async function fetchComments() {
       try {
         const response = await axios.get("http://localhost:4000/comments");
         setComments(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
       }
     }
 
     fetchComments();
-  }, []);
+  }, [setComments]);
 
   const handleDeleteComment = async (id) => {
     try {
@@ -37,6 +37,7 @@ function CommentControl() {
    
       <div id="allcommentscontainer" className="comment-container-wrapper">
         {Array.isArray(comments) &&
+          comments.length > 0 &&
           comments.map((comment) => (
             <div className="block rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mt-6 w-96" key={comment._id}>
               <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
