@@ -16,7 +16,7 @@ import { AuthProvider } from "./Context/AuthContext.js";
 
 function Start() {
   const location = useLocation();
-  const hideFooterRoutes = ["/login", "/signup",'/','/Feedback','/Adminhome','/admin'];
+  const hideFooterRoutes = ["/login", "/signup",'/','/Feedback','/Adminhome','/admin','/profile'];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
 
   return (

@@ -126,3 +126,59 @@ export const login = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to login" });
   }
 };
+// Update user profile
+export const updateUserProfile = async (req, res) => {
+  const { userId } = req.params;
+  console.log(userId)
+
+  const { oldPassword, newPassword, name, mobileNumber, bio, image } = req.body;
+  try {
+    // Find the user document within the 'users' collection
+    const userFolder = await User.findById(userId);
+    if (!userFolder) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Check if the old password is provided and if it's correct
+    if (oldPassword && newPassword) {
+      const isMatch = await bcrypt.compare(oldPassword, userFolder.password);
+      if (!isMatch) {
+        return res.status(401).json({
+          success: false,
+          message: "Old password is incorrect",
+        });
+      }
+
+      // Hash the new password
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(newPassword, salt);
+
+      // Update the user's password
+      userFolder.password = hashedPassword;
+    }
+
+    // Update user fields
+    if (name) userFolder.username = name;
+    if (mobileNumber) userFolder.mobileNumber = mobileNumber;
+    if (bio) userFolder.bio = bio;
+    if (image) userFolder.image = image; // Assuming image is base64 encoded
+
+    // Save the updated user document
+    await userFolder.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      data: userFolder,
+    });
+  } catch (error) {
+    console.error("Error updating user profile:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to update profile",
+    });
+  }
+};

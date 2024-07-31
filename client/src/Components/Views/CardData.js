@@ -57,7 +57,7 @@ const CardData = () => {
                 </motion.div>
               </div>
               <div className="flip-card-back">
-                <p className="title">{item.placeName}</p>
+                <p className="title">{item.placeName},{item.cityName}</p>
                 <p>{item.description}</p>
               </div>
             </div>

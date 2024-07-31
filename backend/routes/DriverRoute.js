@@ -23,14 +23,18 @@ router.post('/driver', async (req, res) => {
 });
 
 // DELETE Route to delete driver data
-router.delete('/delete/:placeId', async (req, res) => {
+router.delete('/delete/:userId', async (req, res) => {
   try {
-    const { placeId } = req.params;
-    await Driver.deleteOne({ _id: placeId });
+    const { userId } = req.params;
+
+    // Delete the data from the database where the userId matches
+    await Driver.deleteMany({ userId });
+
+    // Return success response
     res.status(200).json({ success: true, message: "Driver data deleted successfully." });
   } catch (error) {
-    console.error("Error deleting driver data:", error);
-    res.status(500).json({ success: false, error: "Failed to delete driver data." });
+    console.error("Error deleting Driver data:", error);
+    res.status(500).json({ success: false, error: "Failed to delete Driver data." });
   }
 });
 

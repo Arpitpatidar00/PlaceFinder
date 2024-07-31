@@ -1,68 +1,99 @@
 /* Feedback container */
 #Feedback {
   display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: hidden; /* Prevent vertical overflow */
-  padding-top: 3%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
   max-width: 100%;
+  padding-top: 10%;
+  max-height: 50%; /* Limit height */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+  margin: 5%;
 }
 
 /* Feedback section */
 .feedback-section {
-  overflow: hidden; /* Hide overflowing content */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Adjust max height as needed */
+  width: 100%;
 }
 
-/* First row animation */
-#first-row {
+/* Feedback grid */
+.feedback-grid {
   display: flex;
-  overflow: hidden;
-  animation: scrollRight 30s linear infinite;
-}
-
-@keyframes scrollRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Second row animation */
-#second-row {
-  display: flex;
-  overflow: hidden;
-  animation: scrollLeft 30s linear infinite;
-}
-
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+  flex-wrap: wrap;
 }
 
 /* Comment card */
 .comment-card {
-  flex: 0 0 auto; /* Prevent the card from shrinking or growing */
-  width: 300px; /* Default card width */
-  margin: 10px; /* Space between cards */
+  flex: 1 1 calc(25% - 1rem); /* Default to 4 cards per row */
+  margin: 0.5rem;
   border-radius: 10px; /* Add border radius for aesthetics */
+  background-color: #f8f9fa; /* Background color for the cards */
+  box-sizing: border-box;
 }
 
 /* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-  #Feedback {
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-    overflow-x: hidden; /* Hide horizontal overflow */
-  }
-
+@media (max-width: 576px) {
   .comment-card {
-    width: calc(100% - 20px); /* Full width on smaller screens */
-    margin: 10px; /* Reset margin */
+    flex: 1 1 calc(100% - 1rem); /* Full width on extra small screens */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .comment-card {
+    flex: 1 1 calc(50% - 1rem); /* Two cards per row on small screens */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .comment-card {
+    flex: 1 1 calc(33.33% - 1rem); /* Three cards per row on medium screens */
+  }
+}
+
+@media (min-width: 993px) {
+  .comment-card {
+    flex: 1 1 calc(25% - 1rem); /* Four cards per row on large screens */
+  }
+}
+
+/* Styles for comment card content */
+.comment-card img {
+  border-radius: 50%;
+}
+
+.comment-card .p-4 {
+  background-color: #f8f9fa;
+}
+
+.comment-card .p {
+  margin-bottom: 0.5rem;
+}
+
+/* Styles for link buttons */
+.link-muted {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.link-muted:hover {
+  color: #495057;
+}
+
+/* Large font size for #Feed */
+#Feed {
+  font-size: 50px;
+}
+
+/* Additional responsive styles */
+@media (max-width: 576px) {
+  #Feed {
+    font-size: 30px; /* Reduce font size on smaller screens */
   }
 }
 
@@ -120,7 +151,6 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  
 }
 
 /* Button styles */
@@ -137,66 +167,4 @@
 .send-btn:hover,
 .open-btn:hover {
   background-color: #0056b3;
-}
-
-/* Add padding to the bottom of the container */
-#Feedback {
-  max-height: 50%; /* Limit height */
-  overflow-y: auto; /* Enable vertical scroll if needed */
-}
-
-/* Styles for comment cards */
-.comment-card img {
-  border-radius: 50%;
-}
-
-.comment-card .p-4 {
-  background-color: #f8f9fa;
-}
-
-/* Responsive styles for comment cards */
-@media (min-width: 576px) {
-  .comment-card {
-    width: calc(50% - 20px); /* Two cards on small screens */
-    margin-right: 20px;
-  }
-}
-
-@media (min-width: 768px) {
-  .comment-card {
-    width: calc(33.33% - 20px); /* Three cards on medium screens */
-  }
-}
-
-@media (min-width: 992px) {
-  .comment-card {
-    width: calc(25% - 20px); /* Four cards on large screens */
-  }
-}
-
-/* Styles for comment text */
-.comment-card .p {
-  margin-bottom: 0.5rem;
-}
-
-/* Styles for link buttons */
-.link-muted {
-  color: #6c757d;
-  text-decoration: none;
-}
-
-.link-muted:hover {
-  color: #495057;
-}
-
-/* Large font size for #Feed */
-#Feed {
-  font-size: 50px;
-}
-
-/* Additional responsive styles */
-@media (max-width: 576px) {
-  #Feed {
-    font-size: 30px; /* Reduce font size on smaller screens */
-  }
 }

@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { TECarousel, TECarouselItem } from 'tw-elements-react';
+
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
 import axios from 'axios';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './style.css';
 
-export default function Slider() {
+export default function VideoSlider() {
   const [videos, setVideos] = useState([]);
-  const carouselRef = useRef(null); // Create a ref for the carousel
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -20,49 +22,50 @@ export default function Slider() {
     fetchVideos();
   }, []);
 
-  const handleNext = () => {
-    if (carouselRef.current) {
-      carouselRef.current.next();
-    }
+  const SampleNextArrow = ({ onClick }) => {
+    return (
+      <button className="carousel-button next" onClick={onClick}>
+        Next
+      </button>
+    );
   };
 
-  const handlePrevious = () => {
-    if (carouselRef.current) {
-      carouselRef.current.prev();
-    }
+  const SamplePrevArrow = ({ onClick }) => {
+    return (
+      <button className="carousel-button prev" onClick={onClick}>
+        Prev
+      </button>
+    );
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000, // Increase the speed for a smoother transition
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    cssEase: 'ease-in-out', // Use a smoother easing function
   };
 
   return (
-    <div className="carousel-container">x
-      <TECarousel
-        showControls
-        showIndicators
-        crossfade
-        ride="carousel"
-        ref={carouselRef} // Attach the ref to the carousel
-      >
-        {videos.map((video, index) => (
-          <TECarouselItem
-            key={video._id}
-            itemID={index + 1}
-            className="relative float-left -mr-[100%] hidden w-full !transform-none transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-          >
+    <div className="carousel-container">
+      <Slider {...settings}>
+        {videos.map((video) => (
+          <div key={video._id} className="relative">
             <video className="w-full" autoPlay loop muted>
               <source
                 src={`http://localhost:4000/video/video/${video._id}`}
                 type={video.contentType}
               />
             </video>
-            <div className="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
+            <div className="absolute inset-x-[15%] bottom-5 py-5 text-center text-white">
               <h5 className="text-xl">{video.title}</h5>
-              {/* Uncomment if description is needed */}
-              {/* <p>{video.description}</p> */}
             </div>
-          </TECarouselItem>
+          </div>
         ))}
-      </TECarousel>
-      <button className="carousel-button prev" onClick={handlePrevious}>Previous</button>
-      <button className="carousel-button next" onClick={handleNext}>Next</button>
+      </Slider>
     </div>
   );
 }

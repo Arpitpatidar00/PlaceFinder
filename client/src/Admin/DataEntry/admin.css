@@ -92,8 +92,7 @@
   border: none;
   transition: background-color 0.3s ease;
   margin-bottom: 10px;
-  /* Add margin between buttons*/
-  /* Align text to the left */
+ 
 }
 
 .button.active {
@@ -102,10 +101,9 @@
 }
 
 .button:hover {
-  background-color: #0a0042;
+  background-color: #b3a8a8;
 }
 
-/* Adjustments for button text */
 .button b {
   color: rgb(0, 0, 0);
 }

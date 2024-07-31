@@ -37,7 +37,9 @@ export default function Feedback() {
         const response = await fetch("http://localhost:4000/Feedback");
         if (response.ok) {
           const data = await response.json();
-          setFeedbackData(data);
+          setFeedbackData(
+            data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          );
         } else {
           console.error("Failed to fetch feedback data");
         }
@@ -75,20 +77,16 @@ export default function Feedback() {
     }
   };
 
-  const half = Math.ceil(feedbackData.length / 2);
-  const firstRow = feedbackData.slice(0, half);
-  const secondRow = feedbackData.slice(half);
-
   return (
-    <>
-      <div id="Feedback">
-        <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
-          <MDBContainer className="py-2">
-            <MDBRow className="justify-content-center">
-              <MDBCol md="11" lg="9" xl="7">
-                <div id="first-row" className="d-flex">
-                  {firstRow.map((feedbackItem) => (
-                    <div key={feedbackItem._id} className="comment-card">
+    <div id="Feedback">
+      <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
+        <MDBContainer className="py-2">
+          <MDBRow className="justify-content-center">
+            <MDBCol md="11" lg="9" xl="7">
+              <div className="feedback-grid">
+                <div className="d-flex flex-wrap">
+                  {feedbackData.map((feedbackItem, index) => (
+                    <div key={feedbackItem._id} className="comment-card" >
                       <img
                         className="rounded-circle shadow-1-strong me-3"
                         src={`data:image/png;base64,${feedbackItem.userData.image}`}
@@ -127,52 +125,11 @@ export default function Feedback() {
                     </div>
                   ))}
                 </div>
-                <div id="second-row" className="d-flex">
-                  {secondRow.map((feedbackItem) => (
-                    <div key={feedbackItem._id} className="comment-card">
-                      <img
-                        className="rounded-circle shadow-1-strong me-3"
-                        src={`data:image/png;base64,${feedbackItem.userData.image}`}
-                        alt="avatar"
-                        width="65"
-                        height="65"
-                      />
-                      <MDBCard className="w-100">
-                        <MDBCardBody className="p-4">
-                          <div>
-                            <MDBTypography tag="h5">
-                              {feedbackItem.userData.username}
-                            </MDBTypography>
-                            <p className="small">
-                              {getTimeAgo(feedbackItem.createdAt)}
-                            </p>
-                            <p>{feedbackItem.feedback}</p>
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div className="d-flex align-items-center">
-                                <a href="#!" className="link-muted me-2">
-                                  <MDBIcon fas icon="thumbs-up me-1" />
-                                  {feedbackItem.likes}
-                                </a>
-                                <a href="#!" className="link-muted">
-                                  <MDBIcon fas icon="thumbs-down me-1" />
-                                  {feedbackItem.dislikes}
-                                </a>
-                              </div>
-                              <a href="#!" className="link-muted">
-                                <MDBIcon fas icon="reply me-1" /> Reply
-                              </a>
-                            </div>
-                          </div>
-                        </MDBCardBody>
-                      </MDBCard>
-                    </div>
-                  ))}
-                </div>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>
-        </section>
-      </div>
-    </>
+              </div>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+    </div>
   );
 }

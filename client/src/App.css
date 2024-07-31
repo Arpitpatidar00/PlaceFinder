@@ -125,43 +125,7 @@ h6 {
   color: #666;
 }
 
-/* search box */
 
-.search-container {
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px auto;
-  margin-top: 60px;
-  max-width: 600px;
-  padding-bottom: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.search-container input {
-  flex-grow: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 5px 0 0 5px;
-  font-size: 16px;
-  font-weight: normal;
-}
-
-.search-container button {
-  padding: 10px 20px;
-  background-color: #64b5f6;
-  color: white;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.search-container button:hover {
-  background-color: #4f96c6;
-}
 
 /*  */
 
