@@ -143,13 +143,13 @@
   }
 
   #search-card {
-    max-width: 100%;
+    max-width: 100px;
     padding: 10px;
     margin: 0 auto; /* Center the search-card container */
   }
 
   .search-card-link .card {
-    width: 100%;
+    width: 100px;
     height: auto;
     border-radius: 10px;
     box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
@@ -157,7 +157,7 @@
   }
 
   .search-img {
-    width: 100%;
+    width: 100px;
     height: auto;
   }
 

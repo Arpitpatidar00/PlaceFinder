@@ -1,9 +1,9 @@
-// authReducer.js
+// adminReducer.js
 import { LOG_IN, LOG_OUT } from '../actions/adminActions';
 
 const initialState = {
   token: localStorage.getItem('accessToken') || null,
-  user: null,
+  user: localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null,
 };
 
 const adminReducer = (state = initialState, action) => {

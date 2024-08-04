@@ -21,6 +21,7 @@ function Adminpanel() {
         {items && <CardData />}
         {comments &&  <CommentControl />}
         {feedback &&  <Feedbackcontroller />}
+
       </div>
     </div>
   );

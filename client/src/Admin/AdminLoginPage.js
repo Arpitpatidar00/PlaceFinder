@@ -1,22 +1,36 @@
 // Adminlogin.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { logIn } from '../actions/adminActions'; // Adjust the import path as necessary
+import { useDispatch } from "react-redux";
+import axios from 'axios';
+import { loginSuccess } from "../actions/authActions";
+import './admin.css';
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
+    try {
+      const response = await axios.post("http://localhost:4000/admin/login", { email, password });
+      const { token, data } = response.data;
+
+      // Dispatch logIn action and store in localStorage
+      dispatch(loginSuccess(data, token));
+
+      alert("Login successful!");
+      window.location.href = "/admin";
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("Failed to login. Please try again.");
+    }
   };
 
   return (
-    <div id="centre">
-      <div className="mycard">
+    <div className="container">
+      <div className="login-container">
         <div className="card auth-card">
           <h2 className="title">Admin Login</h2>
           <form onSubmit={handleSubmit}>
@@ -41,7 +55,7 @@ const Adminlogin = () => {
             </button>
           </form>
           <h6>
-            <Link to="/">Don't have an account?</Link>
+            <Link to="/admin-registration">Don't have an account?</Link>
           </h6>
         </div>
       </div>

@@ -16,6 +16,7 @@ import Guide from "./routes/Guideresponse.js";
 import Driver from "./routes/DriverRoute.js";
 import Feedback from './routes/Feedback.js'
 import Video from "./controllers/VideosController.js";
+import AdminRoute from "./routes/AdminRoute.js"
 
 dotenv.config();
 const app = express();
@@ -53,6 +54,7 @@ app.use("/guide", Guide);
 app.use("/driver", Driver);
 app.use("/Feedback", Feedback);
 app.use("/video", Video);
+app.use('/admin',AdminRoute)
 
 // Start the server
 app.listen(PORT, () => {

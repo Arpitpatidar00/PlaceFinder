@@ -21,7 +21,7 @@ function Feedbackcontroller() {
   }, []);
 
   const handleDeleteComment = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+    if (window.confirm("Are you sure you want to delete this feedback?")) {
     try {
       await axios.delete(`http://localhost:4000/Feedback/${id}`);
       const updatedfeedback = feedback.filter((feedback) => feedback._id !== id);

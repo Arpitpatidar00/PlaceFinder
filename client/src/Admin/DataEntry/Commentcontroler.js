@@ -21,7 +21,7 @@ function CommentControl() {
   }, []);
 
   const handleDeleteComment = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+    if (window.confirm("Are you sure you want to delete this comment ?")) {
     try {
       await axios.delete(`http://localhost:4000/comments/${id}`);
       const updatedComments = comments.filter((comment) => comment._id !== id);

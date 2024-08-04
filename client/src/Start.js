@@ -12,6 +12,7 @@ import Signin from "./Components/Authentication/Signin.js";
 import Signup from "./Components/Authentication/Signup.js";
 import Adminlogin from "./Admin/AdminLoginPage.js";
 import AdminPage from "./Admin/DataEntry/AdminPage.js";
+import AdminRegisteration from "./Admin/DataEntry/Adminregistration.js";
 import { AuthProvider } from "./Context/AuthContext.js";
 
 function Start() {
@@ -25,6 +26,7 @@ function Start() {
       <Routes>
         <Route path="/Adminhome" element={<Adminlogin />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin-registration" element={<AdminRegisteration />} />
         <Route path="/" element={<StartPage />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/login" element={<Signin />} />

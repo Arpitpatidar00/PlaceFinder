@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Admin from "../models/Adminschema.js"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -128,19 +129,24 @@ export const login = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to login" });
   }
 };
+
 // Update user profile
 export const updateUserProfile = async (req, res) => {
   const { userId } = req.params;
-
   const { oldPassword, newPassword, name, mobileNumber, bio, image } = req.body;
+
   try {
-    // Find the user document within the 'users' collection
-    const userFolder = await User.findById(userId);
+    // Check for user in User collection
+    let userFolder = await User.findById(userId);
+    if (!userFolder) {
+      // If not found in User collection, check the Admin collection
+      userFolder = await Admin.findById(userId);
+    }
 
     if (!userFolder) {
       return res.status(404).json({
         success: false,
-        message: "User not found",
+        message: "User or Admin not found",
       });
     }
 
@@ -184,6 +190,8 @@ export const updateUserProfile = async (req, res) => {
     });
   }
 };
+
+
 export const authenticateToken = (req, res, next) => {
   const token = req.cookies.accessToken || req.headers['authorization'];
 
