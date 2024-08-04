@@ -1,26 +1,17 @@
+// Adminlogin.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { logIn } from '../actions/adminActions'; // Adjust the import path as necessary
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:4000/auth/login", {
-        email,
-        password,
-      });
-      alert("Login successful!");
-      console.log(response.data);
-      // Redirect to the admin page after successful login
-      window.location.href = "/admin";
-    } catch (error) {
-      console.error("Error logging in:", error);
-      alert("Failed to login. Please try again.");
-    }
+    dispatch(logIn({ email, password }));
   };
 
   return (

@@ -1,27 +1,28 @@
-// authActions.js
+// authReducer.js
+import { LOG_IN, LOG_OUT } from '../actions/adminActions';
 
-// Action Types
-export const SIGN_UP = 'SIGN_UP';
-export const LOG_IN = 'LOG_IN';
-export const LOG_OUT = 'LOG_OUT';
-
-// Action Creators
-export const signUp = (userData) => {
-  return {
-    type: SIGN_UP,
-    payload: userData
-  };
+const initialState = {
+  token: localStorage.getItem('accessToken') || null,
+  user: null,
 };
 
-export const logIn = (userData) => {
-  return {
-    type: LOG_IN,
-    payload: userData
-  };
+const adminReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOG_IN:
+      return {
+        ...state,
+        token: action.payload.token,
+        user: action.payload.user,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        token: null,
+        user: null,
+      };
+    default:
+      return state;
+  }
 };
 
-export const logOut = () => {
-  return {
-    type: LOG_OUT
-  };
-};
+export default adminReducer;

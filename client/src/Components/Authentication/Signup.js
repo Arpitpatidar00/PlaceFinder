@@ -118,8 +118,7 @@ function SignUp() {
           width: "90%",
           maxWidth: "500px",
           padding: "20px",
-          border: "1px solid #ccc",
-          borderRadius: "5px",
+          border: "3px solid #ccc",
           boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
         }}
       >

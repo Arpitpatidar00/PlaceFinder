@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "Arpit@007"; // Remember to hash this password in a real-world scenario
+const ADMIN_PASSWORD = "Arpit@007"; 
 
 export const register = async (req, res) => {
   try {
@@ -21,6 +21,7 @@ export const register = async (req, res) => {
       licenceFile,
       Place,
       mobileNumber,
+      Bio,
     } = req.body;
 
     // Check if user with the same email exists
@@ -51,6 +52,7 @@ export const register = async (req, res) => {
       licenceFile,
       Place,
       mobileNumber,
+      Bio,
     });
     await newUser.save();
 
@@ -129,12 +131,12 @@ export const login = async (req, res) => {
 // Update user profile
 export const updateUserProfile = async (req, res) => {
   const { userId } = req.params;
-  console.log(userId)
 
   const { oldPassword, newPassword, name, mobileNumber, bio, image } = req.body;
   try {
     // Find the user document within the 'users' collection
     const userFolder = await User.findById(userId);
+
     if (!userFolder) {
       return res.status(404).json({
         success: false,
@@ -181,4 +183,15 @@ export const updateUserProfile = async (req, res) => {
       message: "Failed to update profile",
     });
   }
+};
+export const authenticateToken = (req, res, next) => {
+  const token = req.cookies.accessToken || req.headers['authorization'];
+
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
 };

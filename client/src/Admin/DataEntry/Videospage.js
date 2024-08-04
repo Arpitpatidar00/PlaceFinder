@@ -25,24 +25,13 @@ const VideoUpload = () => {
         },
       });
       console.log('Video uploaded successfully:', response.data);
-      fetchVideos(); // Refresh the list of videos
+      // fetchVideos(); // Refresh the list of videos
     } catch (error) {
       console.error('Error uploading video:', error);
     }
   };
 
-  const fetchVideos = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/video/video');
-      setVideos(response.data);
-    } catch (error) {
-      console.error('Error fetching videos:', error);
-    }
-  };
 
-  useEffect(() => {
-    fetchVideos();
-  }, []);
 
   return (
     <div>

@@ -1,54 +1,32 @@
-
-
-/* Profile.css */
-
-.container-profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  overflow-y: auto; /* Changed from scroll to auto for better behavior */
-  background-color: whitesmoke;
-  border-radius: 15px;
-  border: solid gray;
-}
-
-.container {
-  width: 100%;
-}
-
 .profile-header {
   display: flex;
   background-color: whitesmoke;
   margin-bottom: 20px;
   justify-content: space-between;
-  border: solid gray;
+  border: solid rgb(0, 0, 0);
   border-radius: 10px;
   box-shadow: 10px 10px 60px #eae9e9, -20px -20px 60px #ffffff;
-
-
 }
 
 .profile-image {
   margin-right: 40px;
+  
 }
+.photo-item img {
+  border: solid rgb(255, 255, 255) 1px;
 
-.profile-image img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin-right: 60px;
-
+  width: 100%;
+  height: 200px; /* Set a consistent height for all images */
+  object-fit: cover; /* Ensure images cover their containers */
+  border-radius: 8px;
+  box-shadow: 10px 10px 10px gray;
 }
-
 .profile-info {
   justify-content: left;
   flex-grow: 1;
   color: rgb(0, 0, 0);
   margin-right: 60px;
   margin-left: 60px;
-
 }
 
 .stats {
@@ -73,8 +51,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  border: solid gray;
-  border-radius: 10px;
 }
 
 .photo-item {
@@ -89,12 +65,12 @@
 }
 
 .modal-overlay {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -173,6 +149,7 @@
 }
 
 .show-all-link {
+  right: 10px;
   cursor: pointer;
   color: #008cba;
 }

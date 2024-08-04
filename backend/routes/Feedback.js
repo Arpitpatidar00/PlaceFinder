@@ -26,6 +26,18 @@ router.post("/", async (req, res) => {
     res.status(500).json({ message: "Failed to store feedback" });
   }
 });
+router.get('/onlyone:id', async (req, res) => {
+  try {
+    const feedback = await Feedback.findById(req.params.id).exec();
+    if (!feedback) {
+      return res.status(404).json({ message: 'Feedback not found' });
+    }
+    res.json(feedback);
+  } catch (error) {
+    console.error('Error fetching feedback details:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // GET route to get all feedbacks
 router.get("/", async (req, res) => {

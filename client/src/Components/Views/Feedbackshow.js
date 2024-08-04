@@ -1,24 +1,17 @@
-
 import React, { useEffect, useState } from "react";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBRow,
-  MDBTypography,
-} from "mdb-react-ui-kit";
+import { MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import UserDataDetails from "../Views/ProfileDetails.js"; // Ensure the path is correct
 import "./Feedback.css";
 
 export default function Feedback() {
   const [isVisible, setIsVisible] = useState(false);
   const [feedbackData, setFeedbackData] = useState([]);
+  const [selectedFeedbackId, setSelectedFeedbackId] = useState(null);
+  const [overlayVisible, setOverlayVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const feedbackSection = document.getElementById("Feedback");
       if (feedbackSection) {
         const { top } = feedbackSection.getBoundingClientRect();
@@ -77,6 +70,16 @@ export default function Feedback() {
     }
   };
 
+  const handleFeedbackClick = (feedbackId) => {
+    setSelectedFeedbackId(feedbackId);
+    setOverlayVisible(true);
+  };
+
+  const handleClose = () => {
+    setSelectedFeedbackId(null);
+    setOverlayVisible(false);
+  };
+
   return (
     <div id="Feedback">
       <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
@@ -85,8 +88,12 @@ export default function Feedback() {
             <MDBCol md="11" lg="9" xl="7">
               <div className="feedback-grid">
                 <div className="d-flex flex-wrap">
-                  {feedbackData.map((feedbackItem, index) => (
-                    <div key={feedbackItem._id} className="comment-card" >
+                  {feedbackData.map((feedbackItem) => (
+                    <div
+                      key={feedbackItem._id}
+                      className="comment-card"
+                      onClick={() => handleFeedbackClick(feedbackItem._id)}
+                    >
                       <img
                         className="rounded-circle shadow-1-strong me-3"
                         src={`data:image/png;base64,${feedbackItem.userData.image}`}
@@ -130,6 +137,13 @@ export default function Feedback() {
           </MDBRow>
         </MDBContainer>
       </section>
+      {overlayVisible && (
+        <div className="overlay">
+          <div className="overlay-content">
+            <UserDataDetails user={selectedFeedbackId} onClose={handleClose} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

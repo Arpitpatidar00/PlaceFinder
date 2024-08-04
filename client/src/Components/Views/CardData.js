@@ -6,10 +6,10 @@ import { useInView } from "react-intersection-observer";
 import { useDispatch } from "react-redux";
 import { setPlaceId } from "../../actions/placeActions.js";
 import "../Card.css";
-import { useAdmin } from "../../Context/AdminContext.js";
+import { useAuth } from "../../Context/AuthContext.js";
 
 const CardData = () => {
-  const { items, setItems } = useAdmin();
+  const { items, setItems } =useAuth();
   const [selectedId, setSelectedId] = useState(null);
   const [ref, inView] = useInView();
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const CardData = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75"
+            className="fixedtop-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75"
             onClick={() => setSelectedId(null)}
           >
             <motion.div

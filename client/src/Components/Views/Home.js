@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Search from "../Views/Search.js";
 import Slider from "../Views/Sliderimg/Slider.js";
 import Feedback from "./Feedbackshow.js";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Screen.css";
 import CardData from "./CardData.js";
 import { motion } from "framer-motion";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [places, setPlaces] = useState([]);
   const [isVisibleAbout, setIsVisibleAbout] = useState(false);
   const [isVisibleFeatured, setIsVisibleFeatured] = useState(false);
   const [isVisibleFeedback, setIsVisibleFeedback] = useState(false);
+
+  useEffect(() => {
+    const accessToken = !localStorage.getItem("accessToken");
+    if (accessToken) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -17,8 +17,8 @@ function UserPage() {
       }
     }
 
-    fetchUsers();
-  }, []);
+    fetchUsers(setUsers);
+  }, [setUsers]);
 
   const handleDeleteUser = async (id) => {
     try {

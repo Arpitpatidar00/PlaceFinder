@@ -7,8 +7,9 @@ export const AdminProvider = ({ children }) => {
   const [placedata, setPlacedata] = useState(false);
   const [userdata, setUserdata] = useState(false);
   const [videos, setVideos] = useState(false);
-  const [comments, setComments] = useState([]); // Changed to empty array
-  const [items, setItems] = useState([]); // Changed to empty array
+  const [comments, setComments] = useState(false);
+  const [items, setItems] = useState(false);
+  const [feedback, setFeedback] = useState(false);
 
   return (
     <AdminContext.Provider
@@ -23,6 +24,8 @@ export const AdminProvider = ({ children }) => {
         setVideos,
         items,
         setItems,
+        feedback,
+        setFeedback,
       }}
     >
       {children}

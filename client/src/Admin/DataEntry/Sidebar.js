@@ -1,3 +1,4 @@
+// Sidebar.js
 import React from "react";
 import { useAdmin } from "../../Context/AdminContext";
 import "./admin.css";
@@ -14,16 +15,19 @@ function Sidebar() {
     setItems,
     comments,
     setComments,
+    feedback,
+    setFeedback,
   } = useAdmin();
 
-  function setExclusiveState(target) {
+  function setExclusiveState(targetSetter) {
     setPlacedata(false);
     setUserdata(false);
     setVideos(false);
     setItems(false);
     setComments(false);
+    setFeedback(false);
 
-    target(true);
+    targetSetter(true);
   }
 
   return (
@@ -36,36 +40,54 @@ function Sidebar() {
           <hr />
         </div>
         <ul className="buttonsdiv">
-          <button
-            onClick={() => setExclusiveState(setPlacedata)}
-            className={`button text-white ${placedata ? "active" : ""}`}
-          >
-            <b>Place Control</b>
-          </button>
-          <button
-            onClick={() => setExclusiveState(setUserdata)}
-            className={`button text-white ${userdata ? "active" : ""}`}
-          >
-            <b>User Control</b>
-          </button>
-          <button
-            onClick={() => setExclusiveState(setVideos)}
-            className={`button text-white ${videos ? "active" : ""}`}
-          >
-            <b>Video Upload</b>
-          </button>
-          <button
-            onClick={() => setExclusiveState(setItems)}
-            className={`button text-white ${items ? "active" : ""}`}
-          >
-            <b>Item Control</b>
-          </button>
-          <button
-            onClick={() => setExclusiveState(setComments)}
-            className={`button text-white ${comments ? "active" : ""}`}
-          >
-            <b>Comment Control</b>
-          </button>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setPlacedata)}
+              className={`button text-white ${placedata ? "active" : ""}`}
+            >
+              <b>Place Control</b>
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setUserdata)}
+              className={`button text-white ${userdata ? "active" : ""}`}
+            >
+              <b>User Control</b>
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setVideos)}
+              className={`button text-white ${videos ? "active" : ""}`}
+            >
+              <b>Video Upload</b>
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setItems)}
+              className={`button text-white ${items ? "active" : ""}`}
+            >
+              <b>Item Control</b>
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setComments)}
+              className={`button text-white ${comments ? "active" : ""}`}
+            >
+              <b>Comment Control</b>
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => setExclusiveState(setFeedback)}
+              className={`button text-white ${feedback ? "active" : ""}`}
+            >
+              <b>Feedback Control</b>
+            </button>
+          </li>
         </ul>
       </div>
     </div>

@@ -90,7 +90,7 @@ function Profile() {
     }
 
     try {
-      await axios.put(`http://localhost:4000/auth/update/${userData._id}`, formData, {
+      await axios.put(`http://localhost:4000/auth/profileupdate/${userData._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

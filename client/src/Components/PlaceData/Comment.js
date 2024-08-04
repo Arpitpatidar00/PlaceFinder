@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import UserDataDetails from '../Views/ProfileDetails.js'; // Import the new component
 import './CommentSection.css'; // Create a CSS file for styling
 
 const CommentSection = ({ placeName }) => {
@@ -11,6 +12,9 @@ const CommentSection = ({ placeName }) => {
   const [newComment, setNewComment] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [overlayVisible, setOverlayVisible] = useState(false);
 
   useEffect(() => {
     if (placeId) {
@@ -67,6 +71,16 @@ const CommentSection = ({ placeName }) => {
     return <div>Loading...</div>;
   }
 
+  const handleCommentClick = (comment) => {
+    setSelectedUser(comment);
+    setOverlayVisible(true);
+  };
+
+  const handleClose = () => {
+    setSelectedUser(null);
+    setOverlayVisible(false);
+  };
+
   return (
     <div className="comment-section">
       {isLoading && <div>Loading...</div>}
@@ -86,7 +100,7 @@ const CommentSection = ({ placeName }) => {
 
       <div className="comments-list">
         {comments.map((comment) => (
-          <div key={comment._id} className="comment">
+          <div key={comment._id} className="comment" onClick={() => handleCommentClick(comment)}>
             <img src={comment.avatarUrl} alt="avatar" />
             <div className="comment-content">
               <div className="comment-author">{comment.fullName}</div>
@@ -95,6 +109,10 @@ const CommentSection = ({ placeName }) => {
           </div>
         ))}
       </div>
+
+      {overlayVisible && (
+        <UserDataDetails user={selectedUser} onClose={handleClose} />
+      )}
     </div>
   );
 };

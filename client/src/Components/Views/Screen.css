@@ -1,9 +1,8 @@
-/* Screen.css */
-#slider{
+Screen.css
+#slider {
   padding: 10px;
   margin: 0 auto;
   border-radius: 5px;
-  
 }
 .bg-image-vertical {
   position: relative;
@@ -143,7 +142,6 @@ button[type="submit"] {
   margin-top: 20px;
   text-align: center;
   color: #bab1b1;
-
 }
 
 .link a {
@@ -175,18 +173,21 @@ button[type="submit"] {
   align-items: center;
   height: 100%;
   width: 100%;
-  background-image: url("https://media.istockphoto.com/id/511119416/photo/indian-landmark-gadi-sagar-in-rajasthan.jpg?s=612x612&w=0&k=20&c=dO7TbXh3sd6_QmgcF_nYi6ynyIAvPI5STavwzCDyWTI="); /* Specify the path to your background image */
+  /* background-image: url("https://media.istockphoto.com/id/511119416/photo/indian-landmark-gadi-sagar-in-rajasthan.jpg?s=612x612&w=0&k=20&c=dO7TbXh3sd6_QmgcF_nYi6ynyIAvPI5STavwzCDyWTI="); */
   background-size: cover; /* Cover the entire container with the background image */
   background-position: center; /* Center the background image */
+  z-index: auto;
 }
 
 #container-login {
-  background-color: transparent; /* Add opacity to the background color for better contrast with the text */
+  background-color: rgba(245, 245, 245, 0.931);
   width: 50%;
   max-width: 600px; /* Set maximum width for larger screens */
   height: auto;
   margin-top: 5%;
-  border-radius: 10px;
+  margin-bottom: 5%;
+
+  border-radius: 15px;
 
   padding: 20px;
   /* Add additional styling for the container as needed */
@@ -402,4 +403,231 @@ input[type="radio"]:checked + label:after {
   background-color: #fff;
   top: 7px;
   left: 7px;
+}
+/* Screen.css */
+#slider {
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+
+@media (min-width: 1025px) {
+  .h-custom-2 {
+    height: 100%;
+  }
+}
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#input {
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+}
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f093fb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to bottom right,
+    rgba(240, 147, 251, 1),
+    rgba(245, 87, 108, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to bottom right,
+    rgba(240, 147, 251, 1),
+    rgba(245, 87, 108, 1)
+  );
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 2rem;
+  line-height: 2.15;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 10px;
+  color: black;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 1.5rem;
+}
+
+.file-input-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.file-input-label:hover {
+  background-color: #0056b3;
+}
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.video-container {
+  position: relative;
+}
+
+.controls-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link {
+  margin-top: 20px;
+  text-align: center;
+  color: #bab1b1;
+}
+
+.link a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .container {
+    padding: 15px;
+  }
+  .col-md-6 {
+    max-width: 100%;
+  }
+  .d-none {
+    display: none !important;
+  }
+  .text-black {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  /* Further adjustments for smaller screens */
+  .container {
+    padding: 10px;
+  }
+  .h-custom-2 {
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  form {
+    margin-top: 20px;
+  }
+}
+
+/* Role radio buttons */
+/* Radio button styles */
+input[type="radio"] {
+  display: none;
+}
+
+/* Custom radio button design */
+input[type="radio"] + label {
+  cursor: pointer;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 15px;
+}
+
+input[type="radio"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+input[type="radio"]:checked + label:before {
+  background-color: #007bff;
+}
+
+input[type="radio"]:checked + label:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: white;
 }
