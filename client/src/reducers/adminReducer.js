@@ -1,28 +1,41 @@
-// adminReducer.js
-import { LOG_IN, LOG_OUT } from '../actions/adminActions';
+import { LOGIN_SUCCESS, LOGOUT } from "../actions/adminActions.js";
+import Cookies from "js-cookie";
+
+// Load user data from localStorage
+const userDataFromStorage = localStorage.getItem("userData");
+const accessTokenFromCookies = Cookies.get("accessToken");
 
 const initialState = {
-  token: localStorage.getItem('accessToken') || null,
-  user: localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null,
+  userData: userDataFromStorage ? JSON.parse(userDataFromStorage) : null,
+  accessToken: accessTokenFromCookies || null,
+  isLoggedIn: !!userDataFromStorage,
 };
 
-const adminReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOG_IN:
+    case LOGIN_SUCCESS:
+      // Save user data to localStorage and token to cookiex
+      localStorage.setItem("userData", JSON.stringify(action.payload.userData));
+      Cookies.set("accessToken", action.payload.accessToken, { expires: 7 });
       return {
         ...state,
-        token: action.payload.token,
-        user: action.payload.user,
+        userData: action.payload.userData,
+        accessToken: action.payload.accessToken,
+        isLoggedIn: true,
       };
-    case LOG_OUT:
+    case LOGOUT:
+      // Clear user data from localStorage and cookies
+      localStorage.removeItem("userData");
+      Cookies.remove("accessToken"); // Use remove method instead of removeItem
       return {
         ...state,
-        token: null,
-        user: null,
+        userData: null,
+        accessToken: null,
+        isLoggedIn: false,
       };
     default:
       return state;
   }
 };
 
-export default adminReducer;
+export default authReducer;

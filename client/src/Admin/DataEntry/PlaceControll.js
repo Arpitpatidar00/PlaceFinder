@@ -137,7 +137,7 @@ const CardData = () => {
   const [ref, inView] = useInView();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+console.log(items);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -149,7 +149,6 @@ const CardData = () => {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, []);
 

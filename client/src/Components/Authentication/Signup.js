@@ -2,14 +2,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../actions/authActions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Views/Screen.css";
 
 function SignUp() {
-  const dispatch = useDispatch();
+ 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -44,7 +42,7 @@ function SignUp() {
         ? await fileToBase64(additionalFields.certificationFile)
         : null;
 
-      const response = await axios.post("http://localhost:4000/auth/register", {
+   await axios.post("http://localhost:4000/auth/register", {
         ...formData,
         ...additionalFields,
         image: imageData,
@@ -55,7 +53,6 @@ function SignUp() {
 
       toast.success("Successfully registered user.");
 
-      dispatch(signUp(response.data));
 
       navigate("/login");
     } catch (error) {
@@ -116,10 +113,8 @@ function SignUp() {
         id="container-login"
         style={{
           width: "90%",
-          maxWidth: "500px",
+          maxWidth: "600px",
           padding: "20px",
-          border: "3px solid #ccc",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
         }}
       >
         <h1>Sign up</h1>

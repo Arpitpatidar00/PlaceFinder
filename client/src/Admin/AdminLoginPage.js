@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from 'axios';
-import { loginSuccess } from "../actions/authActions";
-import './admin.css';
+import axios from "axios";
+import { loginSuccess } from "../actions/adminActions.js";
+import "./admin.css";
+import Cookies from "js-cookie"; // Import Cookies
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
@@ -14,14 +15,22 @@ const Adminlogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/admin/login", { email, password });
-      const { token, data } = response.data;
+      const response = await axios.post("http://localhost:4000/admin/login", {
+        email,
+        password,
+      });
+      
+      const { token, admin } = response.data; // Extract token and admin object from the response
+      console.log(response);
+      
+      // Store the token in a cookie
+      Cookies.set("accessToken", token, { expires: 7 }); // Cookie will expire in 7 days
 
       // Dispatch logIn action and store in localStorage
-      dispatch(loginSuccess(data, token));
+      dispatch(loginSuccess(admin, token));
 
       alert("Login successful!");
-      window.location.href = "/admin";
+      window.location.href = "/admin"; // Uncomment this line if you want to redirect
     } catch (error) {
       console.error("Error logging in:", error);
       alert("Failed to login. Please try again.");

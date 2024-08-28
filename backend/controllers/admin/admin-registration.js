@@ -43,41 +43,82 @@ export const register = async (req, res) => {
     }
   };
 
-  export const login = async (req, res) => {
-    const { email, password } = req.body;
+  // export const login = async (req, res) => {
+  //   const { email, password } = req.body;
   
-    try {
-      const user = await Admin.findOne({ email });
-      if (!user) {
-        return res.status(400).json({ error: 'Invalid credentials' });
-      }
+  //   try {
+  //     const user = await Admin.findOne({ email });
+  //     if (!user) {
+  //       return res.status(400).json({ error: 'Invalid credentials' });
+  //     }
   
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ error: 'Invalid credentials' });
-      }
+  //     const isMatch = await bcrypt.compare(password, user.password);
+  //     if (!isMatch) {
+  //       return res.status(400).json({ error: 'Invalid credentials' });
+  //     }
   
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  //     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
-      // Send user data along with the token
-      res.json({ token, data: user });
-    } catch (error) {
-      console.error('Error logging in:', error);
-      res.status(500).json({ error: 'Server error' });
+  //     // Send user data along with the token
+  //     res.json({ token, data: user });
+  //   } catch (error) {
+  //     console.error('Error logging in:', error);
+  //     res.status(500).json({ error: 'Server error' });
+  //   }
+  // };
+// Authenticate user and get token
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    let admin = await Admin.findOne({ email });
+    if (!admin) {
+      return res.status(400).json({ msg: 'Invalid Credentials' });
     }
-  };
 
+    const isMatch = await bcrypt.compare(password, admin.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Invalid Credentials' });
+    }
 
-const authMiddleware = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) return res.status(401).json({ error: 'No token provided' });
-  
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) return res.status(401).json({ error: 'Invalid token' });
-      req.userId = decoded.userId;
-      next();
+    const payload = {
+      user: {
+        id: admin.id,
+      },
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Set cookie with JWT
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // Set to true if using HTTPS
+      sameSite: 'Strict', // Adjust as needed (e.g., 'Lax' or 'None')
+      maxAge: 3600000, // 1 hour
     });
-  };
-  
 
+    res.json({ msg: 'Admin logged in', token,admin });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
 
+// Middleware to protect routes
+export const authMiddleware = (req, res, next) => {
+  // Access token from cookies
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ msg: 'No token, authorization denied' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.user;
+    next();
+  } catch (err) {
+    res.status(401).json({ msg: 'Token is not valid' });
+  }
+};
