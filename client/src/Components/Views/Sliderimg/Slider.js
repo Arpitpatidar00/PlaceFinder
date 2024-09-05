@@ -5,14 +5,14 @@ import axios from 'axios';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.css';
-
+import Api from '../../../Api';
 export default function VideoSlider() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/video/video');
+        const response = await axios.get(`${Api}/video/video`);
         setVideos(response.data);
       } catch (error) {
         console.error('Error fetching videos:', error);
@@ -56,7 +56,7 @@ export default function VideoSlider() {
           <div key={video._id} className="relative">
             <video className="w-full" autoPlay loop muted>
               <source
-                src={`http://localhost:4000/video/video/${video._id}`}
+                src={`${Api}/video/video/${video._id}`}
                 type={video.contentType}
               />
             </video>

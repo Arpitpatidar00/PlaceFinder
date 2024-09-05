@@ -6,6 +6,7 @@ import axios from "axios";
 import { loginSuccess } from "../actions/adminActions.js";
 import "./admin.css";
 import Cookies from "js-cookie"; // Import Cookies
+import Api from "../Api.js";
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Adminlogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/admin/login", {
+      const response = await axios.post(`${Api}/admin/login`, {
         email,
         password,
       });

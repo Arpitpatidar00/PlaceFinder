@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-
+import Api from '../../Api';
 const VideoUpload = () => {
   const [videoFile, setVideoFile] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [videos, setVideos] = useState([]);
+  // const [videos, setVideos] = useState([]);
 
   const handleFileChange = (e) => {
     setVideoFile(e.target.files[0]);
@@ -19,7 +19,7 @@ const VideoUpload = () => {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('http://localhost:4000/video/upload', formData, {
+      const response = await axios.post(`${Api}/video/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

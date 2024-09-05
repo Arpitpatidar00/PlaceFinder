@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import "../Guide/Guide.css";
 import DriverInterface from "./DriverInterface";
 import { useAuth } from "../../../Context/AuthContext.js";
+import Api from '../../../Api.js';
+
 
 const Driver = () => {
   const placeId = useSelector((state) => state.place.placeId);
@@ -25,7 +27,7 @@ const Driver = () => {
   useEffect(() => {
     const fetchGuideData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/driver/driver");
+        const response = await axios.get(`${Api}/driver/driver`);
         setGuides(response.data.driverData);
       } catch (error) {
         console.error("Error fetching guide data:", error);
@@ -74,10 +76,10 @@ const Driver = () => {
     if (!isToggled) {
       try {
         await axios.delete(
-          `http://localhost:4000/driver/delete/${PlacedelectId}`
+          `${Api}/driver/delete/${PlacedelectId}`
         );
         // After deletion, fetch updated guide data
-        const response = await axios.get("http://localhost:4000/submit/driver");
+        const response = await axios.get(`${Api}/submit/driver`);
         setGuides(response.data.guideData);
         setIsAvailable(false); // Set availability to false after successful deletion
       } catch (error) {

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../Components/Views/Screen.css";
 import './admin.css';
-
+import Api from "../../Api";
 function AdminRegistration() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ function AdminRegistration() {
     try {
       const imageData = preview ? preview.split(",")[1] : "";
 
-await axios.post("http://localhost:4000/admin/register", {
+await axios.post(`${Api}/admin/register`, {
         ...formData,
         image: imageData,
       });

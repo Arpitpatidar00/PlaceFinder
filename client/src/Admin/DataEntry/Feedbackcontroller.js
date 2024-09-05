@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { TERipple } from 'tw-elements-react';
 import "./admin.css";
 import { useAdmin } from "../../Context/AdminContext";
+import Api from '../../Api.js';
 
 function Feedbackcontroller() {
   const { feedback, setFeedback } = useAdmin();
@@ -10,7 +11,7 @@ function Feedbackcontroller() {
   useEffect(() => {
     async function fetchFeedback() {
       try {
-        const response = await axios.get("http://localhost:4000/Feedback");
+        const response = await axios.get(`${Api}/Feedback`);
         setFeedback(response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -18,12 +19,12 @@ function Feedbackcontroller() {
     }
 
     fetchFeedback();
-  }, []);
+  }, [setFeedback]);
 
   const handleDeleteComment = async (id) => {
     if (window.confirm("Are you sure you want to delete this feedback?")) {
     try {
-      await axios.delete(`http://localhost:4000/Feedback/${id}`);
+      await axios.delete(`${Api}/Feedback/${id}`);
       const updatedfeedback = feedback.filter((feedback) => feedback._id !== id);
       setFeedback(updatedfeedback);
     } catch (error) {

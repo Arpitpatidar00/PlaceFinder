@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { setPlaceId } from "../../actions/placeActions.js";
 import "../Card.css";
 import { useAuth } from "../../Context/AuthContext.js";
+import Api from '../../Api.js';
+
 
 const CardData = () => {
   const { items, setItems } =useAuth();
@@ -18,7 +20,7 @@ const CardData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/add/");
+        const response = await fetch(`${Api}/add/`);
         const data = await response.json();
         const shuffledData = data.sort(() => 0.5 - Math.random());
         setItems(shuffledData.slice(0, 15)); // Limit to 15 items

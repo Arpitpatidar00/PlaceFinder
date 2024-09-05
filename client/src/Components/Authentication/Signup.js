@@ -5,6 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Views/Screen.css";
+import Api from '../../Api.js';
+
 
 function SignUp() {
  
@@ -42,7 +44,7 @@ function SignUp() {
         ? await fileToBase64(additionalFields.certificationFile)
         : null;
 
-   await axios.post("http://localhost:4000/auth/register", {
+   await axios.post(`${Api}/auth/register`, {
         ...formData,
         ...additionalFields,
         image: imageData,

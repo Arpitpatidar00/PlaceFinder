@@ -13,15 +13,17 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { useAuth } from "../../Context/AuthContext.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Api from '../../Api.js';
+
 
 const ImageDetails = () => {
-  const { searchData, setCommentData, commentData } = useAuth();
+  const { searchData, setCommentData } = useAuth();
   const navigate = useNavigate();
 
   const placeId = useSelector((state) => state.place.placeId);
   const { userData } = useSelector((state) => state.auth);
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [ setSelectedImage] = useState(null);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [showGuideProfile, setShowGuideProfile] = useState(false);
   const [showDriverProfile, setShowDriverProfile] = useState(false);
@@ -30,7 +32,7 @@ const ImageDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/comments`);
+        const response = await fetch(`${Api}/comments`);
         if (!response.ok) {
           throw new Error("Failed to fetch comment data");
         }
@@ -50,7 +52,7 @@ const ImageDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/add/${placeId}`
+          `${Api}/add/${placeId}`
         );
         if (response.data) {
           setSelectedData(response.data);
@@ -68,7 +70,7 @@ const ImageDetails = () => {
     const fetchUploadedImages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/upload/uploadedImages`
+          `${Api}/upload/uploadedImages`
         );
         setUploadedImages(response.data);
       } catch (error) {
@@ -86,7 +88,7 @@ const ImageDetails = () => {
       reader.onloadend = async () => {
         const base64Image = reader.result;
         try {
-          const response = await axios.post(`http://localhost:4000/upload`, {
+          const response = await axios.post(`${Api}/upload`, {
             imageString: base64Image,
             placeId: placeId,
             userData:userData,
@@ -95,7 +97,7 @@ const ImageDetails = () => {
             setSelectedImage(base64Image);
             // Fetch updated images after upload
             const updatedImages = await axios.get(
-              `http://localhost:4000/upload/uploadedImages`
+              `${Api}/upload/uploadedImages`
             );
             setUploadedImages(updatedImages.data);
           }

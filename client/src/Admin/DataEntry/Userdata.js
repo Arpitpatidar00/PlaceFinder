@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TERipple } from 'tw-elements-react';
 import "./admin.css";
+import Api from '../../Api';
 
 function UserPage() {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ function UserPage() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/users");
+        const response = await axios.get(`${Api}/api/v1/users`);
         setUsers(response.data.data || []); // Ensure data is always an array
         console.log(response.data);
       } catch (error) {
@@ -22,7 +23,7 @@ function UserPage() {
 
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/users/${id}`);
+      await axios.delete(`${Api}/api/v1/users/${id}`);
       const updatedUsers = users.filter((user) => user._id !== id);
       setUsers(updatedUsers);
     } catch (error) {

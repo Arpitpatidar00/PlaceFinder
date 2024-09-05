@@ -18,7 +18,7 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const response = await fetch("http://localhost:4000/add/");
+//         const response = await fetch("${Api}/add/");
 //         const data = await response.json();
 //         const shuffledData = data.sort(() => 0.5 - Math.random());
 //         setItems(shuffledData.slice(0, 15)); // Limit to 15 items
@@ -38,7 +38,7 @@
 //   const handleDelete = async (id) => {
 //     console.log("Deleting item with ID:", id); // Log ID for debugging
 //     try {
-//       await axios.delete(`http://localhost:4000/add/${id}`);
+//       await axios.delete(`${Api}/add/${id}`);
 //       // Remove the deleted item from state
 //       setItems((prevItems) => prevItems.filter((item) => item._id !== id)); // Ensure the field matches
 //     } catch (error) {
@@ -130,18 +130,20 @@ import { setPlaceId } from "../../actions/placeActions.js";
 import "../.././Components/Card.css";
 import { useAdmin } from "../../Context/AdminContext.js";
 import axios from 'axios';
+import Api from '../../Api.js';
 
 const CardData = () => {
+
   const { items, setItems } = useAdmin();
   const [selectedId, setSelectedId] = useState(null);
   const [ref, inView] = useInView();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-console.log(items);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/add/");
+        const response = await fetch(`${Api}/add/`);
         const data = await response.json();
         const shuffledData = data.sort(() => 0.5 - Math.random());
         setItems(shuffledData.slice(0, 200)); // Limit to 15 items
@@ -150,7 +152,7 @@ console.log(items);
       }
     };
     fetchData();
-  }, []);
+  }, [setItems]);
 
   const handleCardClick = (id) => {
     dispatch(setPlaceId(id));
@@ -162,7 +164,7 @@ console.log(items);
     if (window.confirm("Are you sure you want to delete this place?")) {
       console.log("Deleting item with ID:", id); // Log ID for debugging
       try {
-        await axios.delete(`http://localhost:4000/add/${id}`);
+        await axios.delete(`${Api}/add/${id}`);
         // Remove the deleted item from state
         setItems((prevItems) => prevItems.filter((item) => item._id !== id)); // Ensure the field matches
       } catch (error) {

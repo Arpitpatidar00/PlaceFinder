@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Api from '../../Api';
 
 const Feedback = ({ isOpen, toggleModal }) => {
     const { userData } = useSelector((state) => state.auth);
@@ -17,7 +17,7 @@ const Feedback = ({ isOpen, toggleModal }) => {
 
     const handleSubmitFeedback = async () => {
         try {
-            const response = await fetch('http://localhost:4000/Feedback', {
+            const response = await fetch(`${Api}/Feedback`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { TERipple } from 'tw-elements-react';
 import "./admin.css";
 import { useAdmin } from "../../Context/AdminContext";
+import Api from '../../Api.js';
 
 function CommentControl() {
   const { comments, setComments } = useAdmin();
@@ -10,7 +11,7 @@ function CommentControl() {
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get("http://localhost:4000/comments");
+        const response = await axios.get(`${Api}/comments`);
         setComments(response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -18,12 +19,12 @@ function CommentControl() {
     }
 
     fetchComments();
-  }, []);
+  }, [setComments]);
 
   const handleDeleteComment = async (id) => {
     if (window.confirm("Are you sure you want to delete this comment ?")) {
     try {
-      await axios.delete(`http://localhost:4000/comments/${id}`);
+      await axios.delete(`${Api}/comments/${id}`);
       const updatedComments = comments.filter((comment) => comment._id !== id);
       setComments(updatedComments);
     } catch (error) {

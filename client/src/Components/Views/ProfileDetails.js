@@ -11,13 +11,13 @@
 //   useEffect(() => {
 //     const fetchUserData = async () => {
 //       try {
-//         const response = await fetch(`http://localhost:4000/Feedback/onlyone${feedbackId}`);
+//         const response = await fetch(`${Api}/Feedback/onlyone${feedbackId}`);
 //         if (response.ok) {
 //           const data = await response.json();
 //           setUserData(data.userData);
 // setTimeout(() => {
 //   if (userData._id) {
-//     const imageResponse = await axios.get(`http://localhost:4000/upload/user/${userData._id}`);
+//     const imageResponse = await axios.get(`${Api}/upload/user/${userData._id}`);
 //     setUserImages(imageResponse.data);
    
 //   }
@@ -121,6 +121,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import "./FeedbackDetails.css";
+import Api from '../../Api.js';
+
 
 export default function UserDataDetails({ user, onClose }) {
   const [userData, setUserData] = useState(null);
@@ -131,14 +133,14 @@ export default function UserDataDetails({ user, onClose }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/Feedback/onlyone${user}`);
+        const response = await fetch(`${Api}/Feedback/onlyone${user}`);
 
         if (response.ok) {
           const data = await response.json();
           setUserData(data.userData);
 
           if (data.userData._id) {
-            const imageResponse = await axios.get(`http://localhost:4000/upload/user/${data.userData._id}`);
+            const imageResponse = await axios.get(`${Api}/upload/user/${data.userData._id}`);
             setUserImages(imageResponse.data);
           }
         } else {

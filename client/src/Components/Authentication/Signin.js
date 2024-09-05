@@ -4,9 +4,11 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../actions/authActions";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../Views/Screen.css";
+import Api from '../../Api.js';
+
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function Login() {
     e.preventDefault();
     const { email, password } = formData;
     try {
-      const response = await axios.post("http://localhost:4000/auth/login", {
+      const response = await axios.post(`${Api}/auth/login`, {
         email,
         password,
       });

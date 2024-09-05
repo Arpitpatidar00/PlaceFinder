@@ -47,7 +47,7 @@ const Placedata = () => {
       };
   
       // Send the form data to the backend
-      const response = await axios.post('http://localhost:4000/add/upload', dataToSend);
+      const response = await axios.post(`{Api}/add/upload`, dataToSend);
       console.log(response.data);
   
       // Reset form after submission

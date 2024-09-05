@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 import { setPlaceId } from "../../actions/placeActions";
+import Api from '../../Api';
+
 import "../Card.css";
 
 const Search = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
-  const [searchClicked, setSearchClicked] = useState(false);
+  const [ setSearchClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false); // State to track component visibility
 
   useEffect(() => {
     // Function to handle scroll event
     const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
       const searchComponent = document.getElementById("searchComponent");
       if (searchComponent) {
         const { top } = searchComponent.getBoundingClientRect();
@@ -42,7 +42,7 @@ const Search = () => {
       setSearchClicked(true); // Trigger search on button click
       if (query.trim() !== "") {
         const response = await axios.get(
-          `http://localhost:4000/add/search?query=${query.trim()}`
+          `${Api}/add/search?query=${query.trim()}`
         );
         setImages(response.data);
       }
