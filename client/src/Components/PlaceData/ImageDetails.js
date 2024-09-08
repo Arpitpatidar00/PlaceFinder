@@ -225,7 +225,6 @@ const ImageDetails = () => {
             style={{ display: "none" }}
           />
         </div>
-        <Comment />
       
         <div>
           <h1>Comments</h1>

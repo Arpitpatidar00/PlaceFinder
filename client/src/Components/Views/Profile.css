@@ -9,9 +9,9 @@
   flex-direction: column;
   padding: 20px;
   overflow-y: auto; /* Changed from scroll to auto for better behavior */
-  background-color: whitesmoke;
   border-radius: 15px;
-  border: solid gray;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 .container {
@@ -20,18 +20,18 @@
 
 .profile-header {
   display: flex;
-  background-color: whitesmoke;
   margin-bottom: 20px;
   justify-content: space-between;
-  border: solid gray;
-  border-radius: 10px;
-  box-shadow: 10px 10px 60px #eae9e9, -20px -20px 60px #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
 
 }
 
 .profile-image {
   margin-right: 40px;
+  
 }
 
 .profile-image img {
@@ -39,6 +39,8 @@
   height: 200px;
   border-radius: 50%;
   margin-right: 60px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 
 }
 
@@ -48,6 +50,7 @@
   color: rgb(0, 0, 0);
   margin-right: 60px;
   margin-left: 60px;
+  
 
 }
 
@@ -73,8 +76,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  border: solid gray;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  
 }
 
 .photo-item {
@@ -86,6 +91,8 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 .modal-overlay {
@@ -94,7 +101,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -103,9 +109,10 @@
 
 .modal-content {
   background: white;
-  padding: 20px;
   border-radius: 8px;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 .modal-close {
@@ -121,17 +128,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 .edit-modal-content {
+  width: 300px;
   background: white;
   padding: 20px;
   border-radius: 8px;
   position: relative;
+
 }
 
 .edit-field {
@@ -145,6 +156,8 @@
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   cursor: pointer;
 }
 
@@ -175,6 +188,9 @@
 .show-all-link {
   cursor: pointer;
   color: #008cba;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  
 }
 
 .show-all-link:hover {

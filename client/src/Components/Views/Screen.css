@@ -1,593 +1,63 @@
- #slider {
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-}
-.bg-image-vertical {
-  position: relative;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
-}
-
-@media (min-width: 1025px) {
-  .h-custom-2 {
-    height: 100%;
-  }
-}
-body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#input {
-  border-radius: 5px;
-  padding: 5px;
-  margin-left: 5px;
-}
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #f093fb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-}
-
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 2rem;
-  line-height: 2.15;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-.card-registration .select-arrow {
-  top: 13px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 10px;
-  color: black;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  font-size: 1.5rem;
-}
-
-.file-input-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.file-input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.file-input-label {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.file-input-label:hover {
-  background-color: #0056b3;
-}
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.video-container {
-  position: relative;
-}
-
-.controls-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.link {
-  margin-top: 20px;
-  text-align: center;
-  color: #bab1b1;
-}
-
-.link a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.link a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive styles */
-@media only screen and (max-width: 768px) {
-  /* Adjust styles for smaller screens */
-  .container {
-    padding: 15px;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  /* Further adjustments for smaller screens */
-  .container {
-    padding: 10px;
-  }
-}
+/* Main Container */
 #main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-  width: 100vw; 
-  background-size: cover; 
-  background-position: center; 
-  z-index: auto;
+  width: 100%;
+  height: 100vh; /* Full viewport height for vertical centering */
 }
 
+/* Login Container */
 #container-login {
+  background-color: #ffffffeb;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  /* Centering the login container */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title */
+h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+/* Form Group Styles */
+.form-group-btm{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+}
+.form-group {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #dadada;
-  width: 50%;
-  max-width: 700px;
-  height: auto;
-  margin: 5% 0; 
-  border-radius: 20px;
-  box-shadow: 20px 2px 60px #00000041, -20px -20px 60px #ffffff95 ;
-  padding: 20px;
+  margin: 20px;
 }
 
-
-input[type="radio"] {
-  display: none;
-}
-
-input[type="radio"] + label {
-  cursor: pointer;
-  position: relative;
-  padding-left: 25px;
-  margin-right: 15px;
-}
-
-input[type="radio"] + label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 16px;
-  height: 16px;
-  border: 1px solid #999;
-  border-radius: 50%;
-  background-color: #fff;
-}
-
-input[type="radio"]:checked + label:before {
-  background-color: #007bff;
-}
-
-input[type="radio"] + label:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-input[type="radio"]:checked + label:after {
-  display: block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #fff;
-  top: 7px;
-  left: 7px;
-}
-/* ?????????????????????? */
-/* slider */
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#input {
-  border-radius: 5px;
-  padding: 5px;
-  margin-left: 5px;
-}
-.gradient-custom {
-  background: #f093fb;
-
-  background: -webkit-linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-
-  background: linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-}
-
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 1rem;
-  line-height: 2.15;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-.card-registration .select-arrow {
-  top: 13px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-label {
-  display: block;
+/* Label */
+.form-group label {
+  font-size: 14px;
+  color: #555;
   margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-}
-
-input[type="file"] {
-  margin-top: 10px;
-}
-
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.video-container {
-  position: relative;
-}
-
-.controls-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.link {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.link a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.link a:hover {
-  text-decoration: underline;
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .container {
-    padding: 10px;
-  }
-}
-
-
-input[type="radio"] {
-  display: none;
-}
-
+/* Radio Input Styles */
 input[type="radio"] + label {
-  cursor: pointer;
   position: relative;
   padding-left: 25px;
   margin-right: 15px;
-}
-
-input[type="radio"] + label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 16px;
-  height: 16px;
-  border: 1px solid #999;
-  border-radius: 50%;
-  background-color: #fff;
-}
-
-input[type="radio"]:checked + label:before {
-  background-color: #007bff;
-}
-
-input[type="radio"] + label:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-input[type="radio"]:checked + label:after {
-  display: block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #fff;
-  top: 7px;
-  left: 7px;
-}
-#slider {
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-}
-.bg-image-vertical {
-  position: relative;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
-}
-
-@media (min-width: 1025px) {
-  .h-custom-2 {
-    height: 100%;
-  }
-}
-body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#input {
-  border-radius: 5px;
-  padding: 5px;
-  margin-left: 5px;
-}
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #f093fb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-}
-
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 2rem;
-  line-height: 2.15;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-.card-registration .select-arrow {
-  top: 13px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 10px;
-  color: black;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  font-size: 1.5rem;
-}
-
-.file-input-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.file-input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
   cursor: pointer;
-}
-
-.file-input-label {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.file-input-label:hover {
-  background-color: #0056b3;
-}
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.video-container {
-  position: relative;
-}
-
-.controls-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.link {
-  margin-top: 20px;
-  text-align: center;
-  color: #bab1b1;
-}
-
-.link a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.link a:hover {
-  text-decoration: underline;
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-  .col-md-6 {
-    max-width: 100%;
-  }
-  .d-none {
-    display: none !important;
-  }
-  .text-black {
-    text-align: center;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  /* Further adjustments for smaller screens */
-  .container {
-    padding: 10px;
-  }
-  .h-custom-2 {
-    justify-content: center;
-    align-items: center;
-    height: auto;
-  }
-  form {
-    margin-top: 20px;
-  }
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-/* Custom radio button design */
-input[type="radio"] + label {
-  cursor: pointer;
-  position: relative;
-  padding-left: 25px;
-  margin-right: 15px;
 }
 
 input[type="radio"] + label:before {
@@ -599,7 +69,6 @@ input[type="radio"] + label:before {
   height: 15px;
   border: 2px solid #007bff;
   border-radius: 50%;
-  background-color: transparent;
 }
 
 input[type="radio"]:checked + label:before {
@@ -613,6 +82,120 @@ input[type="radio"]:checked + label:after {
   top: 6px;
   width: 7px;
   height: 7px;
-  border-radius: 50%;
   background-color: white;
+  border-radius: 50%;
+}
+
+/* Input Field Styles */
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="file"] {
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Role Selection */
+.form-group div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.form-group div label {
+  margin-left: 5px;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Link Styles */
+.link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.link p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  #container-login {
+    max-width: 100%; /* Full width on smaller screens */
+    padding: 15px; /* Adjust padding */
+  }
+
+  h1 {
+    font-size: 20px; /* Smaller title */
+  }
+
+  .form-group {
+    margin: 10px 0; /* Less margin for form groups */
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px; /* Smaller button on mobile */
+  }
+
+  .form-group input {
+    padding: 8px; /* Smaller input padding */
+  }
+
+  .link p {
+    font-size: 12px; /* Smaller font size for links */
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 18px; /* Even smaller title */
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 6px 10px; /* Smaller buttons for mobile */
+  }
+
+  .link p {
+    font-size: 12px; /* Reduce font size on very small screens */
+  }
+}
+
+/* Additional Tweaks for Ultra-small Screens */
+@media (max-width: 400px) {
+  .form-group input {
+    padding: 6px; /* Reduce input padding further */
+  }
+
+  .btn {
+    padding: 5px 8px; /* Smaller button padding */
+  }
 }

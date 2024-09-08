@@ -43,30 +43,7 @@ export const register = async (req, res) => {
     }
   };
 
-  // export const login = async (req, res) => {
-  //   const { email, password } = req.body;
   
-  //   try {
-  //     const user = await Admin.findOne({ email });
-  //     if (!user) {
-  //       return res.status(400).json({ error: 'Invalid credentials' });
-  //     }
-  
-  //     const isMatch = await bcrypt.compare(password, user.password);
-  //     if (!isMatch) {
-  //       return res.status(400).json({ error: 'Invalid credentials' });
-  //     }
-  
-  //     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  
-  //     // Send user data along with the token
-  //     res.json({ token, data: user });
-  //   } catch (error) {
-  //     console.error('Error logging in:', error);
-  //     res.status(500).json({ error: 'Server error' });
-  //   }
-  // };
-// Authenticate user and get token
 
 export const login = async (req, res) => {
   const { email, password } = req.body;

@@ -44,7 +44,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color:transparent;
+  background-color:transparent !important;
   color: white;
   border: none;
   border-radius: 5px;

@@ -205,13 +205,12 @@
 //     next();
 //   });
 // };
-import User from "../models/User.js";
-import Admin from "../models/Adminschema.js";
+
+import User  from '../models/User.js'; // Adjust the import based on your file structure
+import  Admin  from '../models/Adminschema.js'; // Import your Admin model
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "Arpit@007";
 
 // User registration
 export const register = async (req, res) => {
@@ -281,37 +280,37 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    let user;
+    let user = null;
+    let isAdmin = false;
 
-    // Check if the provided credentials match admin credentials
-    if (email === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      // If so, create a dummy admin user object
-      user = { _id: "admin_id", role: "admin" };
-    } else {
-      // Otherwise, try to find the user in the database
+    // Try to find the user in the Admin collection
+    user = await Admin.findOne({ email });
+
+    // If not found in Admin collection, try to find the user in the User collection
+    if (!user) {
       user = await User.findOne({ email });
+    }
 
-      // If user doesn't exist, return error
-      if (!user) {
-        return res.status(404).json({
-          success: false,
-          message: "User not found",
-        });
-      }
+    // If user doesn't exist in either collection, return error
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User or Admin not found",
+      });
+    }
 
-      // Check password
-      const checkCorrectPassword = await bcrypt.compare(
-        password,
-        user.password
-      );
+    // Set isAdmin flag based on where the user was found
+    isAdmin = user.constructor.modelName === 'Admin'; // Checks if the model is Admin
 
-      // If password is incorrect, return error
-      if (!checkCorrectPassword) {
-        return res.status(401).json({
-          success: false,
-          message: "Incorrect Password or Email",
-        });
-      }
+    // Check password
+    const checkCorrectPassword = await bcrypt.compare(password, user.password);
+
+    // If password is incorrect, return error
+    if (!checkCorrectPassword) {
+      return res.status(401).json({
+        success: false,
+        message: "Incorrect Password or Email",
+      });
     }
 
     // Generate JWT token
@@ -332,8 +331,9 @@ export const login = async (req, res) => {
       .status(200)
       .json({
         token,
-        data: { ...user }, // Removed _doc, as it's not required here
+        data: { ...user.toObject() }, // Convert user to plain object
         role: user.role,
+        admin: isAdmin, // Include admin flag in the response
       });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to login" });

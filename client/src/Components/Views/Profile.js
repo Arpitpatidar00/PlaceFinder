@@ -211,7 +211,7 @@ function Profile() {
             )}
             {editMode && (
               <div className="edit-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="edit-modal-content bg-white p-2 rounded-lg w-full max-w-md">
+                <div className="edit-modal-content bg-white  rounded-lg w-full max-w-md">
                   <button
                     className="modal-close absolute top-2 right-2 text-gray-600"
                     onClick={() => setEditMode(false)}

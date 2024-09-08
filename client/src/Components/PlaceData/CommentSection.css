@@ -6,13 +6,16 @@
     box-sizing: border-box;
     background-color: #f1eaea;
     border-radius: 15px;
-    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comment-input {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
+    gap: 10px;
+    
   }
   
   .comment-input img {
@@ -20,6 +23,8 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comment-input textarea {
@@ -29,11 +34,14 @@
     margin-bottom: 10px;
     resize: none;
     border-radius: 15px;
-    border: 1px solid black;
+    border: none;
     font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comment-input button {
+justify-content: center;    
     align-items: flex-end;
     padding: 10px 10px;
     background-color: #007bff;
@@ -41,11 +49,15 @@
     border: none;
     cursor: pointer;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comment-input button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comments-list {
@@ -64,16 +76,20 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
   }
   
   .comment-content {
     display: flex;
     flex-direction: column;
     font-size: 15px;
+
   }
   
   .comment-author {
     font-weight: bold;
+    
   }
   
   .comment-text {

@@ -1,31 +1,36 @@
 /* Feedback container */
 #Feedback {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: row; 
+  justify-content: center;
   align-items: center;
   padding: 1rem;
   background-color: #f7f7f7;
-  border: 1px solid #ddd;
   border-radius: 0.5rem;
   max-width: 100%;
-  padding-top: 10%;
+  margin: 5%;
   max-height: 50%; /* Limit height */
   overflow-y: auto; /* Enable vertical scroll if needed */
-  margin: 5%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
 }
 
 /* Feedback section */
 .feedback-section {
+  border-radius: 0.5rem;
+
   overflow-y: auto; /* Enable vertical scrolling */
   max-height: 80vh; /* Adjust max height as needed */
   width: 100%;
+
 }
 
 /* Feedback grid */
 .feedback-grid {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem; /* Add space between comment cards */
+  justify-content: center; /* Center items in the grid */
 }
 
 /* Comment card */
@@ -35,6 +40,11 @@
   border-radius: 10px; /* Add border radius for aesthetics */
   background-color: #f8f9fa; /* Background color for the cards */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 /* Responsive styles for smaller screens */
@@ -65,37 +75,29 @@
 /* Styles for comment card content */
 .comment-card img {
   border-radius: 50%;
+  margin-bottom: 1rem; /* Add space between image and content */
 }
 
 .comment-card .p-4 {
   background-color: #f8f9fa;
 }
 
-.comment-card .p {
+.comment-card p {
   margin-bottom: 0.5rem;
+  text-align: center; /* Center text */
 }
 
 /* Styles for link buttons */
 .link-muted {
   color: #6c757d;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .link-muted:hover {
   color: #495057;
 }
 
-/* Large font size for #Feed */
-#Feed {
-  font-size: 50px;
-}
-
-/* Additional responsive styles */
-@media (max-width: 576px) {
-  #Feed {
-    font-size: 30px; /* Reduce font size on smaller screens */
-  }
-}
 .overlay {
   position: fixed;
   top: 0;
@@ -113,21 +115,17 @@
   background: white;
   padding: 20px;
   border-radius: 10px;
-  width: 1000px;
-  height: 1000px;
+  width: 90%; /* Set max width for smaller devices */
+  max-width: 1000px;
   max-height: 80vh;
   overflow-y: auto;
   position: relative; /* Ensure relative positioning for the close button */
 }
 
-.container-profile {
-  width: 100%;
-}
-
 .btn-close {
   position: absolute;
   top: 10px;
-  right: 10px; /* Changed from right to left */
+  right: 10px; /* Correct positioning for close button */
   cursor: pointer;
   background-color: black;
   color: #f7f7f7;
@@ -136,4 +134,15 @@
   border-radius: 5px;
 }
 
-/* Add additional styles as needed */
+/* Large font size for #Feed */
+#Feed {
+  font-size: 50px;
+}
+
+@media (max-width: 576px) {
+  #Feed {
+    font-size: 30px; /* Reduce font size on smaller screens */
+  }
+}
+
+/* Add any additional styling below if needed */

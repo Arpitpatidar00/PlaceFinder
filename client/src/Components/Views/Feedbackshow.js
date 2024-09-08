@@ -84,7 +84,7 @@ export default function Feedback() {
       <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
         <MDBContainer className="py-2">
           <MDBRow className="justify-content-center">
-            <MDBCol md="11" lg="9" xl="7">
+            <MDBCol  >
               <div className="feedback-grid">
                 <div className="d-flex flex-wrap">
                   {feedbackData.map((feedbackItem) => (

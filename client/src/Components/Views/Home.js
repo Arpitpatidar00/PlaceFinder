@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 const Home = () => {
   const navigate = useNavigate();
 
-  const [places, setPlaces] = useState([]);
+  const [places] = useState([]);
   const [isVisibleAbout, setIsVisibleAbout] = useState(false);
   const [isVisibleFeatured, setIsVisibleFeatured] = useState(false);
   const [isVisibleFeedback, setIsVisibleFeedback] = useState(false);
@@ -57,7 +57,7 @@ const Home = () => {
         </div>
 
         {/* Search Container */}
-        <div className="search-container">
+        <div >
           {/* Render the Search component */}
           <Search />
         </div>

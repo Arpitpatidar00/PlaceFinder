@@ -5,11 +5,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../Views/Screen.css";
-import Api from '../../Api.js';
-
+import Api from "../../Api.js";
 
 function SignUp() {
- 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -44,7 +42,7 @@ function SignUp() {
         ? await fileToBase64(additionalFields.certificationFile)
         : null;
 
-   await axios.post(`${Api}/auth/register`, {
+      await axios.post(`${Api}/auth/register`, {
         ...formData,
         ...additionalFields,
         image: imageData,
@@ -54,7 +52,6 @@ function SignUp() {
       });
 
       toast.success("Successfully registered user.");
-
 
       navigate("/login");
     } catch (error) {
@@ -111,16 +108,9 @@ function SignUp() {
 
   return (
     <div id="main">
-      <div
-        id="container-login"
-        style={{
-          width: "90%",
-          maxWidth: "600px",
-          padding: "20px",
-        }}
-      >
+      <div id="container-login">
         <h1>Sign up</h1>
-        <div className="form-group">
+        <div className="form-group-btm">
           <label>Role:</label>
           <div>
             <input
@@ -130,6 +120,8 @@ function SignUp() {
               value="user"
               checked={formData.role === "user"}
               onChange={handleInputChange}
+
+
             />
             <label htmlFor="user">User</label>
           </div>
@@ -162,7 +154,7 @@ function SignUp() {
             <label>Username:</label>
             <input
               id="input"
-              type="text"
+              type="username"
               name="username"
               value={formData.username}
               onChange={handleInputChange}
@@ -195,7 +187,9 @@ function SignUp() {
           <div className="form-group">
             <label>Mobile Number:</label>
             <input
-              type="text"
+              id="input"
+              type="mobileNumber"
+
               name="mobileNumber"
               value={formData.mobileNumber}
               onChange={handleInputChange}
@@ -206,43 +200,37 @@ function SignUp() {
           {formData.role === "guide" && (
             <>
               <div className="form-group">
-                <label style={{ display: "inline-block", marginRight: "10px" }}>
-                  Aadhar Number:
-                </label>
+                <label>Aadhar Number:</label>
                 <input
-                  type="text"
+                  id="input"
+                  type="aadharNumber"
+
                   name="aadharNumber"
                   value={additionalFields.aadharNumber}
                   onChange={handleAdditionalInputChange}
                   required
-                  style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                 />
-                <label style={{ display: "inline-block", marginLeft: "10px" }}>
-                  Aadhar File:
-                </label>
+                <label>Aadhar File:</label>
                 <input
+                  id="input"
+
                   type="file"
                   accept="application/pdf"
                   onChange={(e) => handleAdditionalFileChange(e, "aadharFile")}
                   required
-                  style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                 />
               </div>
               <div className="form-group">
-                <label style={{ display: "inline-block", marginRight: "10px" }}>
-                  Certification Address:
-                </label>
+                <label>Certification Address:</label>
                 <input
-                  type="text"
                   name="certificationAddress"
+                  type="certificationAddress"
+
                   value={additionalFields.certificationAddress}
                   onChange={handleAdditionalInputChange}
                   required
-                  style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                 />
-                <label style={{ display: "inline-block", marginLeft: "10px" }}>
-                  Certification File:
-                </label>
+                <label>Certification File:</label>
                 <input
                   type="file"
                   accept="application/pdf"
@@ -250,7 +238,6 @@ function SignUp() {
                     handleAdditionalFileChange(e, "certificationFile")
                   }
                   required
-                  style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                 />
               </div>
             </>
@@ -259,22 +246,20 @@ function SignUp() {
             <>
               <div className="form-group row">
                 <div className="col">
-                  <label style={{ display: "inline-block", marginRight: "10px" }}>
-                    Aadhar Number:
-                  </label>
+                  <label>Aadhar Number:</label>
                   <input
                     type="text"
+                    id="input"
+
+                    
                     name="aadharNumber"
                     value={additionalFields.aadharNumber}
                     onChange={handleAdditionalInputChange}
                     required
-                    style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                   />
                 </div>
                 <div className="col">
-                  <label style={{ display: "inline-block", marginLeft: "10px" }}>
-                    Aadhar File:
-                  </label>
+                  <label>Aadhar File:</label>
                   <input
                     type="file"
                     accept="application/pdf"
@@ -282,28 +267,24 @@ function SignUp() {
                       handleAdditionalFileChange(e, "aadharFile")
                     }
                     required
-                    style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                   />
                 </div>
               </div>
               <div className="form-group row">
                 <div className="col">
-                  <label style={{ display: "inline-block", marginRight: "10px" }}>
-                    License Number:
-                  </label>
+                  <label>License Number:</label>
                   <input
+                                id="input"
+
                     type="text"
                     name="licenceNumber"
                     value={additionalFields.licenceNumber}
                     onChange={handleAdditionalInputChange}
                     required
-                    style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                   />
                 </div>
                 <div className="col">
-                  <label style={{ display: "inline-block", marginLeft: "10px" }}>
-                    License File:
-                  </label>
+                  <label>License File:</label>
                   <input
                     type="file"
                     accept="application/pdf"
@@ -311,7 +292,6 @@ function SignUp() {
                       handleAdditionalFileChange(e, "licenceFile")
                     }
                     required
-                    style={{ display: "inline-block", width: "calc(50% - 10px)" }}
                   />
                 </div>
               </div>
@@ -326,17 +306,11 @@ function SignUp() {
               onChange={handleImageChange}
               required
             />
-            {preview && (
-              <img
-                src={preview}
-                alt="Preview"
-                style={{ maxWidth: "100%", maxHeight: "200px" }}
-              />
-            )}
+            {preview && <img src={preview} alt="Preview" />}
           </div>
 
           <div className="form-group">
-            <button type="submit">Sign Up</button>
+            <button className="btn" type="submit">Sign Up</button>
           </div>
         </form>
         <div className="link">
