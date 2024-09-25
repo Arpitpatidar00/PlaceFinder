@@ -1,97 +1,104 @@
-.brand-logo,
-h6 {
-  font-family: "Grand Hotel", cursive;
-  color: black;
+/* Navbar.css */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* Dark Blue background */
+  padding: 15px 30px; /* Padding for spacing */
+  color: #ecf0f1; /* Light color for text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.brand-logo {
-margin-left: 20px;
-background-color: transparent;
-border: none;
-color: black !important;
-background-color: transparent !important;
+.nav button {
+  background: none; /* No background for buttons */
+  border: none; /* Remove default border */
+  color: #000000; /* Text color */
+  font-size: 2.1rem; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+  font-family: cursive;
+  
 }
-/* Navbar.css */
+
+.nav button:hover {
+  color: #3498db; /* Change color on hover */
+}
+
+.nav ul {
+  list-style: none; /* Remove bullet points */
+  display: flex; /* Flexbox for horizontal alignment */
+  align-items: center; /* Center items vertically */
+}
+
+.nav ul li {
+  margin-left: 20px; /* Space between items */
+}
+
+.profile-menu {
+  position: relative; /* Needed for dropdown positioning */
+}
+
 .user-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: #333;
+  width: 40px; /* User image size */
+  height: 40px; /* User image size */
+  border-radius: 50%; /* Circular image */
+  cursor: pointer; /* Pointer cursor */
 }
 
 .profile-dropdown {
-  position: absolute;
-  align-items: center;
-  justify-content:center ;
-  width: 150px;
-  display: grid;
-  top: 70px;
-  right: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  list-style: none;
-  z-index: 1000;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  position: absolute; /* Absolute positioning for dropdown */
+  top: 50px; /* Position below the profile menu */
+  right: 0; /* Align to the right */
+  background-color: #34495e; /* Dropdown background */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Dropdown shadow */
+  z-index: 1000; /* Ensure dropdown appears on top */
+  display: none; /* Initially hidden */
+}
 
+.profile-menu:hover .profile-dropdown {
+  display: block; /* Show dropdown on hover */
 }
 
 .profile-dropdown li {
-  margin: 5px 0;
+  padding: 10px 15px; /* Padding for dropdown items */
 }
 
-.profile-dropdown a,
 .profile-dropdown button {
-  text-decoration: none;
-  color: black;
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  cursor: pointer;
+  width: 100%; /* Full width for dropdown buttons */
+  text-align: left; /* Align text to the left */
+  background: none; /* No background */
+  color: #ecf0f1; /* Text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition for background */
 }
 
-.profile-dropdown button:hover,
-.profile-dropdown a:hover {
-  background-color: #f0f0f0;
-}
-#logout-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-
+.profile-dropdown button:hover {
+  background-color: rgba(52, 152, 219, 0.2); /* Light background on hover */
 }
 
-#logout-btn button:hover {
-  color: #fffbfb;
-  /* Change hover color as needed */
-}
-#profile-btn button:hover {
-background-color: transparent;  /* Change hover color as needed */
-}
-#profile{
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  
-}
-.home-btn{
-  color: black;
-  font-size: 14px;
-  border: none;
-  font-family: "Grand Hotel", cursive;
-  background-color: transparent !important;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align to start */
+  }
 
+  .nav ul {
+    flex-direction: column; /* Stack list items vertically */
+    width: 100%; /* Full width for the list */
+  }
 
+  .nav ul li {
+    margin-left: 0; /* Reset margin for vertical layout */
+    width: 100%; /* Full width for buttons */
+  }
+
+  .nav button {
+    padding: 10px; /* Add padding for better touch targets */
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Full width for buttons */
+  }
 }

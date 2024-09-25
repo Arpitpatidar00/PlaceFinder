@@ -12,6 +12,7 @@ export default function VideoSlider() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
+
         const response = await axios.get(`${Api}/video/video`);
         setVideos(response.data);
       } catch (error) {
@@ -56,6 +57,7 @@ export default function VideoSlider() {
           <div key={video._id} className="relative">
             <video className="w-full" autoPlay loop muted>
               <source
+
                 src={`${Api}/video/video/${video._id}`}
                 type={video.contentType}
               />

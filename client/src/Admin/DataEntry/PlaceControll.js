@@ -18,6 +18,8 @@
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
+//         const response = await fetch("https://travelling-backend.onrender.com/add/");
+
 //         const response = await fetch("${Api}/add/");
 //         const data = await response.json();
 //         const shuffledData = data.sort(() => 0.5 - Math.random());
@@ -38,6 +40,8 @@
 //   const handleDelete = async (id) => {
 //     console.log("Deleting item with ID:", id); // Log ID for debugging
 //     try {
+//       await axios.delete(`https://travelling-backend.onrender.com/add/${id}`);
+
 //       await axios.delete(`${Api}/add/${id}`);
 //       // Remove the deleted item from state
 //       setItems((prevItems) => prevItems.filter((item) => item._id !== id)); // Ensure the field matches
@@ -143,6 +147,7 @@ const CardData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         const response = await fetch(`${Api}/add/`);
         const data = await response.json();
         const shuffledData = data.sort(() => 0.5 - Math.random());
@@ -164,6 +169,7 @@ const CardData = () => {
     if (window.confirm("Are you sure you want to delete this place?")) {
       console.log("Deleting item with ID:", id); // Log ID for debugging
       try {
+        await axios.delete(`https://travelling-backend.onrender.com/add/${id}`);
         await axios.delete(`${Api}/add/${id}`);
         // Remove the deleted item from state
         setItems((prevItems) => prevItems.filter((item) => item._id !== id)); // Ensure the field matches

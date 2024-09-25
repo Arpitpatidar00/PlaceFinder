@@ -1,201 +1,46 @@
-/* Main Container */
-#main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh; /* Full viewport height for vertical centering */
-}
-
-/* Login Container */
-#container-login {
-  background-color: #ffffffeb;
-  border-radius: 20px;
-  max-width: 600px;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  /* Centering the login container */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Title */
-h1 {
-  margin-top: 0;
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-}
-
-/* Form Group Styles */
-.form-group-btm{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 20px;
-}
-.form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px;
-}
-
-/* Label */
-.form-group label {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-/* Radio Input Styles */
-input[type="radio"] + label {
-  position: relative;
-  padding-left: 25px;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-input[type="radio"] + label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 15px;
-  height: 15px;
-  border: 2px solid #007bff;
-  border-radius: 50%;
-}
-
-input[type="radio"]:checked + label:before {
-  background-color: #007bff;
-}
-
-input[type="radio"]:checked + label:after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 6px;
-  width: 7px;
-  height: 7px;
-  background-color: white;
-  border-radius: 50%;
-}
-
-/* Input Field Styles */
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="file"] {
-  width: 100%;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-/* Role Selection */
-.form-group div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.form-group div label {
-  margin-left: 5px;
-}
-
-/* Button Styles */
-.btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #0056b3;
-}
-
-/* Link Styles */
-.link {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.link p {
+body {
   margin: 0;
-  font-size: 14px;
+  padding: 0;
+  font-family: Arial, sans-serif; 
+}
+.step-indicators {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%; 
+  margin: 20px 0; 
+  padding: 0; 
 }
 
-.link a {
-  color: #007bff;
-  text-decoration: none;
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  font-size: 18px; 
+  color: #ccc; 
+  margin: 0; 
+  text-align: center; 
+  transition: color 0.3s ease; 
 }
 
-.link a:hover {
-  text-decoration: underline;
+.step-indicator.active {
+  color: #4caf50; 
 }
 
-/* Responsive Design Adjustments */
+.step-indicator span {
+  margin-top: 5px;
+  font-weight: bold; 
+}
+
 @media (max-width: 768px) {
-  #container-login {
-    max-width: 100%; /* Full width on smaller screens */
-    padding: 15px; /* Adjust padding */
+  .step-indicators {
+    flex-direction: column; 
+    align-items: center; 
   }
 
-  h1 {
-    font-size: 20px; /* Smaller title */
-  }
-
-  .form-group {
-    margin: 10px 0; /* Less margin for form groups */
-  }
-
-  .btn {
-    font-size: 14px;
-    padding: 8px 12px; /* Smaller button on mobile */
-  }
-
-  .form-group input {
-    padding: 8px; /* Smaller input padding */
-  }
-
-  .link p {
-    font-size: 12px; /* Smaller font size for links */
-  }
-}
-
-@media (max-width: 576px) {
-  h1 {
-    font-size: 18px; /* Even smaller title */
-  }
-
-  .btn {
-    font-size: 12px;
-    padding: 6px 10px; /* Smaller buttons for mobile */
-  }
-
-  .link p {
-    font-size: 12px; /* Reduce font size on very small screens */
-  }
-}
-
-/* Additional Tweaks for Ultra-small Screens */
-@media (max-width: 400px) {
-  .form-group input {
-    padding: 6px; /* Reduce input padding further */
-  }
-
-  .btn {
-    padding: 5px 8px; /* Smaller button padding */
+  .step-indicator {
+    font-size: 16px; /* Slightly smaller font for mobile */
+    margin: 10px 0; /* Stack with vertical spacing */
   }
 }

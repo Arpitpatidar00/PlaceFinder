@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -23,49 +22,25 @@ const Navbar = () => {
   };
 
   const toggleProfileMenu = () => {
-    setIsProfileMenuOpen(!isProfileMenuOpen);
+    setIsProfileMenuOpen((prev) => !prev);
   };
 
-  const togleProfile = () => {
-    navigate("/profile");
-  };
-
-  const toggleHome = () => {
-    navigate("/home");
-  };
-
-  const toggleLogin = () => {
-    navigate("/login");
-  };
-
-  const toggleSignup = () => {
-    navigate("/signup");
-  };
-
-  const onMainPage = () => {
-    navigate("/");
-  };
-
-  const toggleAdmin = () => {
-    navigate("/admin");
+  const navigateTo = (path) => {
+    navigate(path);
   };
 
   const isAdmin = userData?.role === "admin";
 
   return (
-    <nav style={{ position: "sticky", width: "100%", zIndex: 1000 }}>
-      <div className="nav-wrapper white">
-        <button onClick={onMainPage} className="brand-logo left">
-          PlaceFinder
-        </button>
-        <ul className="mr-20 right">
+    <nav>
+      <div className="nav">
+        <button onClick={() => navigateTo("/")}>PlaceFinder</button>
+        <ul>
           {isLoggedIn ? (
             <>
               {!isAdmin && (
                 <li>
-                  <button className="home-btn mr-10 fs-4" onClick={toggleHome}>
-                    Home
-                  </button>
+                  <button onClick={() => navigateTo("/home")}>Home</button>
                 </li>
               )}
               <li className="profile-menu" onClick={toggleProfileMenu}>
@@ -77,7 +52,7 @@ const Navbar = () => {
                 {isProfileMenuOpen && (
                   <ul className="profile-dropdown">
                     <li>
-                      <button id="profile" onClick={togleProfile}>
+                      <button id="profile" onClick={() => navigateTo("/profile")}>
                         View Profile
                       </button>
                     </li>
@@ -95,12 +70,12 @@ const Navbar = () => {
               {!isAdmin && (
                 <>
                   <li>
-                    <button className="home-btn mr-10 fs-4" onClick={toggleLogin}>
+                    <button className="home-btn mr-10 fs-4" onClick={() => navigateTo("/login")}>
                       Login
                     </button>
                   </li>
                   <li>
-                    <button className="home-btn mr-10 fs-4" onClick={toggleSignup}>
+                    <button className="home-btn mr-10 fs-4" onClick={() => navigateTo("/signup")}>
                       Signup
                     </button>
                   </li>
@@ -108,7 +83,7 @@ const Navbar = () => {
               )}
               {isAdmin && (
                 <li>
-                  <button className="home-btn mr-10 fs-4" onClick={toggleAdmin}>
+                  <button className="home-btn mr-10 fs-4" onClick={() => navigateTo("/admin")}>
                     Admin
                   </button>
                 </li>
