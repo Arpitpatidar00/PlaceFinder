@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
   const [commentData, setCommentData] = useState([]);
   const [PlacedelectId, setPlaceId] = useState([]);
   const [items, setItems] = useState([]);
+  const [islogin,setIsLogin]=useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   return (
     <AuthContext.Provider
@@ -24,6 +26,8 @@ export const AuthProvider = ({ children }) => {
         PlacedelectId,
         setPlaceId,
         items, setItems,
+        islogin,setIsLogin,
+        isMobile, setIsMobile,
 
       }}
     >

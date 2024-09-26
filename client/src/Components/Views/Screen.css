@@ -1,31 +1,32 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif; 
+  font-family: Arial, sans-serif;
 }
+
 .step-indicators {
   display: flex;
-  justify-content: space-between; 
+  justify-content: center; /* Center the indicators */
   align-items: center; 
-  width: 100%; 
-  margin: 20px 0; 
-  padding: 0; 
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .step-indicator {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Stack icon and number vertically */
   justify-content: center; 
   align-items: center;
-  font-size: 18px; 
+  font-size: 1.5vw; /* Responsive font size */
   color: #ccc; 
-  margin: 0; 
-  text-align: center; 
   transition: color 0.3s ease; 
+  flex: 1; /* Flexible basis with room to grow */
 }
 
 .step-indicator.active {
-  color: #4caf50; 
+  color: #4caf50; /* Color for active steps */
 }
 
 .step-indicator span {
@@ -33,14 +34,24 @@ body {
   font-weight: bold; 
 }
 
+.Components.CheckpointSlider {
+  width: 100%; /* Full width for the slider */
+  margin: 20px 0; /* Space above and below the slider */
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .step-indicators {
-    flex-direction: column; 
-    align-items: center; 
+  .step-indicator {
+    font-size: 3vw; /* Larger font size for better visibility on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .step-indicator {
+    min-width: 60px; /* Reduce minimum width for very small devices */
   }
 
-  .step-indicator {
-    font-size: 16px; /* Slightly smaller font for mobile */
-    margin: 10px 0; /* Stack with vertical spacing */
+  .step-indicators {
+    flex-direction: row; /* Stack indicators vertically on very small screens */
   }
 }

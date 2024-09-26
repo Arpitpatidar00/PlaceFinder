@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa"; // Import icon
 import * as Components from "./LoginData.js";
 import "../Views/Screen.css";
+import { useAuth } from "../../Context/AuthContext.js";
 
 function Login() {
   const [signIn, toggle] = React.useState(true);
@@ -15,7 +16,30 @@ function Login() {
   const [licenseImage, setLicenseImage] = React.useState(null);
   const [aadharNo, setAadharNo] = React.useState("");
   const [aadharImage, setAadharImage] = React.useState(null);
+  const {islogin,setIsLogin,isMobile, setIsMobile}= useAuth();
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768 && window.innerWidth > 360);
+    };
+
+    handleResize(); // Check the size on initial load
+    window.addEventListener("resize", handleResize); // Attach resize event listener
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up listener on unmount
+    };
+  }, []);
+
+  const istoggleSignIn=()=>{
+    toggle(true)
+    setIsLogin(false)
+
+  };
+  const istoggleSignUp=()=>{
+    toggle(false)
+    setIsLogin(true)
+  };
   const handleNext = () => {
     // Validation for each step
     if (step === 1) {
@@ -98,7 +122,10 @@ function Login() {
   };
 
   return (
+  
+
     <Components.Container>
+          {islogin&&(
       <Components.SignUpContainer signinIn={signIn}>
         <Components.Form onSubmit={handleSignUp}>
           <Components.SliderContainer>
@@ -255,13 +282,19 @@ function Login() {
                 Previous
               </Components.Button>
               <Components.Button type="submit">Sign Up</Components.Button>
+              {isMobile && (
+                <Components.GhostButton onClick={() => toggle(false)}>
+                  Sign In
+                </Components.GhostButton>
+              )}
             </Components.ToggleWrapper>
           </div>
         </Components.Form>
       </Components.SignUpContainer>
-
+            )}
       {/* Sign In Container and Overlay remain unchanged */}
-      <Components.SignInContainer signinIn={signIn} isMobile={true}>
+      {!islogin&&(
+      <Components.SignInContainer signinIn={signIn}>
         <Components.Form>
           <Components.Title>Sign in</Components.Title>
           <Components.Input type="email" placeholder="Email" />
@@ -269,30 +302,37 @@ function Login() {
           <Components.Anchor href="#">Forgot your password?</Components.Anchor>
           <Components.Button>Sign In</Components.Button>
         </Components.Form>
+        {isMobile && (
+          <Components.GhostButton onClick={istoggleSignIn}>
+            Sign Up
+          </Components.GhostButton>
+        )}
       </Components.SignInContainer>
-
-      <Components.OverlayContainer signinIn={signIn}>
-        <Components.Overlay signinIn={signIn}>
-          <Components.LeftOverlayPanel signinIn={signIn}>
-            <Components.Title>Hello, Friend!</Components.Title>
-            <Components.Paragraph>
-              Enter Your personal details and start your journey with us
-            </Components.Paragraph>
-            <Components.GhostButton onClick={() => toggle(true)}>
-              Sign In
-            </Components.GhostButton>
-          </Components.LeftOverlayPanel>
-          <Components.RightOverlayPanel signinIn={signIn}>
-            <Components.Title>Welcome Back!</Components.Title>
-            <Components.Paragraph>
-              To keep connected with us please login with your personal info
-            </Components.Paragraph>
-            <Components.GhostButton onClick={() => toggle(false)}>
-              Sign Up
-            </Components.GhostButton>
-          </Components.RightOverlayPanel>
-        </Components.Overlay>
-      </Components.OverlayContainer>
+      )}
+      {!isMobile && (
+        <Components.OverlayContainer signinIn={signIn} isMobile={true}>
+          <Components.Overlay signinIn={signIn}>
+            <Components.LeftOverlayPanel signinIn={signIn}>
+              <Components.Title>Hello, Friend!</Components.Title>
+              <Components.Paragraph>
+                Enter Your personal details and start your journey with us
+              </Components.Paragraph>
+              <Components.GhostButton onClick={istoggleSignIn}>
+                Sign In
+              </Components.GhostButton>
+            </Components.LeftOverlayPanel>
+            <Components.RightOverlayPanel signinIn={signIn}>
+              <Components.Title>Welcome Back!</Components.Title>
+              <Components.Paragraph>
+                To keep connected with us please login with your personal info
+              </Components.Paragraph>
+              <Components.GhostButton onClick={istoggleSignUp}>
+                Sign Up
+              </Components.GhostButton>
+            </Components.RightOverlayPanel>
+          </Components.Overlay>
+        </Components.OverlayContainer>
+      )}
     </Components.Container>
   );
 }

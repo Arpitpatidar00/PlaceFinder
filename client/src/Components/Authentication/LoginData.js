@@ -22,11 +22,11 @@ export const Container = styled.div`
   }
 
   // Small screens
-  @media (max-width: 480px) {
+  /* @media (max-width: 480px) {
     display: flex;
     padding: 10px;
     font-size: 12px;
-  }
+  } */
 `;
 
 // Container for SignUp
@@ -147,6 +147,7 @@ export const RoleSelector = styled.ul`
 
   // Small screens
   @media (max-width: 480px) {
+    
     margin: 5px 0;
     li {
       margin: 6px 0;
