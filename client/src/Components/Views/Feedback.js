@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Api from '../../Api';
 
 const Feedback = ({ isOpen, toggleModal }) => {
-    const { userData } = useSelector((state) => state.auth);
-    const [feedbackText, setFeedbackText] = useState('');
+    const userDataString = localStorage.getItem("userData");
+    const userData = userDataString ? JSON.parse(userDataString) : null;    const [feedbackText, setFeedbackText] = useState('');
     const navigate = useNavigate();
 
     const handleFeedbackChange = (event) => {

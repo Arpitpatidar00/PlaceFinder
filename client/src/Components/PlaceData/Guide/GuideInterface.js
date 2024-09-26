@@ -104,8 +104,8 @@ const GuideInterface = ({ onDataSubmitted }) => {
   const [customPlace, setCustomPlace] = useState("");
 
   const {setPlaceId } = useAuth(); // Using the useAuth hook to get placeId
-  const userData = useSelector((state) => state.auth.userData);
-  const placeId = useSelector((state) => state.place.placeId);
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;  const placeId = useSelector((state) => state.place.placeId);
 
   const submitData = async () => {
     try {

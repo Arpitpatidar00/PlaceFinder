@@ -1,9 +1,8 @@
 /* General Navbar Styles */
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Align items with space between */
   align-items: center;
-  padding: 15px 20px;
   background-color: #fff; /* Neutral background for better readability */
   border-bottom: 1px solid #e0e0e0; /* Subtle border for separation */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
@@ -12,6 +11,7 @@
   position: sticky; /* Stick to top */
   top: 0;
   z-index: 1000;
+  margin-top: 10px;
 }
 
 /* Navbar hover effect */
@@ -19,7 +19,9 @@
   background-color: #f4f4f4; /* Light background on hover */
 }
 
+/* PlaceFinder button on the left */
 .navbtn {
+  margin-right: auto; /* Pushes the button to the left */
   background-color: transparent;
   color: #333; /* Darker text for readability */
   border: none;
@@ -28,6 +30,27 @@
   cursor: pointer;
   border-radius: 6px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.navbtn-rightside {
+  background-color: transparent; /* Transparent background */
+  color: #333; /* Darker text for readability */
+  border: none; /* No border */
+  padding: 10px 15px; /* Padding for better spacing */
+  font-size: 16px; /* Font size */
+  border-radius: 6px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+/* Hover effect for the button */
+.navbtn-rightside:hover {
+  color: #007bff; /* Change text color on hover */
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+}
+
+/* Active state effect (optional) */
+.navbtn-rightside:active {
+  background-color: rgba(0, 123, 255, 0.2); /* Slightly darker blue when active */
 }
 
 .navbtn:hover {
@@ -47,10 +70,15 @@
   display: flex;
   gap: 20px; /* Add space between links */
   align-items: center;
+  background-color: transparent;
+  border: none;
 }
 
+/* Position relative to create dropdowns */
 .nav-links li {
   position: relative;
+  background-color: transparent;
+  border: none;
 }
 
 /* Active class for mobile dropdown */

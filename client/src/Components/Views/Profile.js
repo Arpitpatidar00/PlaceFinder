@@ -15,8 +15,9 @@ const fileToBase64 = (file) => {
 };
 
 function Profile() {
-  const { userData } = useSelector((state) => state.auth);
-
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+  
   const [userImages, setUserImages] = useState([]);
   const [showAllImages, setShowAllImages] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -134,13 +135,13 @@ function Profile() {
             <div className="profile-header items-center mb-8">
               <div className="profile-image mr-40">
                 <img
-                  src={`data:image/png;base64,${userData.image}`}
+                  src={userData.profileImage}
                   alt="Profile"
                   className="w-24 h-24 rounded-full"
                 />
               </div>
               <div className="profile-info flex-grow">
-                <h1 className="text-2xl font-bold">{userData.username}</h1>
+                <h1 className="text-2xl font-bold">{userData.name}</h1>
                 <div className="stats mt-2">
                   <div className="stat text-lg">
                     <span className="font-bold">{userImages.length}</span>

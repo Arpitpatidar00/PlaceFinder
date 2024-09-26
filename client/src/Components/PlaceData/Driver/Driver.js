@@ -220,8 +220,9 @@ import Api from '../../../Api.js';
 
 const Driver = () => {
   const placeId = useSelector((state) => state.place.placeId);
-  const userData = useSelector((state) => state.auth.userData);
-  const { PlacedelectId } = useAuth(); // Corrected the context variable name
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+    const { PlacedelectId } = useAuth(); // Corrected the context variable name
 
   const [showCallDescription, setShowCallDescription] = useState(false);
   const [showAddDescription, setShowAddDescription] = useState(false);

@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
 import authRoutes from "./routes/auth.js";
-import UserRoutes from "./routes/users.js";
 import reviewRoutes from "./routes/Rating.js";
 import Search from "./routes/SearchImage.js";
 import commentsRouter from "./routes/CommentRoute.js";
@@ -17,10 +16,16 @@ import Driver from "./routes/DriverRoute.js";
 import Feedback from './routes/Feedback.js'
 import Video from "./controllers/VideosController.js";
 import AdminRoute from "./routes/AdminRoute.js"
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL)
@@ -36,15 +41,13 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cors());
-// app.use(cors());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Routes
-app.use("/api/v1/users", UserRoutes);
 app.use("/auth", authRoutes);
 app.use("/api", reviewRoutes);
 app.use("/add", Search);
@@ -55,6 +58,7 @@ app.use("/driver", Driver);
 app.use("/Feedback", Feedback);
 app.use("/video", Video);
 app.use('/admin',AdminRoute)
+
 
 // Start the server
 app.listen(PORT, () => {

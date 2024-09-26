@@ -208,8 +208,8 @@ import Api from '../../../Api.js';
 
 const Guide = () => {
   const placeId = useSelector((state) => state.place.placeId);
-  const userData = useSelector((state) => state.auth.userData);
-  const { PlacedelectId } = useAuth();
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;  const { PlacedelectId } = useAuth();
 
   const [showCallDescription, setShowCallDescription] = useState(false);
   const [showAddDescription, setShowAddDescription] = useState(false);

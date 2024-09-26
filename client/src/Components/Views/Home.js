@@ -16,12 +16,7 @@ const Home = () => {
   const [isVisibleFeatured, setIsVisibleFeatured] = useState(false);
   const [isVisibleFeedback, setIsVisibleFeedback] = useState(false);
 
-  useEffect(() => {
-    const accessToken = !localStorage.getItem("accessToken");
-    if (accessToken) {
-      navigate("/login");
-    }
-  }, [navigate]);
+ 
 
   useEffect(() => {
     const handleScroll = () => {

@@ -21,8 +21,8 @@ const ImageDetails = () => {
   const navigate = useNavigate();
 
   const placeId = useSelector((state) => state.place.placeId);
-  const { userData } = useSelector((state) => state.auth);
-
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;
   const [ setSelectedImage] = useState(null);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [showGuideProfile, setShowGuideProfile] = useState(false);

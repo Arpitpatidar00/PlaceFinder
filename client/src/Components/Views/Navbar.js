@@ -12,7 +12,13 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { userData, isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  // Retrieve user data from local storage
+  const userDataString = localStorage.getItem("userData");
+
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+  
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
   const { setIsLogin, isMobile, setIsMobile } = useAuth(); // Adjusted to match correct context usage
@@ -25,8 +31,14 @@ const Navbar = () => {
 
   // Logout handler
   const handleLogout = () => {
-    dispatch(logout());
-    navigate("/");
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    
+    if (confirmLogout) {
+      dispatch(logout());  // Dispatches the logout action
+      localStorage.removeItem("token");  // Remove token from local storage
+      localStorage.removeItem("userData"); // Optionally remove user data
+      navigate("/");  // Navigates to the home page
+    }
   };
 
   useEffect(() => {
@@ -40,7 +52,8 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("resize", handleResize); // Clean up listener on unmount
     };
-  }, []);
+  }, [isMobile]);
+  
   // Toggle profile menu visibility
   const toggleProfileMenu = () => {
     setIsProfileMenuOpen((prev) => !prev);
@@ -61,13 +74,16 @@ const Navbar = () => {
     setIsLogin(false); // Activate login mode
     navigateTo("/login");
   }
+  
   function redirectToSignup() {
-    setIsLogin(true); // Activate login mode
+    setIsLogin(true); // Activate signup mode
     navigateTo("/login");
   }
+  
   function redirectToLoginNew() {
     navigateTo("/login");
   }
+
   const isAdmin = userData?.role === "admin";
 
   return (
@@ -88,15 +104,17 @@ const Navbar = () => {
             <>
               {!isAdmin && (
                 <li>
-                  <button onClick={() => navigateTo("/home")}>Home</button>
+                  <button className="navbtn-rightside" onClick={() => navigateTo("/home")}>Home</button>
                 </li>
               )}
               <li className="profile-menu" onClick={toggleProfileMenu}>
-                <img
-                  src={`data:image/png;base64,${userData.image}`}
-                  alt="User Profile"
-                  className="user-image"
-                />
+              <img
+                        className="rounded-circle shadow-1-strong me-3"
+                        src={userData.profileImage}
+                        alt="avatar"
+                        width="50"
+                        height="50"
+                      />
                 {isProfileMenuOpen && (
                   <ul className="profile-dropdown">
                     <li>
@@ -120,7 +138,7 @@ const Navbar = () => {
             <>
               {!isAdmin && !isMobile && (
                 <li>
-                  <button className="home-btn"  onClick={redirectToLoginNew}>
+                  <button className="home-btn" onClick={redirectToLoginNew}>
                     Login
                   </button>
                 </li>

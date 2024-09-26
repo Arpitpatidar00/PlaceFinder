@@ -127,8 +127,9 @@ import './CommentSection.css'; // Create a CSS file for styling
 import Api from '../../Api.js';
 
 const CommentSection = ({ placeName }) => {
-  const { userData } = useSelector((state) => state.auth);
-  const placeId = useSelector((state) => state.place.placeId);
+  const userDataString = localStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+    const placeId = useSelector((state) => state.place.placeId);
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
@@ -169,8 +170,8 @@ const CommentSection = ({ placeName }) => {
       const response = await axios.post(`${Api}/comments`, {
         text: newComment,
         userId: userData.userId,
-        avatarUrl: `data:image/jpeg;base64,${userData.image}`,
-        userProfile: `data:image/jpeg;base64,${userData.image}`,
+        avatarUrl: userData.profileImage,
+        userProfile: userData.profileImage,
         fullName: userData.username,
         placeName,
         placeId,
@@ -209,7 +210,7 @@ const CommentSection = ({ placeName }) => {
       {error && <div className="error">Error: {error}</div>}
 
       <div className="comment-input">
-        <img src={`data:image/jpeg;base64,${userData.image}`} alt="User avatar" />
+        <img src={userData.profileImage} alt="User avatar" />
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
@@ -223,7 +224,7 @@ const CommentSection = ({ placeName }) => {
       <div className="comments-list">
         {comments.map((comment) => (
           <div key={comment._id} className="comment" onClick={() => handleCommentClick(comment)}>
-            <img src={comment.avatarUrl} alt="avatar" />
+            <img src={comment.userProfile} alt="avatar" />
             <div className="comment-content">
               <div className="comment-author">{comment.fullName}</div>
               <div className="comment-text">{comment.text}</div>
