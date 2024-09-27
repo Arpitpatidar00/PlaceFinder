@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Feedback.css';
-import { useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';

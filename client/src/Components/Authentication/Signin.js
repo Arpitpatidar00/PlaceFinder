@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useState } from "react";
 
 import { FaCheckCircle } from "react-icons/fa"; // Import icon
 import * as Components from "./LoginData.js";
 import "../Views/Screen.css";
 import { useAuth } from "../../Context/AuthContext.js";
 import { signUp, signInUser } from "../../Services/api.js";
-const TOTAL_STEPS = 5;
-
+import { useNavigate } from "react-router-dom";
+import Loader from "../Loader/Loader.js";
 function Login() {
+  const navigate = useNavigate();
+
   const [signIn, toggle] = React.useState(true);
   const [step, setStep] = React.useState(1);
   const [role, setRole] = React.useState("");
@@ -19,6 +21,8 @@ function Login() {
   const [licenseImage, setLicenseImage] = React.useState(null);
   const [aadharNo, setAadharNo] = React.useState("");
   const [aadharImage, setAadharImage] = React.useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
+
   const { islogin, setIsLogin, isMobile, setIsMobile } = useAuth();
 
   useEffect(() => {
@@ -32,7 +36,7 @@ function Login() {
     return () => {
       window.removeEventListener("resize", handleResize); // Clean up listener on unmount
     };
-  }, []);
+  }, [setIsMobile]); 
 
   const istoggleSignIn = () => {
     toggle(true);
@@ -72,8 +76,70 @@ function Login() {
     }
   };
 
+  // const handleSignUp = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true); // Activate loader
+
+  //   try {
+  //     const userData = {
+  //       name,
+  //       email,
+  //       password,
+  //       role,
+  //       profileImage: image ? await convertToBase64(image) : null, // Check if image exists
+  //     };
+  
+  //     if (role === 'driver') {
+  //       userData.licenseNo = licenseNo;
+  //       userData.licenseImage = licenseImage || null; // Check if licenseImage exists
+  //     } else if (role === 'guide') {
+  //       userData.aadharNo = aadharNo;
+  //       userData.aadharImage = aadharImage || null; // Check if aadharImage exists
+  //     }
+  
+  //     const response = await signUp(userData); // Replace with your signup function
+  //     alert('Signup successful!');
+  //     navigator('/home')
+  //     console.log('Signup successful:', response);
+  //   } catch (error) {
+  //     console.error('Error during signup:', error);
+  //     alert('Error during signup. Please try again.');
+  //   }
+  // };
+  
+  
+
+  // const handleSignIn = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true); // Activate loader
+
+  //   // Construct loginData as an object
+  //   const loginData = {
+  //     email: email,
+  //     password: password,
+  //   };
+
+  //   try {
+  //     const response = await signInUser(loginData); // Send login data
+
+  //     if (response.token && response.user) {
+  //       localStorage.setItem("userData", JSON.stringify(response.user)); // Store user data in local storage as a JSON string
+
+  //       localStorage.setItem("token", response.token); // Store token in local storage
+  //       navigate('/home')
+
+  //       // Redirect to dashboard or another page
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during signin:", error);
+  //     // Optionally handle the error in the UI
+  //   }
+  // };
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
+    
+    setLoading(true); // Activate loader
   
     try {
       const userData = {
@@ -94,36 +160,39 @@ function Login() {
   
       const response = await signUp(userData); // Replace with your signup function
       alert('Signup successful!');
+      navigate('/home');
       console.log('Signup successful:', response);
     } catch (error) {
       console.error('Error during signup:', error);
       alert('Error during signup. Please try again.');
+    } finally {
+      setLoading(false); // Deactivate loader after the process is complete
     }
   };
   
-  
-
   const handleSignIn = async (e) => {
     e.preventDefault();
-
-    // Construct loginData as an object
+  
+    setLoading(true); // Activate loader
+  
     const loginData = {
       email: email,
       password: password,
     };
-
+  
     try {
       const response = await signInUser(loginData); // Send login data
-
+  
       if (response.token && response.user) {
         localStorage.setItem("userData", JSON.stringify(response.user)); // Store user data in local storage as a JSON string
-
-        localStorage.setItem("token", response.token); // Store token in local storage
+        localStorage.setItem("accessToken", response.token); // Store token in local storage
+        navigate('/home');
         // Redirect to dashboard or another page
       }
     } catch (error) {
       console.error("Error during signin:", error);
-      // Optionally handle the error in the UI
+    } finally {
+      setLoading(false); // Deactivate loader after the process is complete
     }
   };
   const convertToBase64 = (file) => {
@@ -203,6 +272,8 @@ function Login() {
     return null;
   };
   return (
+    <>
+        {loading ? <Loader /> : (
     <Components.Container>
       {islogin && (
         <Components.SignUpContainer signinIn={signIn}>
@@ -429,6 +500,9 @@ function Login() {
         </Components.OverlayContainer>
       )}
     </Components.Container>
+    )}
+
+    </>
   );
 }
 

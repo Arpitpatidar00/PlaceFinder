@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css";
-import { useSelector } from "react-redux";
 import Api from "../../Api.js";
 
 // Utility function to convert file to base64

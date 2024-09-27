@@ -1,61 +1,44 @@
-// src/Components/Authentication/Privateroutes.js
 import React from "react";
 import { Navigate } from "react-router-dom";
-import {jwtDecode} from 'jwt-decode';  // Ensure the correct import
+import {jwtDecode} from "jwt-decode"; // Ensure the correct import
 
 const PrivateRoute = ({ element: Component, requiredRole, ...rest }) => {
-  const userToken = localStorage.getItem("token"); 
-  const userData = localStorage.getItem("userData"); 
- 
-
-
-  
-  const adminToken = localStorage.getItem("adminToken");  
+  const token = localStorage.getItem("accessToken");
 
   let isAuthenticated = false;
   let userRole = null;
 
-  // Check if user token exists and decode it
-  if (userToken) {
+  if (token) {
     try {
-      const decodedToken = jwtDecode(userToken);
-      // Check expiration
+      const decodedToken = jwtDecode(token);
       const currentTime = Date.now() / 1000; // Current time in seconds
+
       if (decodedToken.exp > currentTime) {
         isAuthenticated = true;
         userRole = decodedToken.role;
-            }
-    } catch (error) {
-      console.error("Invalid token:", error);
-      localStorage.removeItem("token");  // Optionally, remove the invalid token
-      localStorage.removeItem("userData"); // Clear user data as well
-    }
-  }
-
-  // Check if admin token exists and decode it
-  if (adminToken) {
-    try {
-      const decodedAdminToken = jwtDecode(adminToken);
-      const currentTime = Date.now() / 1000; // Current time in seconds
-      if (decodedAdminToken.exp > currentTime) {
-        isAuthenticated = true;
-        userRole = 'admin'; // Set role to admin
       }
     } catch (error) {
-      console.error("Invalid admin token:", error);
-      localStorage.removeItem("adminToken");  // Optionally, remove the invalid admin token
+      console.error("Invalid token:", error);
+      localStorage.removeItem("accessToken");
     }
   }
 
-  // Check role if requiredRole is defined
+  // Check if requiredRole matches the user's role or if no role is required
   const hasRequiredRole = !requiredRole || userRole === requiredRole;
 
-  // Check if user is authenticated and has required role
-  return isAuthenticated && userData && hasRequiredRole ? (
+  // If authenticated and has the required role, render the component; otherwise, redirect to login
+  return isAuthenticated && hasRequiredRole ? (
     <Component {...rest} />
   ) : (
     <Navigate to="/login" />
   );
+};
+
+// Non-protected routes (login, signup)
+export const NotPrivateRoute = ({ element: Component, ...rest }) => {
+  const token = localStorage.getItem("accessToken");
+
+  return token ? <Navigate to="/home" /> : <Component {...rest} />;
 };
 
 export default PrivateRoute;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../actions/authActions";
 import { VscChromeClose } from "react-icons/vsc"; // Close icon
 import { CiMenuFries } from "react-icons/ci"; // Menu icon
@@ -12,7 +12,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn } = useSelector((state) => state.auth);
 
   // Retrieve user data from local storage
   const userDataString = localStorage.getItem("userData");
@@ -100,7 +99,7 @@ const Navbar = () => {
           )}
         </div>
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
-          {isLoggedIn ? (
+          
             <>
               {!isAdmin && (
                 <li>
@@ -134,7 +133,7 @@ const Navbar = () => {
                 )}
               </li>
             </>
-          ) : (
+       
             <>
               {!isAdmin && !isMobile && (
                 <li>
@@ -169,7 +168,7 @@ const Navbar = () => {
                 </li>
               )}
             </>
-          )}
+         
         </ul>
       </div>
     </nav>

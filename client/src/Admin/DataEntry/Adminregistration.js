@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../Components/Views/Screen.css";
 import './admin.css';
 import Api from "../../Api";
+
 function AdminRegistration() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

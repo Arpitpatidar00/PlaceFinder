@@ -1,43 +1,47 @@
-// authReducer.js
-import { LOGIN_SUCCESS, LOGOUT } from "../actions/authActions";
-import Cookies from "js-cookie";
 
-// Load user data from localStorage
-const userDataFromStorage = localStorage.getItem("userData");
-const accessTokenFromStorage = localStorage.getItem("accessToken");
+import { LOGIN_SUCCESS, LOGOUT } from '../actions/authActions';
 
+// Define the initial state
 const initialState = {
-  userData: userDataFromStorage ? JSON.parse(userDataFromStorage) : null,
-  accessToken: accessTokenFromStorage || null,
-  isLoggedIn: !!userDataFromStorage,
+    user: null,
+    accessToken: null,
+    isAuthenticated: false,
 };
 
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case LOGIN_SUCCESS:
-      // Save user data and access token to localStorage
-      localStorage.setItem("userData", JSON.stringify(action.payload.userData));
-      localStorage.setItem("accessToken", action.payload.accessToken);
-      return {
-        ...state,
-        userData: action.payload.userData,
-        accessToken: action.payload.accessToken,
-        isLoggedIn: true,
-      };
-    case LOGOUT:
-      // Clear user data from localStorage and cookies
-      localStorage.removeItem("userData");
-      localStorage.removeItem("accessToken");
-      Cookies.remove("accessToken"); // Use remove method instead of removeItem
-      return {
-        ...state,
-        userData: null,
-        accessToken: null,
-        isLoggedIn: false,
-      };
-    default:
-      return state;
-  }
+// Function to safely parse data from local storage
+const parseLocalStorageData = (key, fallback) => {
+    try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : fallback;
+    } catch (error) {
+        console.error(`Error parsing JSON from localStorage for key "${key}":`, error);
+        return fallback; // Return fallback in case of error
+    }
+};
+
+// Get the initial state from local storage if available
+const savedUserData = parseLocalStorageData('userData', initialState.user);
+const savedAccessToken = localStorage.getItem('accessToken') || null;
+
+const authReducer = (state = { ...initialState, user: savedUserData, accessToken: savedAccessToken }, action) => {
+    switch (action.type) {
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                user: action.payload.userData,
+                accessToken: action.payload.accessToken,
+                isAuthenticated: true,
+            };
+        case LOGOUT:
+            // Clear localStorage on logout
+            localStorage.removeItem('userData');
+            localStorage.removeItem('accessToken');
+            return {
+                ...initialState,
+            };
+        default:
+            return state;
+    }
 };
 
 export default authReducer;

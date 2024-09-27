@@ -1,77 +1,85 @@
-// Adminlogin.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import { loginSuccess } from "../actions/adminActions.js";
+import {adminService} from "../Services/api.js"; // Import the admin service
+import { loginSuccess } from "../actions/authActions.js";
 import "./admin.css";
-import Cookies from "js-cookie"; // Import Cookies
-import Api from "../Api.js";
+import Cookies from "js-cookie";
+import Loader from '../Components/Loader/Loader.js';
 
-const Adminlogin = () => {
+const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    setError(null);
+    setLoading(true);
+
     try {
-
-      const response = await axios.post(`${Api}/admin/login`, {
-        email,
-        password,
-      });
+      const { token, user } = await adminService.login(email, password);
       
-      const { token, admin } = response.data; // Extract token and admin object from the response
-      console.log(response);
+      // Set token in cookies with secure options
+      Cookies.set("accessToken", token, { expires: 7, secure: true, sameSite: 'Strict' });
       
-      // Store the token in a cookie
-      Cookies.set("accessToken", token, { expires: 7 }); // Cookie will expire in 7 days
-
-      // Dispatch logIn action and store in localStorage
-      dispatch(loginSuccess(admin, token));
-
+      // Dispatch login success
+      dispatch(loginSuccess(user, token));
+      
       alert("Login successful!");
-      window.location.href = "/admin"; // Uncomment this line if you want to redirect
+     navigate('/adminhome')
     } catch (error) {
       console.error("Error logging in:", error);
-      alert("Failed to login. Please try again.");
+      setError("Failed to login. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container">
-      <div className="login-container">
-        <div className="card auth-card">
-          <h2 className="title">Admin Login</h2>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              className="btn waves-effect waves-light #64b5f6 blue lighten-2"
-              type="submit"
-              name="action"
-            >
-              LOGIN
-            </button>
-          </form>
-          <h6>
-            <Link to="/admin-registration">Don't have an account?</Link>
-          </h6>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="wrapper">
+          <div className="Admin-container">
+            <div className="login-container">
+              <h2 className="title">Admin Login</h2>
+              {error && <p className="error-message">{error}</p>}
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  aria-label="Email"
+                  className={error ? "input-error" : ""}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  aria-label="Password"
+                  className={error ? "input-error" : ""}
+                />
+                <button className="login-btn" type="submit" name="action">
+                  LOGIN
+                </button>
+              </form>
+              <h6 className="registration-link">
+                <Link to="/admin-registration">Don't have an account?</Link>
+              </h6>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
-export default Adminlogin;
+export default AdminLogin;

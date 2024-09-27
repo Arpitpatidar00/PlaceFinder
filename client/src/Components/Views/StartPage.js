@@ -6,11 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import './Startpage.css';
 
 const StartPage = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
 
   const handleStartClick = () => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       toast.error("Login to explore");
     } else {
       navigate("/home");

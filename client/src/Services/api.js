@@ -32,3 +32,17 @@ export const signInUser = async (loginData) => {
   }
 };
 
+export const adminService = {
+  login: async (email, password) => {
+    try {
+      const response = await axios.post(`${Api}/api/admin/login`, {
+        email,
+        password,
+      });
+      console.log(response)
+      return response.data;
+    } catch (error) {
+      throw new Error("Error logging in: " + error.response.data.message);
+    }
+  },
+};

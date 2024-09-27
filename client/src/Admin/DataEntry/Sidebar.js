@@ -1,10 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAdmin } from '../../Context/AdminContext';
-import './admin.css';
+import React from "react";
+import { useAdmin } from "../../Context/AdminContext";
+import "./admin.css";
 
 function Sidebar() {
-  const navigate = useNavigate();
   const {
     placedata,
     setPlacedata,
@@ -36,7 +34,6 @@ function Sidebar() {
       <div className="sidebar bg-green-500">
         <h2 className="mt-10 mb-10 text-2xl text-center text-white">
           <b>Welcome Admin Panel</b>
-         
         </h2>
 
         <div id="hrdiv">
@@ -46,7 +43,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setPlacedata)}
-              className={`button text-white ${placedata ? 'active' : ''}`}
+              className={`button text-white ${placedata ? "active" : ""}`}
             >
               <b>Place Control</b>
             </button>
@@ -54,7 +51,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setUserdata)}
-              className={`button text-white ${userdata ? 'active' : ''}`}
+              className={`button text-white ${userdata ? "active" : ""}`}
             >
               <b>User Control</b>
             </button>
@@ -62,7 +59,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setVideos)}
-              className={`button text-white ${videos ? 'active' : ''}`}
+              className={`button text-white ${videos ? "active" : ""}`}
             >
               <b>Video Upload</b>
             </button>
@@ -70,7 +67,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setItems)}
-              className={`button text-white ${items ? 'active' : ''}`}
+              className={`button text-white ${items ? "active" : ""}`}
             >
               <b>Item Control</b>
             </button>
@@ -78,7 +75,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setComments)}
-              className={`button text-white ${comments ? 'active' : ''}`}
+              className={`button text-white ${comments ? "active" : ""}`}
             >
               <b>Comment Control</b>
             </button>
@@ -86,7 +83,7 @@ function Sidebar() {
           <li>
             <button
               onClick={() => setExclusiveState(setFeedback)}
-              className={`button text-white ${feedback ? 'active' : ''}`}
+              className={`button text-white ${feedback ? "active" : ""}`}
             >
               <b>Feedback Control</b>
             </button>

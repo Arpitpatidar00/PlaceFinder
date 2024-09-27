@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
   height: calc(100vh - 65px);
   margin: 0;
-  padding: 20px;
+  padding: 10px;
   overflow: auto;
   transition: all 0.3s ease;
   position: relative;
@@ -21,12 +21,7 @@ export const Container = styled.div`
     font-size: 14px;
   }
 
-  // Small screens
-  /* @media (max-width: 480px) {
-    display: flex;
-    padding: 10px;
-    font-size: 12px;
-  } */
+ 
 `;
 
 // Container for SignUp
@@ -42,7 +37,7 @@ export const SignUpContainer = styled.div`
   width: 50%;
   opacity: 0;
   z-index: 1;
-  padding: 20px;
+  padding: 10px;
 
   ${({ signinIn }) =>
     signinIn !== true &&
@@ -61,6 +56,7 @@ export const SignUpContainer = styled.div`
     flex-direction: column;
     font-size: 14px;
     padding: 15px;
+    
   }
 
   // Small screens
@@ -79,6 +75,8 @@ export const SignInContainer = styled.div`
   left: 0;
   width: 50%;
   z-index: 2;
+  padding: 10px;
+  
 
   ${({ signinIn }) => signinIn !== true && `transform: translateX(100%);`}
 
@@ -97,7 +95,7 @@ export const Form = styled.form`
   justify-content: center;
   flex-direction: column;
   padding: 40px 50px;
-  border-radius: 10px;
+  border-radius:20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   height: 100%;
   text-align: center;
@@ -352,11 +350,15 @@ export const OverlayContainer = styled.div`
   overflow: hidden;
   transition: transform 0.6s ease-in-out;
   z-index: 100;
+  padding: 10px;
+  border-radius:20px;
+
+  
   ${({ signinIn }) => signinIn !== true && `transform: translateX(-100%);`}
 `;
 
 export const Overlay = styled.div`
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  /* background: linear-gradient(to right, #ff4b2b, #ff416c); */
   color: #ffffff;
   position: relative;
   left: -100%;
@@ -364,6 +366,7 @@ export const Overlay = styled.div`
   width: 200%;
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
+  
   ${({ signinIn }) => signinIn !== true && `transform: translateX(50%);`}
 `;
 
@@ -382,6 +385,7 @@ export const OverlayPanel = styled.div`
   width: 50%;
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
+  border-radius:20px;
 `;
 
 export const LeftOverlayPanel = styled(OverlayPanel)`

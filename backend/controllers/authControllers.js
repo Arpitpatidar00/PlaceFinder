@@ -1,17 +1,26 @@
-import bcrypt from 'bcryptjs';
-import User from '../models/User.js';
-import { generateToken } from '../utils/jwtHelper.js';
+import bcrypt from "bcryptjs";
+import User from "../models/User.js";
+import { generateToken } from "../utils/jwtHelper.js";
 
-// Signup
 // Signup
 export const signup = async (req, res) => {
   try {
-    const { name, email, password, role, profileImage, licenseNo, licenseImage, aadharNo, aadharImage } = req.body;
-console.log(req.body)
+    const {
+      name,
+      email,
+      password,
+      role,
+      profileImage,
+      licenseNo,
+      licenseImage,
+      aadharNo,
+      aadharImage,
+    } = req.body;
+    console.log(req.body);
     // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // Hash password
@@ -23,11 +32,11 @@ console.log(req.body)
       email,
       password: hashedPassword,
       role,
-      profileImage,  // Base64 string for profile image
+      profileImage, // Base64 string for profile image
       licenseNo,
-      licenseImage,  // Base64 string for license image
+      licenseImage, // Base64 string for license image
       aadharNo,
-      aadharImage,   // Base64 string for Aadhar image
+      aadharImage, // Base64 string for Aadhar image
     });
 
     await newUser.save();
@@ -37,12 +46,10 @@ console.log(req.body)
 
     res.status(201).json({ token, user: newUser });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    res.status(500).json({ message: "Server error", error });
   }
 };
 
-
-// Signin
 // Signin
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -50,12 +57,12 @@ export const signin = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({ message: "User not found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Generate token with userId and role
@@ -63,7 +70,6 @@ export const signin = async (req, res) => {
 
     res.status(200).json({ token, user });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    res.status(500).json({ message: "Server error", error });
   }
 };
-

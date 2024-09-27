@@ -200,7 +200,9 @@ button:focus {
 .delete-button:hover {
   background-color: #e53e3e;
 }
-
+.card-title{
+  font-size: 20px;
+}
 /* Animations for Card Container */
 .card-container {
   display: flex;

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -8,22 +7,26 @@ import { setPlaceId } from "../../actions/placeActions.js";
 import "../Card.css";
 import { useAuth } from "../../Context/AuthContext.js";
 import Api from '../../Api.js';
-
+import Loader from "../Loader/Loader.js";
 
 const CardData = () => {
-  const { items, setItems } =useAuth();
+  const { items, setItems } = useAuth();
   const [selectedId, setSelectedId] = useState(null);
   const [ref, inView] = useInView();
+  const [loading, setLoading] = useState(false); // Loading state
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Activate loader
+
       try {
+
         const response = await fetch(`${Api}/add/`);
         const data = await response.json();
-        const shuffledData = data.sort(() => 0.5 - Math.random());
-        setItems(shuffledData.slice(0, 15)); // Limit to 15 items
+        setItems(data); // Set items directly without using slice
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -39,6 +42,8 @@ const CardData = () => {
   };
 
   return (
+    <>
+    {loading ? <Loader /> : (
     <div ref={ref} className={`card-container ${inView ? "visible" : ""}`}>
       {items.map((item) => (
         <div key={item._id} className="card-link" onClick={() => handleCardClick(item._id)}>
@@ -59,7 +64,7 @@ const CardData = () => {
                 </motion.div>
               </div>
               <div className="flip-card-back">
-                <p className="title">{item.placeName},{item.cityName}</p>
+                <p className="card-title">{item.placeName},{item.cityName}</p>
                 <p>{item.description}</p>
               </div>
             </div>
@@ -110,8 +115,8 @@ const CardData = () => {
         )}
       </AnimatePresence>
     </div>
+    )}</>
   );
 };
 
 export default CardData;
-
