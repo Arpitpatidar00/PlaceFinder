@@ -1,30 +1,30 @@
 /* General Navbar Styles */
 .nav {
   display: flex;
-  justify-content: space-between; /* Align items with space between */
+  justify-content: space-between;
   align-items: center;
-  background-color: #fff; /* Neutral background for better readability */
-  border-bottom: 1px solid #e0e0e0; /* Subtle border for separation */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   transition: background-color 0.3s ease-in-out;
-  position: sticky; /* Stick to top */
+  position: sticky;
   top: 0;
   z-index: 1000;
-  margin-top: 10px;
+  padding: 10px 20px;
   font-family: Cursive;
 }
 
 /* Navbar hover effect */
 .nav:hover {
-  background-color: #f4f4f4; /* Light background on hover */
+  background-color: #f4f4f4;
 }
 
-/* PlaceFinder button on the left */
+/* Left-aligned button */
 .navbtn {
-  margin-right: auto; /* Pushes the button to the left */
+  margin-right: auto;
   background-color: transparent;
-  color: #333; /* Darker text for readability */
+  color: #333;
   border: none;
   padding: 10px 20px;
   font-size: 17px;
@@ -32,133 +32,95 @@
   border-radius: 6px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
+
+/* Right-aligned buttons */
 .navbtn-rightside {
-  background-color: transparent; /* Transparent background */
-  color: #333; /* Darker text for readability */
-  border: none; /* No border */
-  padding: 10px 15px; /* Padding for better spacing */
-  font-size: 16px; /* Font size */
-  border-radius: 6px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition for hover effects */
+  background-color: transparent;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-/* Hover effect for the button */
-.navbtn-rightside:hover {
-  color: #007bff; /* Change text color on hover */
-  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
-}
-
-/* Active state effect (optional) */
-.navbtn-rightside:active {
-  background-color: rgba(0, 123, 255, 0.2); /* Slightly darker blue when active */
-}
-
+/* Button hover effects */
+.navbtn-rightside:hover,
 .navbtn:hover {
-  color: #007bff; /* Brand color on hover */
-  background-color: rgba(0, 0, 0, 0.05); /* Subtle background on hover */
+  color: #007bff;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Mobile Menu Icon */
-.mobile-menu-icon {
+#checkbox {
   display: none;
-  cursor: pointer;
 }
+
+.toggle {
+  position: relative;
+  width: 30px; /* Adjusted width to 30px */
+  height: 30px; /* Adjusted height to 30px */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px; /* Reduced gap to fit within the smaller dimensions */
+}
+
+.bars {
+  width: 100%;
+  height: 3px; /* Adjusted height for smaller bars */
+  background-color: rgba(0, 0, 0, 0.598);
+  border-radius: 5px;
+  transition-duration: 0.3s;
+}
+
+/* Hamburger icon transformation */
+#checkbox:checked + .toggle #bar1 {
+  transform: rotate(45deg);
+  transform-origin: left center;
+  transition-duration: 0.3s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+  opacity: 0;
+}
+
+#checkbox:checked + .toggle #bar3 {
+  transform: rotate(-45deg);
+  transform-origin: left center;
+  transition-duration: 0.3s;
+}
+
 
 /* Navbar Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px; /* Add space between links */
+  gap: 20px;
   align-items: center;
-  background-color: transparent;
-  border: none;
 }
 
-/* Position relative to create dropdowns */
 .nav-links li {
   position: relative;
-  background-color: transparent;
-  border: none;
 }
 
-/* Active class for mobile dropdown */
-.nav-links.active {
-  display: block;
-}
-
-/* Profile dropdown menu */
-.profile-dropdown {
-  position: absolute;
-  top: calc(100% + 8px); /* Position dropdown below profile */
-  right: 0;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 1000;
-  min-width: 180px;
-  padding: 10px 0;
-  overflow: hidden;
-}
-
-.profile-dropdown li {
-  padding: 10px 20px;
-  width: 100%;
-  text-align: left;
-}
-
-.profile-dropdown li button {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  font-size: 14px;
+.nav-links a {
+  text-decoration: none;
   color: #333;
-  cursor: pointer;
-  padding: 10px 0;
-  transition: background-color 0.3s, color 0.3s;
+  transition: color 0.3s ease;
 }
 
-.profile-dropdown li button:hover {
-  background-color: #f4f4f4;
+.nav-links a:hover {
   color: #007bff;
 }
 
-/* User Image */
-.user-image {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 2px solid #007bff;
-  object-fit: cover;
-}
-
-/* Menu Icon transition */
-.menu-icon {
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Button Styles */
-.home-btn {
-  padding: 8px 20px;
-  background-color: transparent;
-  color: #333;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.home-btn:hover {
-  background-color: #e9ecef;
-  color: #007bff;
-}
-
-/* Responsive Styles */
+/* Mobile Menu Styles */
 @media (max-width: 768px) {
-  .mobile-menu-icon {
-    display: block;
+  .toggle {
+    display: flex;
   }
 
   .nav-links {
@@ -169,7 +131,7 @@
     left: 0;
     right: 0;
     background-color: #fff;
-    padding: 20px 0;
+    padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -190,14 +152,15 @@
   }
 }
 
-/* Tablet and mobile friendly styles */
-@media (max-width: 360px) {
+/* Tablet-friendly styles */
+@media (max-width: 480px) {
   .nav {
-    padding: 10px 15px;
+    padding: 10px;
     font-size: 14px;
   }
 
-  .navbtn {
+  .navbtn,
+  .navbtn-rightside {
     font-size: 14px;
     padding: 8px 15px;
   }
@@ -208,7 +171,48 @@
   }
 
   .home-btn {
-    font-size: 13px;
-    padding: 6px 12px;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .toggle {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bars {
+    height: 3px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .nav {
+    padding: 8px 10px;
+  }
+
+  .navbtn,
+  .navbtn-rightside {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .user-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .home-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .toggle {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bars {
+    height: 2px;
   }
 }

@@ -14,23 +14,33 @@ export const signUp = async (userData) => {
     throw error;  // Handle errors
   }
 };
-
-
-
-// Signin API Call
 export const signInUser = async (loginData) => {
+  let response = null;
   try {
-    const response = await axios.post(`${Api}/auth/signin`, loginData, {
+    response = await axios.post(`${Api}/auth/signin`, loginData, {
       headers: {
-        'Content-Type': 'application/json',  // Ensure the Content-Type is set to JSON
+        'Content-Type': 'application/json',
       },
     });
-    return response.data;  // Return the server response (possibly containing a token)
+
+    // Log the response to verify user data and token
+    console.log('Response from server:', response.data);
+    
+    // Dispatch login success action with user data and token
+    return response.data; // Return the server response
   } catch (error) {
     console.error('Signin Error:', error.response ? error.response.data : error.message);
-    throw error;  // Handle errors
+    throw error; // Re-throw the error after logging
+  } finally {
+    if (response) {
+      console.log('Final Response:', response.data); // Log response only if it's available
+    } else {
+      console.log('No response received.');
+    }
   }
 };
+
+
 
 export const adminService = {
   login: async (email, password) => {

@@ -1,4 +1,161 @@
 
+/* Startpage.css */
+
+/* General container styles */
+.container {
+  max-width: 1200px; /* Limit maximum width for larger screens */
+  margin: auto; /* Center the container */
+  height: calc(100vh-65px);
+}
+
+/* Heading styles */
+h2 {
+  font-size: 2.5rem; /* Adjust heading size */
+  color: #333; /* Main heading color */
+}
+
+h2 span {
+  color: #28a745; /* Success color for adventure text */
+}
+
+/* Button styles */
+.container /* From Uiverse.io by 212004ALJI */ 
+button,button::after {
+  padding: 5px 5px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  background-color:transparent;
+  position: relative;
+  margin-right: 20px;
+  border: 1px  solid #333;
+}
+
+.container button::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: 'GLITCH';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.container button:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+  background-color: transparent;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+.container button:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.container button:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+
+@keyframes glitch_4011 {
+  0% {
+    clip-path: var(--move1);
+    transform: translate(0px,-10px);
+  }
+
+  10% {
+    clip-path: var(--move2);
+    transform: translate(-10px,10px);
+  }
+
+  20% {
+    clip-path: var(--move3);
+    transform: translate(10px,0px);
+  }
+
+  30% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  40% {
+    clip-path: var(--move5);
+    transform: translate(10px,-10px);
+  }
+
+  50% {
+    clip-path: var(--move6);
+    transform: translate(-10px,10px);
+  }
+
+  60% {
+    clip-path: var(--move1);
+    transform: translate(10px,-10px);
+  }
+
+  70% {
+    clip-path: var(--move3);
+    transform: translate(-10px,10px);
+  }
+
+  80% {
+    clip-path: var(--move2);
+    transform: translate(10px,-10px);
+  }
+
+  90% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  100% {
+    clip-path: var(--move1);
+    transform: translate(0);
+  }
+}
+
+
+
+/* Link styles */
+a {
+  color: #28a745; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+/* Link hover effect */
+a:hover {
+  color: #155724; /* Darker green on hover */
+  background-color: rgba(0, 0, 0, 0.1); /* Light background on hover */
+}
+
+/* Image styles */
+img {
+  max-width: 100%; /* Responsive image */
+  border-radius: 12px; /* Rounded corners */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem; /* Smaller font size on mobile */
+  }
+  
+  button, a {
+    padding: 12px 20px; /* Adjust padding for mobile */
+  }
+}
 
    
   @keyframes wind {

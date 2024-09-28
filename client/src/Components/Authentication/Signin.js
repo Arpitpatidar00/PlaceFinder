@@ -6,7 +6,11 @@ import "../Views/Screen.css";
 import { useAuth } from "../../Context/AuthContext.js";
 import { signUp, signInUser } from "../../Services/api.js";
 import { useNavigate } from "react-router-dom";
+
+import { useDispatch,useSelector } from 'react-redux';
 import Loader from "../Loader/Loader.js";
+import { loginSuccess } from '../../actions/authActions.js'; // Import your action creator
+
 function Login() {
   const navigate = useNavigate();
 
@@ -22,8 +26,12 @@ function Login() {
   const [aadharNo, setAadharNo] = React.useState("");
   const [aadharImage, setAadharImage] = React.useState(null);
   const [loading, setLoading] = useState(false); // Loading state
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const { islogin, setIsLogin, isMobile, setIsMobile } = useAuth();
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,7 +44,16 @@ function Login() {
     return () => {
       window.removeEventListener("resize", handleResize); // Clean up listener on unmount
     };
-  }, [setIsMobile]); 
+  }, [setIsMobile]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }else{
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
+
 
   const istoggleSignIn = () => {
     toggle(true);
@@ -76,66 +93,7 @@ function Login() {
     }
   };
 
-  // const handleSignUp = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true); // Activate loader
 
-  //   try {
-  //     const userData = {
-  //       name,
-  //       email,
-  //       password,
-  //       role,
-  //       profileImage: image ? await convertToBase64(image) : null, // Check if image exists
-  //     };
-  
-  //     if (role === 'driver') {
-  //       userData.licenseNo = licenseNo;
-  //       userData.licenseImage = licenseImage || null; // Check if licenseImage exists
-  //     } else if (role === 'guide') {
-  //       userData.aadharNo = aadharNo;
-  //       userData.aadharImage = aadharImage || null; // Check if aadharImage exists
-  //     }
-  
-  //     const response = await signUp(userData); // Replace with your signup function
-  //     alert('Signup successful!');
-  //     navigator('/home')
-  //     console.log('Signup successful:', response);
-  //   } catch (error) {
-  //     console.error('Error during signup:', error);
-  //     alert('Error during signup. Please try again.');
-  //   }
-  // };
-  
-  
-
-  // const handleSignIn = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true); // Activate loader
-
-  //   // Construct loginData as an object
-  //   const loginData = {
-  //     email: email,
-  //     password: password,
-  //   };
-
-  //   try {
-  //     const response = await signInUser(loginData); // Send login data
-
-  //     if (response.token && response.user) {
-  //       localStorage.setItem("userData", JSON.stringify(response.user)); // Store user data in local storage as a JSON string
-
-  //       localStorage.setItem("token", response.token); // Store token in local storage
-  //       navigate('/home')
-
-  //       // Redirect to dashboard or another page
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during signin:", error);
-  //     // Optionally handle the error in the UI
-  //   }
-  // };
-  
   const handleSignUp = async (e) => {
     e.preventDefault();
     
@@ -169,25 +127,24 @@ function Login() {
       setLoading(false); // Deactivate loader after the process is complete
     }
   };
-  
   const handleSignIn = async (e) => {
     e.preventDefault();
-  
     setLoading(true); // Activate loader
-  
+
     const loginData = {
       email: email,
       password: password,
     };
-  
+
     try {
       const response = await signInUser(loginData); // Send login data
-  
+
       if (response.token && response.user) {
-        localStorage.setItem("userData", JSON.stringify(response.user)); // Store user data in local storage as a JSON string
-        localStorage.setItem("accessToken", response.token); // Store token in local storage
+        // Dispatch the login success action
+        dispatch(loginSuccess(response.user, response.token));
+
+        // Redirect to the home page or another dashboard
         navigate('/home');
-        // Redirect to dashboard or another page
       }
     } catch (error) {
       console.error("Error during signin:", error);
@@ -468,11 +425,7 @@ function Login() {
             <Components.Button type="submit">Sign In</Components.Button>
           </Components.Form>
 
-          {isMobile && (
-            <Components.GhostButton onClick={istoggleSignIn}>
-              Sign Up
-            </Components.GhostButton>
-          )}
+          
         </Components.SignInContainer>
       )}
       {!isMobile && (

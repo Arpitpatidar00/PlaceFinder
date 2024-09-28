@@ -14,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Api from '../../Api.js';
 import Loader from '../Loader/Loader.js'
+import LazyLoad from 'react-lazyload';
 
 const ImageDetails = () => {
   const { searchData, setCommentData } = useAuth();
@@ -44,7 +45,9 @@ const ImageDetails = () => {
         setLoading(false); // Turn off loader after fetching comments
       } catch (error) {
         console.error("Error fetching comment data:", error);
-        setLoading(false); // Handle error state
+      }
+      finally {
+        setLoading(false); // Deactivate loader after the process is complete
       }
     };
     fetchData();
@@ -67,6 +70,9 @@ const ImageDetails = () => {
       } catch (error) {
         console.error("Error fetching data for selected id:", error);
         setLoading(false); // Handle error state
+      }
+      finally {
+        setLoading(false); // Deactivate loader after the process is complete
       }
     };
 
@@ -108,6 +114,8 @@ const ImageDetails = () => {
           }
         } catch (error) {
           console.error("Error uploading image:", error);
+        } finally {
+          setLoading(false); // Deactivate loader after the process is complete
         }
       };
       reader.readAsDataURL(file);
@@ -147,7 +155,9 @@ const ImageDetails = () => {
           {loading ? (
             <Loader />
           ) : (
+            <LazyLoad>
             <img src={selectedData.image} alt="Cardimage" className="card-image" />
+            </LazyLoad>
           )}
           <h1 className="place-name">
             {loading ? <Loader /> : selectedData.placeName}

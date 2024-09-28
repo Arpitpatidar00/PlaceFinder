@@ -13,22 +13,27 @@ const CardData = () => {
   const { items, setItems } = useAuth();
   const [selectedId, setSelectedId] = useState(null);
   const [ref, inView] = useInView();
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false); 
 
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { 
+
     const fetchData = async () => {
       setLoading(true); // Activate loader
 
       try {
 
         const response = await fetch(`${Api}/add/`);
-        const data = await response.json();
+        const data = await response.json(); 
         setItems(data); // Set items directly without using slice
       } catch (error) {
         console.error("Error fetching data:", error);
+      }
+      finally {
+        setLoading(false); // Deactivate loader after the process is complete
       }
     };
 

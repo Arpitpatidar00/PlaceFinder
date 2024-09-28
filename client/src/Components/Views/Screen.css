@@ -7,7 +7,7 @@ body {
 .step-indicators {
   display: flex;
   justify-content: center; /* Center the indicators */
-  align-items: center; 
+  align-items: center;
   width: 100%;
   margin: 20px 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
 
 .step-indicator {
   display: flex;
-  flex-direction: row; /* Stack icon and number vertically */
+  flex-direction: column; /* Stack icon and number vertically */
   justify-content: center; 
   align-items: center;
   font-size: 1.5vw; /* Responsive font size */
@@ -48,10 +48,20 @@ body {
 
 @media (max-width: 480px) {
   .step-indicator {
-    min-width: 60px; /* Reduce minimum width for very small devices */
+    min-width: 60px; /* Reduce minimum width for small devices */
   }
 
   .step-indicators {
-    flex-direction: row; /* Stack indicators vertically on very small screens */
+    flex-direction: row; /* Keep indicators in a row on small screens */
+  }
+}
+
+@media (max-width: 380px) {
+  .step-indicator {
+    min-width: 20px; /* Further reduce minimum width for very small devices */
+  }
+
+  .step-indicators {
+    flex-direction: row; /* Maintain horizontal layout on very small screens */
   }
 }

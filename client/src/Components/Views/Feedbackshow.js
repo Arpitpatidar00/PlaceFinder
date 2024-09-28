@@ -3,11 +3,15 @@ import { MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypogra
 import UserDataDetails from "../Views/ProfileDetails.js"; // Ensure the path is correct
 import "./Feedback.css";
 import Api from "../../Api.js";
+import Loader from "../Loader/Loader.js";
+
+
 export default function Feedback() {
   const [isVisible, setIsVisible] = useState(false);
   const [feedbackData, setFeedbackData] = useState([]);
   const [selectedFeedbackId, setSelectedFeedbackId] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +29,7 @@ export default function Feedback() {
 
   useEffect(() => {
     const fetchFeedbackData = async () => {
+      setLoading(true)
       try {
         const response = await fetch(`${Api}/Feedback`);
         if (response.ok) {
@@ -37,6 +42,8 @@ export default function Feedback() {
         }
       } catch (error) {
         console.error("Error fetching feedback data:", error);
+      }finally {
+        setLoading(false); // Deactivate loader after the process is complete
       }
     };
 
@@ -80,6 +87,8 @@ export default function Feedback() {
   };
 
   return (
+    <>
+    {loading ? <Loader /> : (
     <div id="Feedback">
       <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
         <MDBContainer className="py-2">
@@ -144,5 +153,7 @@ export default function Feedback() {
         </div>
       )}
     </div>
+  )}
+  </>
   );
 }

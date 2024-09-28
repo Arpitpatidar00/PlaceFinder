@@ -1,4 +1,3 @@
-
 import { LOGIN_SUCCESS, LOGOUT } from '../actions/authActions';
 
 // Define the initial state
@@ -23,14 +22,19 @@ const parseLocalStorageData = (key, fallback) => {
 const savedUserData = parseLocalStorageData('userData', initialState.user);
 const savedAccessToken = localStorage.getItem('accessToken') || null;
 
-const authReducer = (state = { ...initialState, user: savedUserData, accessToken: savedAccessToken }, action) => {
+// Determine if the user is authenticated based on local storage
+const isAuthenticated = savedUserData && savedAccessToken ? true : false;
+
+// Create the initial state with the authentication status
+const authReducer = (state = { ...initialState, user: savedUserData, accessToken: savedAccessToken, isAuthenticated }, action) => {
     switch (action.type) {
         case LOGIN_SUCCESS:
+            console.log('Login Success Action:', action); // Log action to check payload
             return {
                 ...state,
-                user: action.payload.userData,
-                accessToken: action.payload.accessToken,
-                isAuthenticated: true,
+                user: action.payload.userData, // Set user data from the payload
+                accessToken: action.payload.accessToken, // Set token from the payload
+                isAuthenticated: true, // Mark the user as authenticated
             };
         case LOGOUT:
             // Clear localStorage on logout
