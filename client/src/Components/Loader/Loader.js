@@ -1,22 +1,22 @@
 import React from 'react';
-
+import './Loader.css'
 const Loader = () => {
     return (
-        <div class="spinner center">
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
-    <div class="spinner-blade"></div>
+        <div className='spinner-div'>
+      <div class="dot-spinner">
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
+  <div class="dot-spinner__dot"></div>
 </div>
+
+      </div>
     );
 }
 
 export default Loader;
+

@@ -29,7 +29,6 @@ const isAuthenticated = savedUserData && savedAccessToken ? true : false;
 const authReducer = (state = { ...initialState, user: savedUserData, accessToken: savedAccessToken, isAuthenticated }, action) => {
     switch (action.type) {
         case LOGIN_SUCCESS:
-            console.log('Login Success Action:', action); // Log action to check payload
             return {
                 ...state,
                 user: action.payload.userData, // Set user data from the payload

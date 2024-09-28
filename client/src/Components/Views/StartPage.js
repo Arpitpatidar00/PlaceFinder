@@ -34,7 +34,6 @@ const StartPage = () => {
                   onClick={handleStartClick}
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  role="button"
                 >
                   Get started
                 </button>
@@ -42,7 +41,6 @@ const StartPage = () => {
                   href="#!"
                   data-te-ripple-init
                   data-te-ripple-color="light"
-                  role="button"
                 >
                   Learn more
                 </a>

@@ -4,6 +4,7 @@
   margin: 0 auto; /* Center container on the page */
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  
 }
 
 /* Search Component Styling */
@@ -106,11 +107,15 @@ button:focus {
 .placename {
   font-size: 1.2rem;
   margin: 10px 0;
+  font-family: Cursive;
+
 }
 
 .para {
   font-size: 1rem;
   color: #4a4a4a;
+  font-family: Cursive;
+
 }
 
 /* Flip Card CSS */
@@ -121,6 +126,8 @@ button:focus {
   perspective: 1000px;
   font-family: sans-serif;
   padding-bottom: 15px;
+  font-family: Cursive;
+
 }
 
 .flip-card-inner {
