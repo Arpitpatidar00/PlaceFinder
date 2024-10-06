@@ -102,7 +102,7 @@ const Navbar = () => {
           )}
           {isAdmin && (
             <li>
-              <button className="navbtn" onClick={() => navigateTo("/admin")}>
+              <button className="navbtn"  onClick={() => navigateTo("/Adminhome")}>
                 Admin
               </button>
             </li>
