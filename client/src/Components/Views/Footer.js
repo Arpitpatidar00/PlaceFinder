@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className="bg-zinc-50 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
         <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
           <div className="me-12 hidden lg:block">
-            <span>Get connected with us on social networks:</span>
+            <span>Get connected with us on social networks</span>
           </div>
           <div className="flex justify-center">
             <a href="#!" className="me-6 [&>svg]:h-4 [&>svg]:w-4">
@@ -78,22 +78,22 @@ const Footer = () => {
                 >
                   <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM7 17.707L5.293 16 9 12.293l4 4 7-7 1.707 1.707L13 18.414l-4-4L7 17.707z" />
                 </svg>
-                Tailwind Elements
+               PlaceFinder
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
+              Creating content for a traveling website involves various elements, including destination guides, travel tips, itineraries, and engaging visuals. Here’s a structured outline and sample content for different sections of a traveling website:
+
+
               </p>
             </div>
 
             <div className="">
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                Products
+                Homepage
               </h6>
               <p className="mb-4">
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Angular
+                  node
                 </a>
               </p>
               <p className="mb-4">
@@ -103,33 +103,33 @@ const Footer = () => {
               </p>
               <p className="mb-4">
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Vue
+                  express
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Laravel
+                  mongodb
                 </a>
               </p>
             </div>
 
             <div className="">
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                Useful links
+              Gallery
               </h6>
               <p className="mb-4">
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Pricing
+                  guides
                 </a>
               </p>
               <p className="mb-4">
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Settings
+                  drivers 
                 </a>
               </p>
               <p className="mb-4">
                 <a href="#!" className="text-surface/75 dark:text-white/75">
-                  Orders
+                Contact Us
                 </a>
               </p>
               <p>
@@ -152,7 +152,7 @@ const Footer = () => {
                 >
                   <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
                 </svg>
-                New York, NY 10012, US
+               indore
               </p>
               <p className="mb-4 flex items-center justify-center md:justify-start">
                 <svg
@@ -163,8 +163,7 @@ const Footer = () => {
                 >
                   <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
                 </svg>
-                info@example.com
-              </p>
+arpitpatidarappi01@gmail.com              </p>
               <p className="mb-4 flex items-center justify-center md:justify-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +173,7 @@ const Footer = () => {
                 >
                   <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
                 </svg>
-                + 01 234 567 88
+                911157973
               </p>
               <p className="flex items-center justify-center md:justify-start">
                 <svg
@@ -185,19 +184,19 @@ const Footer = () => {
                 >
                   <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
                 </svg>
-                + 01 234 567 89
+               
               </p>
             </div>
           </div>
         </div>
 
         <div className="bg-surface/10 p-6 text-center dark:bg-neutral-700">
-          <span>© 2023 Copyright:</span>
+          <span>© 2024 Copyright:</span>
           <a
             className="font-semibold text-surface/90 dark:text-neutral-400"
             href="https://tailwind-elements.com/"
           >
-            Tailwind Elements
+           Travelling
           </a>
         </div>
       </footer>

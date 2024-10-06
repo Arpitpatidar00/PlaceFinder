@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -6,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/authActions";
 import "./Navbar.css";
 import { useAuth } from "../../Context/AuthContext";
+import { showAlert } from '../Loader/Alert.js';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -20,20 +20,22 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { setIsLogin, isMobile, setIsMobile } = useAuth();
 
-
   useEffect(() => {
     setIsProfileMenuOpen(false);
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  const handleLogout = () => {
-    if (window.confirm("Are you sure you want to log out?")) {
-      dispatch(logout());
-      localStorage.removeItem("token");
-      localStorage.removeItem("userData");
-      navigate("/");
+  const handleLogout = async () => {
+    const confirmed = await showAlert("Are you sure you want to log out?");
+
+    if (confirmed) {
+        dispatch(logout());
+        localStorage.removeItem("token");
+        localStorage.removeItem("userData");
+        navigate("/");
     }
-  };
+};
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +56,8 @@ const Navbar = () => {
   };
 
   const isAdmin = userData?.role === "admin";
-  const profileImageSrc = userData?.profileImage || "/path/to/default-avatar.png"; // Add a default avatar image
+  const profileImageSrc =
+    userData?.profileImage || "/path/to/default-avatar.png"; // Add a default avatar image
 
   return (
     <nav>
@@ -62,25 +65,37 @@ const Navbar = () => {
         <button className="navbtn" onClick={() => navigateTo("/")}>
           PlaceFinder
         </button>
-{isMobile&&(
-  <>
-        <input
-          type="checkbox"
-          id="checkbox"
-          checked={isMobileMenuOpen}
-          onChange={toggleMobileMenu}
-        />
-        <label htmlFor="checkbox" className="toggle">
-          <div className={`bars ${isMobileMenuOpen ? "rotate-bar1" : ""}`} id="bar1"></div>
-          <div className={`bars ${isMobileMenuOpen ? "fade-bar2" : ""}`} id="bar2"></div>
-          <div className={`bars ${isMobileMenuOpen ? "rotate-bar3" : ""}`} id="bar3"></div>
-        </label>
-        </>
-)}
+        {isMobile && (
+          <>
+            <input
+              type="checkbox"
+              id="checkbox"
+              checked={isMobileMenuOpen}
+              onChange={toggleMobileMenu}
+            />
+            <label htmlFor="checkbox" className="toggle">
+              <div
+                className={`bars ${isMobileMenuOpen ? "rotate-bar1" : ""}`}
+                id="bar1"
+              ></div>
+              <div
+                className={`bars ${isMobileMenuOpen ? "fade-bar2" : ""}`}
+                id="bar2"
+              ></div>
+              <div
+                className={`bars ${isMobileMenuOpen ? "rotate-bar3" : ""}`}
+                id="bar3"
+              ></div>
+            </label>
+          </>
+        )}
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
-          {!isAdmin && isAuthenticated&& (
+          {!isAdmin && isAuthenticated && (
             <li>
-              <button className="navbtn-rightside" onClick={() => navigateTo("/home")}>
+              <button
+                className="navbtn-rightside"
+                onClick={() => navigateTo("/home")}
+              >
                 Home
               </button>
             </li>
@@ -104,30 +119,59 @@ const Navbar = () => {
               />
               {isProfileMenuOpen && (
                 <ul className="profile-dropdown">
-                  <li>
-                    <button className="navbtn" onClick={() => navigateTo("/profile")}>
+                 
+                    <button
+                      className="navbtn"
+                      onClick={() => navigateTo("/profile")}
+                    >
                       View Profile
                     </button>
-                  </li>
-                  <li>
+                 
+                 
                     <button className="navbtn" onClick={handleLogout}>
                       Logout <LogoutIcon />
                     </button>
-                  </li>
+                  
                 </ul>
               )}
             </li>
           )}
-
+          {!isAuthenticated && !isMobile && (
+            <>
+              <li>
+                <button
+                  className="navbtn"
+                  onClick={() => {
+                    setIsLogin(false);
+                    navigateTo("/login");
+                  }}
+                >
+                  Login
+                </button>
+              </li>
+            </>
+          )}
           {isMobile && !isAuthenticated && (
             <>
               <li>
-                <button className="navbtn" onClick={() => { setIsLogin(false); navigateTo("/login"); }}>
+                <button
+                  className="navbtn"
+                  onClick={() => {
+                    setIsLogin(false);
+                    navigateTo("/login");
+                  }}
+                >
                   Login
                 </button>
               </li>
               <li>
-                <button className="navbtn" onClick={() => { setIsLogin(true); navigateTo("/login"); }}>
+                <button
+                  className="navbtn"
+                  onClick={() => {
+                    setIsLogin(true);
+                    navigateTo("/login");
+                  }}
+                >
                   Signup
                 </button>
               </li>

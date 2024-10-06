@@ -88,6 +88,24 @@ button:focus {
   font-size: 14px;
   color: #555;
 }
+.suggestions-container {
+  border: 1px solid #ccc;
+  background: #fff;
+  max-height: 200px; /* Limit height for scrolling */
+  overflow-y: auto; /* Enable scrolling if needed */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.suggestion-link {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.suggestion-link:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
 
 /* Image Styling */
 .search-img {

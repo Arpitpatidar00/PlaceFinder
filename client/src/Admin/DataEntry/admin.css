@@ -240,3 +240,126 @@ align-items: center;
     flex: 1 1 calc(25% - 20px); /* 4 cards per row on large screens */
   }
 }
+/* admin.css */
+
+/* General Container Styling */
+.user-container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+/* User Card Styling */
+.block {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.07), 0 10px 20px rgba(0, 0, 0, 0.04);
+  margin: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.block img {
+  border-radius: 50%;
+  margin: 20px auto;
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.p-6 {
+  padding: 20px;
+  text-align: center;
+}
+
+.text-xl {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.text-base {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Button Styling */
+button {
+  background-color: #3b71ca;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2e59a6;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Load More Button */
+.load-more-btn {
+  display: block;
+  margin: 30px auto;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #555;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .user-container-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .block {
+    width: 90%;
+  }
+
+  .p-6 {
+    padding: 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .block {
+    width: 100%;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}

@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypography } from "mdb-react-ui-kit";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
 import UserDataDetails from "../Views/ProfileDetails.js"; // Ensure the path is correct
 import "./Feedback.css";
 import Api from "../../Api.js";
 import Loader from "../Loader/Loader.js";
+import { useAuth } from "../../Context/AuthContext.js";
 
-
-export default function Feedback() {
+export default function Feedbackshow() {
   const [isVisible, setIsVisible] = useState(false);
   const [feedbackData, setFeedbackData] = useState([]);
   const [selectedFeedbackId, setSelectedFeedbackId] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [loading, setLoading] = useState(false); // Loading state
+  const { feedback } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +38,7 @@ export default function Feedback() {
 
   useEffect(() => {
     const fetchFeedbackData = async () => {
-      setLoading(true)
+      setLoading(true); // Activate loader
       try {
         const response = await fetch(`${Api}/Feedback`);
         if (response.ok) {
@@ -39,16 +48,21 @@ export default function Feedback() {
           );
         } else {
           console.error("Failed to fetch feedback data");
+
+          // Optional: Set an error state here to inform users
         }
       } catch (error) {
         console.error("Error fetching feedback data:", error);
-      }finally {
+        // Optional: Set an error state here to inform users
+      } finally {
         setLoading(false); // Deactivate loader after the process is complete
+
+        // If setFeedback is meant to handle a different state, clarify its purpose
       }
     };
 
     fetchFeedbackData();
-  }, []);
+  }, [feedback]); // Only re-fetch if 'feedback' changes
 
   const getTimeAgo = (timestamp) => {
     const now = new Date();
@@ -88,72 +102,77 @@ export default function Feedback() {
 
   return (
     <>
-    {loading ? <Loader /> : (
-    <div id="Feedback">
-      <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
-        <MDBContainer className="py-2">
-          <MDBRow className="justify-content-center">
-            <MDBCol  >
-              <div className="feedback-grid">
-                <div className="d-flex flex-wrap">
-                  {feedbackData.map((feedbackItem) => (
-                    <div
-                      key={feedbackItem._id}
-                      className="comment-card"
-                      onClick={() => handleFeedbackClick(feedbackItem._id)}
-                    >
-                      <img
-                        className="rounded-circle shadow-1-strong me-3"
-                        src={`data:image/png;base64,${feedbackItem.userData.image}`}
-                        alt="avatar"
-                        width="65"
-                        height="65"
-                      />
-                      <MDBCard className="w-100">
-                        <MDBCardBody className="p-4">
-                          <div>
-                            <MDBTypography tag="h5">
-                              {feedbackItem.userData.username}
-                            </MDBTypography>
-                            <p className="small">
-                              {getTimeAgo(feedbackItem.createdAt)}
-                            </p>
-                            <p>{feedbackItem.feedback}</p>
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div className="d-flex align-items-center">
-                                <a href="#!" className="link-muted me-2">
-                                  <MDBIcon fas icon="thumbs-up me-1" />
-                                  {feedbackItem.likes}
-                                </a>
-                                <a href="#!" className="link-muted">
-                                  <MDBIcon fas icon="thumbs-down me-1" />
-                                  {feedbackItem.dislikes}
-                                </a>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div id="Feedback">
+          <section className={`feedback-section ${isVisible ? "visible" : ""}`}>
+            <MDBContainer className="py-2">
+              <MDBRow className="justify-content-center">
+                <MDBCol>
+                  <div className="feedback-grid">
+                    <div className="d-flex flex-wrap">
+                      {feedbackData.map((feedbackItem) => (
+                        <div
+                          key={feedbackItem._id}
+                          className="comment-card"
+                          onClick={() => handleFeedbackClick(feedbackItem._id)}
+                        >
+                          <img
+                            className="rounded-circle shadow-1-strong me-3"
+                            src={feedbackItem.userData.profileImage}
+                            alt="avatar"
+                            width="65"
+                            height="65"
+                          />
+                          <MDBCard className="w-100">
+                            <MDBCardBody className="p-4">
+                              <div>
+                                <MDBTypography tag="h5">
+                                  {feedbackItem.userData.name}
+                                </MDBTypography>
+                                <p className="small">
+                                  {getTimeAgo(feedbackItem.createdAt)}
+                                </p>
+                                <p>{feedbackItem.feedback}</p>
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <div className="d-flex align-items-center">
+                                    <a href="#!" className="link-muted me-2">
+                                      <MDBIcon fas icon="thumbs-up me-1" />
+                                      {feedbackItem.likes}
+                                    </a>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="thumbs-down me-1" />
+                                      {feedbackItem.dislikes}
+                                    </a>
+                                  </div>
+                                  <a href="#!" className="link-muted">
+                                    <MDBIcon fas icon="reply me-1" /> Reply
+                                  </a>
+                                </div>
                               </div>
-                              <a href="#!" className="link-muted">
-                                <MDBIcon fas icon="reply me-1" /> Reply
-                              </a>
-                            </div>
-                          </div>
-                        </MDBCardBody>
-                      </MDBCard>
+                            </MDBCardBody>
+                          </MDBCard>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </section>
+          {overlayVisible && (
+            <div className="overlay">
+              <div className="overlay-content">
+                <UserDataDetails
+                  user={selectedFeedbackId}
+                  onClose={handleClose}
+                />
               </div>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </section>
-      {overlayVisible && (
-        <div className="overlay">
-          <div className="overlay-content">
-            <UserDataDetails user={selectedFeedbackId} onClose={handleClose} />
-          </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
-  )}
-  </>
+    </>
   );
 }

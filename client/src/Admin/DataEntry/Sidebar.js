@@ -18,7 +18,9 @@ function Sidebar() {
     setFeedback,
   } = useAdmin();
 
+  // Function to deactivate all states and activate the target
   function setExclusiveState(targetSetter) {
+    // Deactivate all states
     setPlacedata(false);
     setUserdata(false);
     setVideos(false);
@@ -26,6 +28,7 @@ function Sidebar() {
     setComments(false);
     setFeedback(false);
 
+    // Activate the target state
     targetSetter(true);
   }
 
@@ -39,6 +42,7 @@ function Sidebar() {
         <div id="hrdiv">
           <hr />
         </div>
+
         <ul className="buttonsdiv">
           <li>
             <button

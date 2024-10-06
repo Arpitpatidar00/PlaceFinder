@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Comment from "./Comment.js";
 import "./Placedata.css";
@@ -24,12 +25,12 @@ const ImageDetails = () => {
   const userDataString = localStorage.getItem("userData");
   const userData = userDataString ? JSON.parse(userDataString) : null;
 
-  const [ setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [showGuideProfile, setShowGuideProfile] = useState(false);
   const [showDriverProfile, setShowDriverProfile] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); // Loading state for fetching data
   const [imagesLoading, setImagesLoading] = useState(true); // For uploaded images
 
   useEffect(() => {
@@ -42,11 +43,9 @@ const ImageDetails = () => {
         }
         const data = await response.json();
         setCommentData(data);
-        setLoading(false); // Turn off loader after fetching comments
       } catch (error) {
         console.error("Error fetching comment data:", error);
-      }
-      finally {
+      } finally {
         setLoading(false); // Deactivate loader after the process is complete
       }
     };
@@ -66,18 +65,15 @@ const ImageDetails = () => {
         } else {
           console.error("Invalid response format:", response.data);
         }
-        setLoading(false); // Turn off loader after fetching place data
       } catch (error) {
         console.error("Error fetching data for selected id:", error);
-        setLoading(false); // Handle error state
-      }
-      finally {
+      } finally {
         setLoading(false); // Deactivate loader after the process is complete
       }
     };
 
     fetchData();
-  }, [placeId, searchData]);
+  }, [placeId, selectedImage,searchData]);
 
   useEffect(() => {
     const fetchUploadedImages = async () => {
@@ -85,10 +81,10 @@ const ImageDetails = () => {
         setImagesLoading(true); // Show loader for uploaded images
         const response = await axios.get(`${Api}/upload/uploadedImages`);
         setUploadedImages(response.data);
-        setImagesLoading(false); // Hide loader after images load
       } catch (error) {
         console.error("Error fetching uploaded images:", error);
-        setImagesLoading(false); // Handle error state
+      } finally {
+        setImagesLoading(false); // Hide loader after images load
       }
     };
 
@@ -114,8 +110,6 @@ const ImageDetails = () => {
           }
         } catch (error) {
           console.error("Error uploading image:", error);
-        } finally {
-          setLoading(false); // Deactivate loader after the process is complete
         }
       };
       reader.readAsDataURL(file);
@@ -154,25 +148,27 @@ const ImageDetails = () => {
         <div className="image-container">
           {loading ? (
             <Loader />
-          ) : (
+          ) : selectedData && selectedData.image ? ( // Ensure selectedData exists and has an image
             <LazyLoad>
-            <img src={selectedData.image} alt="Cardimage" className="card-image" />
+              <img src={selectedData.image} alt="Cardimage" className="card-image" />
             </LazyLoad>
+          ) : (
+            <div>No image available</div> // Fallback if no image is available
           )}
           <h1 className="place-name">
-            {loading ? <Loader /> : selectedData.placeName}
+            {selectedData ? selectedData.placeName : "Place Name"}
           </h1>
         </div>
 
         <div id="place">
           <h1 className="cityname">
-            {loading ? <Loader /> : selectedData.cityName}
+            {selectedData ? selectedData.cityName : "City Name"}
           </h1>
           <h1 className="title">
-            {loading ? <Loader /> : selectedData.title}
+            {selectedData ? selectedData.title : "Title"}
           </h1>
           <h1 className="description">
-            {loading ? <Loader /> : selectedData.description}
+            {selectedData ? selectedData.description : "Description"}
           </h1>
 
           <div id="guide-driver">
@@ -224,8 +220,8 @@ const ImageDetails = () => {
                     className="bd-placeholder-img img-thumbnail"
                     style={{ maxWidth: 200, maxHeight: 150 }}
                     onMouseOver={(e) => {
-                      e.target.style.maxWidth = "400px";
-                      e.target.style.maxHeight = "300px";
+                      e.target.style.maxWidth = "200";
+                      e.target.style.maxHeight = "150";
                     }}
                     onMouseOut={(e) => {
                       e.target.style.maxWidth = "200px";
@@ -246,10 +242,14 @@ const ImageDetails = () => {
 
         <div>
           <h1>Comments</h1>
-          <Comment
-            userData={userData}
-            placeName={selectedData ? selectedData.placeName : ""}
-          />
+          {loading ? (
+            <Loader />
+          ) : (
+            <Comment
+              userData={userData}
+              placeName={selectedData ? selectedData.placeName : ""}
+            />
+          )}
         </div>
       </div>
     </>

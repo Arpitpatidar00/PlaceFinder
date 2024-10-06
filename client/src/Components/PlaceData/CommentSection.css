@@ -1,187 +1,156 @@
+/* CommentSection.css */
+
 .comment-section {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #f1eaea;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  max-width: 600px; /* Set a maximum width for the comment section */
+  margin: 0 auto; /* Center the comment section */
+  padding: 25px; /* Add padding inside the comment section */
+  background-color: #ffffff; /* White background for a clean look */
+  border-radius: 10px; /* Slightly larger rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+}
 
-  }
-  
-  .comment-input {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    gap: 10px;
-    
-  }
-  
-  .comment-input img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  }
-  
-  .comment-input textarea {
-    width: calc(100% - 70px); /* Adjusting for image width and margin */
-    height: 100px;
-    padding: 10px;
-    margin-bottom: 10px;
-    resize: none;
-    border-radius: 15px;
-    border: none;
-    font-size: 20px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  }
-  
-  .comment-input button {
-justify-content: center;    
-    align-items: flex-end;
-    padding: 10px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  }
-  
-  .comment-input button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  }
-  
-  .comments-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .comment {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-  
-  .comment img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  }
-  
-  .comment-content {
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-
-  }
-  
-  .comment-author {
-    font-weight: bold;
-    
-  }
-  
-  .comment-text {
-    margin-top: 15px;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .comment-input {
-      flex-direction: column;
-    }
-  
-    .comment-input img {
-      margin-bottom: 10px;
-      margin-right: 0;
-    }
-  
-    .comment-input textarea {
-      width: 100%;
-    }
-  
-    .comment-input button {
-      align-self: flex-end;
-    }
-  
-    .comment {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .comment img {
-      margin-bottom: 10px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .comment-section {
-      padding: 10px;
-    }
-  
-    .comment-input textarea {
-      height: 80px;
-      font-size: 18px;
-    }
-  
-    .comment-content {
-      font-size: 14px;
-    }
-  
-    .comment-text {
-      margin-top: 10px;
-    }
-  }
-  
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+.comment-input {
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  margin-bottom: 25px; /* Space between input and comments */
 }
 
-.overlay-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 1000px;
-  height: 1000px;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative; /* Ensure relative positioning for the close button */
+.comment-input img {
+  width: 45px; /* Avatar width */
+  height: 45px; /* Avatar height */
+  border-radius: 50%; /* Round avatar */
+  margin-right: 15px; /* Space between avatar and textarea */
 }
 
-.container-profile {
-  width: 100%;
+.comment-input textarea {
+  flex-grow: 1; /* Take available space */
+  padding: 12px; /* Inner padding */
+  border: 1px solid #ccc; /* Border for textarea */
+  border-radius: 5px; /* Rounded corners */
+  resize: none; /* Disable resizing */
+  font-size: 16px; /* Slightly larger font size */
+  transition: border-color 0.2s; /* Smooth transition for border */
 }
 
-.btn-close {
-  position: absolute;
-  top: 10px;
-  right: 10px; /* Changed from right to left */
-  cursor: pointer;
-  background-color: black;
-  color: #f7f7f7;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+.comment-input textarea:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none; /* Remove outline */
 }
 
-/* Add additional styles as needed */
+.comment-input button {
+  padding: 12px 20px; /* Button padding */
+  margin-left: 10px; /* Space between button and textarea */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+  font-weight: bold; /* Bold text */
+}
+
+.comment-input button:disabled {
+  background-color: #ccc; /* Disabled button color */
+  cursor: not-allowed; /* Not allowed cursor */
+}
+
+.comment-input button:hover:not(:disabled) {
+  background-color: #0056b3; /* Darken button on hover */
+  transform: translateY(-1px); /* Slight lift effect */
+}
+
+.comments-list {
+  margin-top: 20px; /* Space above comments */
+}
+
+.comment {
+  display: flex; /* Use flexbox for alignment */
+  align-items: flex-start; /* Align items at the start */
+  background-color: #f7f7f7; /* Light gray background for comment card */
+  border: 1px solid #e1e1e1; /* Border for comment card */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Inner padding */
+  margin-bottom: 15px; /* Space between comments */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: box-shadow 0.3s; /* Smooth transition */
+}
+
+.comment:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.comment img {
+  width: 45px; /* Avatar width */
+  height: 45px; /* Avatar height */
+  border-radius: 50%; /* Round avatar */
+  margin-right: 15px; /* Space between avatar and comment text */
+}
+
+.comment-content {
+  flex-grow: 1; /* Take available space */
+}
+
+.comment-author {
+  font-weight: bold; /* Bold for author name */
+  font-size: 16px; /* Slightly larger font size */
+  color: #333; /* Darker color for the author */
+  margin-bottom: 5px; /* Space below author name */
+}
+
+.comment-text {
+  font-size: 14px; /* Font size for comment text */
+  color: #555; /* Gray color for comment text */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .comment-section {
+    padding: 20px; /* Reduce padding for smaller screens */
+  }
+
+  .comment-input {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items at the start */
+  }
+
+  .comment-input img {
+    margin-bottom: 10px; /* Space below avatar on small screens */
+  }
+
+  .comment-input textarea {
+    width: 100%; /* Full width for textarea */
+    margin-bottom: 10px; /* Space below textarea */
+  }
+
+  .comment-input button {
+    width: 100%; /* Full width for button */
+  }
+
+  .comment {
+    flex-direction: column; /* Stack avatar and content */
+  }
+
+  .comment img {
+    margin-bottom: 10px; /* Space below avatar in comments */
+  }
+}
+
+@media (max-width: 480px) {
+  .comment-input img {
+    width: 35px; /* Smaller avatar for extra small screens */
+    height: 35px; /* Smaller avatar height */
+  }
+
+  .comment-input textarea {
+    padding: 10px; /* Reduce padding for textarea */
+  }
+
+  .comment-input button {
+    padding: 10px; /* Reduce padding for button */
+  }
+
+  .comment img {
+    width: 35px; /* Smaller avatar for comments */
+    height: 35px; /* Smaller avatar height */
+  }
+}

@@ -6,7 +6,10 @@
     height: calc(100vh - 65px); /* Full viewport height minus 65px */
     background-color: #f4f7f9; /* Light background to enhance contrast */
     padding: 0 20px; /* Add padding for small screen responsiveness */
-}
+    background-image: url("https://static1.bigstockphoto.com/9/1/2/large1500/219287383.jpg");
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */}
 
 .Admin-container {
     display: flex; /* Flexbox layout for the container */
@@ -17,17 +20,17 @@
     max-width: 450px; /* Reduced max-width for better focus on content */
     padding: 30px; /* Increase padding for breathing space */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
-    background-color: #ffffff; /* White background for contrast */
+    background-color: #000000aa; /* White background for contrast */
     border-radius: 12px; /* More rounded corners for a modern look */
     text-align: center; /* Center text in the container */
-    border: 1px solid #e0e0e0; /* Subtle border to separate from background */
+    border: 2px solid #e0e0e0; /* Subtle border to separate from background */
 }
 
 /* Title styling */
 .title {
     margin-bottom: 25px;
     font-size: 32px; /* Larger, more prominent font */
-    color: #333; /* Darker text color for emphasis */
+    color: #adadad; /* Darker text color for emphasis */
     font-weight: 700; /* Bolder title for better focus */
     text-transform: uppercase; /* Make title text uppercase */
 }
@@ -70,6 +73,8 @@ input:focus {
     font-weight: 600; /* Bolder button text */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
     margin-top: 20px; /* Space above the button */
+    border: 1px solid #e0e0e0; /* Subtle border to separate from background */
+
 }
 
 /* Hover and active states for button */

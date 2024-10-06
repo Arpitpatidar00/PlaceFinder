@@ -3,53 +3,59 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff; /* White background */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   font-size: 16px;
   transition: background-color 0.3s ease-in-out;
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 10px 20px;
-  font-family: Cursive;
+  padding: 10px 20px; /* Increased padding for better spacing */
+  font-family: "Lucida Handwriting", Cursive;
+  color: #333; /* Dark text for contrast */
 }
 
 /* Navbar hover effect */
 .nav:hover {
-  background-color: #f4f4f4;
+  background: #f0f0f0; /* Slightly darker background on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Left-aligned button */
 .navbtn {
   margin-right: auto;
   background-color: transparent;
-  color: #333;
+  color: #000; /* Black text */
   border: none;
   padding: 10px 20px;
   font-size: 17px;
   cursor: pointer;
   border-radius: 6px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  font-weight: bold;
 }
 
 /* Right-aligned buttons */
 .navbtn-rightside {
-  background-color: transparent;
-  color: #333;
+  background-color: rgba(0, 0, 0, 0.1); /* Light black background */
+  color: #000; /* Black text */
   border: none;
   padding: 10px 15px;
   font-size: 16px;
   border-radius: 6px;
   cursor: pointer;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  font-weight: bold;
 }
 
 /* Button hover effects */
 .navbtn-rightside:hover,
 .navbtn:hover {
-  color: #007bff;
-  background-color: rgba(0, 0, 0, 0.05);
+  color: #fff; /* White text on hover */
+  background-color: #000; /* Black background on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Mobile Menu Icon */
@@ -59,21 +65,26 @@
 
 .toggle {
   position: relative;
-  width: 30px; /* Adjusted width to 30px */
-  height: 30px; /* Adjusted height to 30px */
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px; /* Reduced gap to fit within the smaller dimensions */
+  gap: 8px; /* Increased gap for better spacing */
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle:hover {
+  transform: rotate(90deg); /* Rotation on hover */
 }
 
 .bars {
   width: 100%;
-  height: 3px; /* Adjusted height for smaller bars */
-  background-color: rgba(0, 0, 0, 0.598);
-  border-radius: 5px;
+  height: 4px; /* Increased height for thicker bars */
+  background-color: #000; /* Black bars */
+  border-radius: 8px;
   transition-duration: 0.3s;
 }
 
@@ -94,12 +105,11 @@
   transition-duration: 0.3s;
 }
 
-
 /* Navbar Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px; /* Increased gap for more spacing */
   align-items: center;
 }
 
@@ -109,12 +119,47 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #000; /* Black text */
   transition: color 0.3s ease;
+  font-weight: 500;
 }
 
 .nav-links a:hover {
-  color: #007bff;
+  color: #007bff; /* Blue color on hover */
+}
+
+/* Profile Menu Styles */
+.profile-menu {
+  position: relative; /* Needed for dropdown positioning */
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-menu:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #ffffff; /* White dropdown background */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for better visibility */
+  z-index: 1000;
+  padding: 15px;
+  color: #333;
+}
+
+.profile-dropdown li {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.profile-dropdown li:hover {
+  background-color: #f0f0f0; /* Light background on hover */
+  color: #007bff; /* Blue color on hover */
 }
 
 /* Mobile Menu Styles */
@@ -130,11 +175,10 @@
     top: 60px;
     left: 0;
     right: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95); /* Light background for mobile */
     padding: 20px;
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
   .nav-links.active {
@@ -142,13 +186,13 @@
   }
 
   .nav-links li {
-    padding: 12px 20px;
+    padding: 15px;
     width: 100%;
     text-align: left;
   }
 
   .nav-links li:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
   }
 }
 
@@ -165,19 +209,14 @@
     padding: 8px 15px;
   }
 
-  .user-image {
-    width: 36px;
-    height: 36px;
-  }
-
-  .home-btn {
-    font-size: 14px;
-    padding: 8px 12px;
+  .profile-menu img {
+    width: 40px;
+    height: 40px;
   }
 
   .toggle {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   .bars {
@@ -197,19 +236,14 @@
     padding: 6px 10px;
   }
 
-  .user-image {
+  .profile-menu img {
     width: 32px;
     height: 32px;
   }
 
-  .home-btn {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-
   .toggle {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
   }
 
   .bars {

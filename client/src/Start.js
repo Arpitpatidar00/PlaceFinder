@@ -58,27 +58,45 @@ function Start() {
         />
         <Route
           path="/adminhome"
-          element={
-            <PrivateRoute element={AdminPage} requiredRole="admin" />
-          }
+          element={<PrivateRoute element={AdminPage} requiredRole="admin" />}
         />
 
         {/* Private User Routes */}
         <Route
           path="/home"
-          element={<PrivateRoute element={Home} requiredRole="user" />}
+          element={
+            <PrivateRoute
+              element={Home}
+              requiredRoles={["user", "guide", "driver"]}
+            />
+          }
         />
         <Route
           path="/Feedback"
-          element={<PrivateRoute element={Feedback} requiredRole="user" />}
+          element={
+            <PrivateRoute
+              element={Feedback}
+              requiredRoles={["user", "guide", "driver"]}
+            />
+          }
         />
         <Route
           path="/profile"
-          element={<PrivateRoute element={Profile} requiredRole="user" />}
+          element={
+            <PrivateRoute
+              element={Profile}
+              requiredRoles={["user", "guide", "driver"]}
+            />
+          }
         />
         <Route
           path="/details/:id"
-          element={<PrivateRoute element={ImageDetails} requiredRole="user" />}
+          element={
+            <PrivateRoute
+              element={ImageDetails}
+              requiredRoles={["user", "guide", "driver"]}
+            />
+          }
         />
 
         {/* Admin Dashboard - Example Private Admin Route */}

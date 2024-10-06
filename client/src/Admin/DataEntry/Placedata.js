@@ -23,7 +23,6 @@ const Placedata = () => {
       updatedValue = imageData;
 
       // Log the base64 data in the console
-      console.log('Base64 Image Data:', imageData);
     } else {
       updatedValue = e.target.value;
     }
@@ -47,8 +46,7 @@ const Placedata = () => {
       };
   
       // Send the form data to the backend
-      const response = await axios.post(`{Api}/add/upload`, dataToSend);
-      console.log(response.data);
+await axios.post(`{Api}/add/upload`, dataToSend);
   
       // Reset form after submission
       setFormData({

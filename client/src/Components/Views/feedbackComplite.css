@@ -1,0 +1,99 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically on smaller screens */
+    max-width: 100%; /* Full width */
+    margin: 3% auto; /* Center the container */
+    border: 1px solid #ccc; /* Optional: Add a border */
+    border-radius: 8px; /* Optional: Add border radius */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    font-family: "Lucida Handwriting", Cursive;
+}
+
+.image-section {
+    flex: 1; /* Take equal space with feedback section */
+    overflow: hidden; /* Hide overflow for better appearance */
+}
+
+.image-section img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px 8px 0 0; /* Round top corners */
+}
+
+.feedback-section {
+    flex: 1; /* Take equal space with image section */
+    padding: 20px; /* Add padding */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+}
+
+/* Feedback Title */
+.feedback-title {
+    margin: 10px 0; /* Add margin for spacing */
+    font-size: 24px; /* Title font size */
+    font-weight: bold; /* Make title bold */
+}
+
+/* Feedback Textarea */
+.feedback-textarea {
+    width: 100%; /* Full width */
+    height: 100px; /* Fixed height */
+    padding: 10px; /* Padding inside textarea */
+    border: 1px solid #ccc; /* Border for textarea */
+    border-radius: 4px; /* Rounded corners */
+    resize: none; /* Disable resize */
+}
+
+/* Send Button */
+.send-btn {
+    margin-top: 10px; /* Add spacing above button */
+    padding: 10px; /* Add padding */
+    background-color: #007bff; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor to pointer */
+}
+
+.send-btn:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .feedback-container {
+        flex-direction: row; /* Switch to row layout on larger screens */
+    }
+
+    .image-section {
+        border-radius: 8px 0 0 8px; /* Round left corners for image section */
+    }
+
+    .feedback-section {
+        padding: 40px; /* Increased padding on larger screens */
+    }
+
+    .feedback-title {
+        font-size: 28px; /* Larger title font size */
+    }
+
+    .feedback-textarea {
+        height: 150px; /* Increased height for larger screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .feedback-title {
+        font-size: 20px; /* Smaller title font size on mobile */
+    }
+
+    .send-btn {
+        padding: 8px; /* Adjust button padding for mobile */
+        font-size: 14px; /* Adjust button font size for mobile */
+    }
+
+    .feedback-textarea {
+        height: 80px; /* Decrease textarea height on mobile */
+    }
+}

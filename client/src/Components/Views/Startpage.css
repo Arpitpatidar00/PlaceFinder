@@ -18,115 +18,6 @@ h2 span {
   color: #28a745; /* Success color for adventure text */
 }
 
-/* Button styles */
-.container /* From Uiverse.io by 212004ALJI */ 
-button,button::after {
-  padding: 5px 5px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  color: rgb(0, 0, 0);
-  background-color:transparent;
-  position: relative;
-  margin-right: 20px;
-  border: 1px  solid #333;
-}
-
-.container button::after {
-  --move1: inset(50% 50% 50% 50%);
-  --move2: inset(31% 0 40% 0);
-  --move3: inset(39% 0 15% 0);
-  --move4: inset(45% 0 40% 0);
-  --move5: inset(45% 0 6% 0);
-  --move6: inset(14% 0 61% 0);
-  clip-path: var(--move1);
-  content: 'GLITCH';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: block;
-}
-
-.container button:hover::after {
-  animation: glitch_4011 1s;
-  text-shadow: 10 10px 10px black;
-  animation-timing-function: steps(2, end);
-  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
-  background-color: transparent;
-  border: 3px solid rgb(0, 255, 213);
-}
-
-.container button:hover {
-  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
-}
-
-.container button:hover {
-  background-color: transparent;
-  border: 1px solid rgb(0, 255, 213);
-  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
-}
-
-@keyframes glitch_4011 {
-  0% {
-    clip-path: var(--move1);
-    transform: translate(0px,-10px);
-  }
-
-  10% {
-    clip-path: var(--move2);
-    transform: translate(-10px,10px);
-  }
-
-  20% {
-    clip-path: var(--move3);
-    transform: translate(10px,0px);
-  }
-
-  30% {
-    clip-path: var(--move4);
-    transform: translate(-10px,10px);
-  }
-
-  40% {
-    clip-path: var(--move5);
-    transform: translate(10px,-10px);
-  }
-
-  50% {
-    clip-path: var(--move6);
-    transform: translate(-10px,10px);
-  }
-
-  60% {
-    clip-path: var(--move1);
-    transform: translate(10px,-10px);
-  }
-
-  70% {
-    clip-path: var(--move3);
-    transform: translate(-10px,10px);
-  }
-
-  80% {
-    clip-path: var(--move2);
-    transform: translate(10px,-10px);
-  }
-
-  90% {
-    clip-path: var(--move4);
-    transform: translate(-10px,10px);
-  }
-
-  100% {
-    clip-path: var(--move1);
-    transform: translate(0);
-  }
-}
-
-
-
 /* Link styles */
 a {
   color: #28a745; /* Link color */
@@ -144,6 +35,26 @@ a:hover {
 img {
   max-width: 100%; /* Responsive image */
   border-radius: 12px; /* Rounded corners */
+}
+.start-page-btn {
+  background-color: #81d75d; /* Green background */
+  border: none; /* Remove border */
+  color: rgb(0, 0, 0); /* White text */
+  padding: 15px 32px; /* Padding around text */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Keep inline-block to size properly */
+  font-size: 16px; /* Set font size */
+  margin: 4px 12px; /* Small margin around */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for background-color */
+}
+
+.start-page-btn:hover {
+  background-color: #bae0bce6; /* Darker green on hover */
 }
 
 /* Responsive adjustments */

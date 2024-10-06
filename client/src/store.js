@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { thunk } from 'redux-thunk'; // Correct import for thunk
-import { composeWithDevTools } from 'redux-devtools-extension'; // Import for dev tools extension
 import userDataReducer from "./reducers/userDataReducer";
 import placeReducer from "./reducers/placeReducer";
 import authReducer from "./reducers/authReducer";
@@ -13,9 +12,7 @@ const rootReducer = combineReducers({
 });
 
 // Create the Redux store with thunk middleware and Redux DevTools
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk)) // Use composeWithDevTools to integrate Redux DevTools
-);
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 
 export default store;

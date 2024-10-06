@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './Startpage.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const StartPage = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -11,7 +11,7 @@ const StartPage = () => {
 
   const handleStartClick = () => {
     if (!isAuthenticated) {
-      toast.error("Login to explore");
+      toast("Login to explore");
     } else {
       navigate("/home");
     }
@@ -31,6 +31,7 @@ const StartPage = () => {
                   </span>
                 </h2>
                 <button
+                className="start-page-btn"
                   onClick={handleStartClick}
                   data-te-ripple-init
                   data-te-ripple-color="light"
@@ -42,7 +43,6 @@ const StartPage = () => {
                   data-te-ripple-init
                   data-te-ripple-color="light"
                 >
-                  Learn more
                 </a>
               </div>
 

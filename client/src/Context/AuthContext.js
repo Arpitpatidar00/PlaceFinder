@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [islogin,setIsLogin]=useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [feedback, setfeedback] = useState(false);
 
   return (
     <AuthContext.Provider
@@ -28,6 +29,7 @@ export const AuthProvider = ({ children }) => {
         items, setItems,
         islogin,setIsLogin,
         isMobile, setIsMobile,
+        feedback, setfeedback,
 
       }}
     >

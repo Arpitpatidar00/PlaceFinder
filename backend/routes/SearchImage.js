@@ -33,26 +33,34 @@ router.post('/upload', async (req, res) => {
   }
 });
 
-// Route for searching places based on cityName and placeName
 router.get('/search', async (req, res) => {
   try {
-    const { cityName, placeName } = req.query;
-
-    // Prepare search criteria
-    const searchCriteria = {};
-    if (cityName || placeName) {
-      searchCriteria.$text = { $search: `${cityName ? cityName : ''} ${placeName ? placeName : ''}` };
+    const { query } = req.query;
+    
+    if (!query || query.trim() === "") {
+      return res.status(400).json({ message: "Query parameter is required" });
     }
 
-    // Find places matching the search criteria
+    // Prepare search criteria using regex for case-insensitive matching
+    const searchCriteria = {
+      $or: [
+        { cityName: { $regex: query, $options: "i" } },
+        { placeName: { $regex: query, $options: "i" } }
+      ]
+    };
+
+    // Find matching places in the database
     const places = await Place.find(searchCriteria);
 
-    res.json(places);
+    // Send back the matching places
+    res.status(200).json(places);
   } catch (error) {
-    console.error('Error searching for places:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Error searching for places:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
+
+
 
 
 // Route for searching a place by ID
@@ -89,7 +97,6 @@ router.get('/', async (req, res) => {
 // Route for deleting a place by ID
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  console.log("Deleting item with ID:", id); // Log ID for debugging
 
   // Validate ObjectId
   if (!mongoose.Types.ObjectId.isValid(id)) {

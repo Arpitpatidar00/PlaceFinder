@@ -16,7 +16,7 @@ const fileToBase64 = (file) => {
 function Profile() {
   const userDataString = localStorage.getItem("userData");
   const userData = userDataString ? JSON.parse(userDataString) : null;
-  
+
   const [userImages, setUserImages] = useState([]);
   const [showAllImages, setShowAllImages] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -83,28 +83,8 @@ function Profile() {
   const handleSaveChanges = async () => {
     const formData = new FormData();
 
-    if (editOption === "photo" && newImage) {
-      try {
-        const base64Image = await fileToBase64(newImage);
-        formData.append("image", base64Image); // Append base64 string
-      } catch (error) {
-        console.error("Error converting image to base64:", error);
-        return;
-      }
-    } else if (editOption === "password") {
-      if (newPassword !== confirmPassword) {
-        alert("New password and confirm password do not match.");
-        return;
-      }
-      formData.append("oldPassword", oldPassword);
-      formData.append("newPassword", newPassword);
-    } else if (editOption === "name") {
-      formData.append("name", newName);
-    } else if (editOption === "number") {
-      formData.append("mobileNumber", newNumber);
-    } else if (editOption === "bio") {
-      formData.append("bio", newBio);
-    }
+    const isValid = await appendFormData(formData);
+    if (!isValid) return; // Exit if form data is invalid
 
     try {
       await axios.put(`${Api}/auth/profileupdate/${userData._id}`, formData, {
@@ -113,13 +93,81 @@ function Profile() {
         },
       });
       alert("Profile updated successfully!");
+
+      // Reset form fields after successful update
+      resetFormFields();
+      
     } catch (error) {
       console.error("Error updating profile:", error);
+      alert("Failed to update profile. Please try again.");
     } finally {
       setEditMode(false);
       setEditOption("");
     }
   };
+
+  const appendFormData = async (formData) => {
+    switch (editOption) {
+      case "photo":
+        if (!newImage) {
+          alert("Please select an image.");
+          return false;
+        }
+        try {
+          const base64Image = await fileToBase64(newImage);
+          formData.append("image", base64Image);
+        } catch (error) {
+          console.error("Error converting image to base64:", error);
+          alert("Error converting image. Please try again.");
+          return false;
+        }
+        break;
+      case "password":
+        if (newPassword !== confirmPassword) {
+          alert("New password and confirm password do not match.");
+          return false;
+        }
+        formData.append("oldPassword", oldPassword);
+        formData.append("newPassword", newPassword);
+        break;
+      case "name":
+        if (!newName) {
+          alert("Please enter a name.");
+          return false;
+        }
+        formData.append("name", newName);
+        break;
+      case "number":
+        if (!newNumber) {
+          alert("Please enter a mobile number.");
+          return false;
+        }
+        formData.append("mobileNumber", newNumber);
+        break;
+      case "bio":
+        if (!newBio) {
+          alert("Please enter a bio.");
+          return false;
+        }
+        formData.append("bio", newBio);
+        break;
+      default:
+        alert("Please select a valid edit option.");
+        return false;
+    }
+    return true;
+  };
+// Function to reset form fields after successful update
+  const resetFormFields = () => {
+    setNewImage(null);
+    setOldPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setNewName('');
+    setNewNumber('');
+    setNewBio('');
+  };
+
   return (
     <>
       <div>
@@ -162,7 +210,7 @@ function Profile() {
             <div className="photos-section">
               <div className="photos-header mb-2">
                 <button
-                  className="show-all-link text-blue-500"
+                  className="show-all text-blue-500"
                   onClick={handleShowAllImages}
                 >
                   {showAllImages ? "Show less" : "Show all"}
@@ -211,7 +259,7 @@ function Profile() {
             )}
             {editMode && (
               <div className="edit-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="edit-modal-content bg-white  rounded-lg w-full max-w-md">
+                <div className="edit-modal-content bg-white rounded-lg w-full max-w-md">
                   <button
                     className="modal-close absolute top-2 right-2 text-gray-600"
                     onClick={() => setEditMode(false)}
@@ -224,94 +272,88 @@ function Profile() {
                   <form className="space-y-4">
                     <label
                       htmlFor="edit-options"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-medium text-gray-700"
                     >
-                      Select an option
+                      Choose an option:
                     </label>
                     <select
                       id="edit-options"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={editOption}
                       onChange={handleOptionChange}
+                      className="block w-full border border-gray-300 rounded-md p-2"
                     >
-                      <option value="">Select option</option>
-                      <option value="password">Change Password</option>
+                      <option value="" disabled>
+                        Select an option
+                      </option>
                       <option value="photo">Change Photo</option>
+                      <option value="password">Change Password</option>
                       <option value="name">Change Name</option>
                       <option value="number">Change Mobile Number</option>
-                      <option value="bio">Add Bio</option>
+                      <option value="bio">Change Bio</option>
                     </select>
-
+                    {editOption === "photo" && (
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setNewImage(e.target.files[0])}
+                        className="block w-full border border-gray-300 rounded-md p-2"
+                      />
+                    )}
                     {editOption === "password" && (
-                      <div>
+                      <>
                         <input
                           type="password"
                           placeholder="Old Password"
                           value={oldPassword}
                           onChange={(e) => setOldPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                          className="block w-full border border-gray-300 rounded-md p-2"
                         />
                         <input
                           type="password"
                           placeholder="New Password"
                           value={newPassword}
                           onChange={(e) => setNewPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md mt-2"
+                          className="block w-full border border-gray-300 rounded-md p-2"
                         />
                         <input
                           type="password"
                           placeholder="Confirm Password"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md mt-2"
+                          className="block w-full border border-gray-300 rounded-md p-2"
                         />
-                      </div>
+                      </>
                     )}
-
-                    {editOption === "photo" && (
-                      <div>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={(e) => setNewImage(e.target.files[0])}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                        />
-                      </div>
-                    )}
-
                     {editOption === "name" && (
                       <input
                         type="text"
                         placeholder="New Name"
                         value={newName}
                         onChange={(e) => setNewName(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                        className="block w-full border border-gray-300 rounded-md p-2"
                       />
                     )}
-
                     {editOption === "number" && (
                       <input
                         type="text"
                         placeholder="New Mobile Number"
                         value={newNumber}
                         onChange={(e) => setNewNumber(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                        className="block w-full border border-gray-300 rounded-md p-2"
                       />
                     )}
-
                     {editOption === "bio" && (
                       <textarea
-                        placeholder="Add Bio"
+                        placeholder="New Bio"
                         value={newBio}
                         onChange={(e) => setNewBio(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                        className="block w-full border border-gray-300 rounded-md p-2"
                       />
                     )}
-
                     <button
                       type="button"
                       onClick={handleSaveChanges}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                      className="w-full bg-blue-500 text-white rounded-md p-2"
                     >
                       Save Changes
                     </button>

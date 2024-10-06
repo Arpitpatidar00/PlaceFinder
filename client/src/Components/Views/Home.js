@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Search from "../Views/Search.js";
 import Slider from "../Views/Sliderimg/Slider.js";
-import Feedback from "./Feedbackshow.js";
+import Feedbackshow from "./Feedbackshow.js";
 import {  Link } from "react-router-dom";
-
+import Fetured from './FeaturedPlaces.js';
+import Feedback from './Feedback.js'
 import "./Screen.css";
 import CardData from "./CardData.js";
 import { motion } from "framer-motion";
@@ -85,7 +86,9 @@ const Home = () => {
             FEATURED PLACES
           </motion.h1>
         </div>
-
+        <div>
+          <Fetured/>
+          </div>
         {/* Card Container */}
         <div className="card-container">
           {places.map((place, index) => (
@@ -131,7 +134,10 @@ const Home = () => {
           </motion.h1>
         </div>
         <div>
-          <Feedback />
+          <Feedbackshow />
+        </div>
+        <div>
+        <Feedback/>
         </div>
       </div>
     </>

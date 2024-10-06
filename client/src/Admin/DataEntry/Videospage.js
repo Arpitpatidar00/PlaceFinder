@@ -19,12 +19,11 @@ const VideoUpload = () => {
     formData.append('description', description);
 
     try {
-      const response = await axios.post(`${Api}/video/upload`, formData, {
+    await axios.post(`${Api}/video/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Video uploaded successfully:', response.data);
       // fetchVideos(); // Refresh the list of videos
     } catch (error) {
       console.error('Error uploading video:', error);

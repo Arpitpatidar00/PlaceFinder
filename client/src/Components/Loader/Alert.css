@@ -1,0 +1,117 @@
+/* Confirm styles */
+.custom-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.65); /* Slightly darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.4s forwards ease-in-out; /* Smoother fade-in */
+  }
+  
+  .custom-confirm-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px; /* Softer, more modern border radius */
+    /* border: 3px solid #e8dddd; */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    text-align: center;
+    width: 100%;
+    max-width: 450px; /* Slightly wider for larger screens */
+    max-height: 320px;
+    transform: scale(0.9);
+    animation: scaleUp 0.3s forwards ease-out; /* Slight scaling effect on load */
+    transition: transform 0.3s ease-out;
+  }
+  
+  .custom-confirm-box p {
+    margin-bottom: 24px;
+    font-size: 1.2rem; /* Larger, clearer message text */
+    color: #444; /* Softer dark color for readability */
+    line-height: 1.6; /* Better text readability */
+  }
+  
+  .custom-confirm-box button {
+    padding: 12px 30px;
+    margin: 0 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+    border-radius: 8px; /* Larger radius for a softer look */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Improved transition */
+  }
+  
+  .custom-confirm-box button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Slightly more noticeable lift */
+  }
+  
+  .custom-confirm-box button:active {
+    transform: translateY(1px); /* Slight press effect */
+  }
+  
+  .custom-confirm-box button.cancel-btn {
+    background-color: #dc3545;
+  }
+  
+  .custom-confirm-box button.cancel-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-3px);
+  }
+  
+  .custom-confirm-box button.cancel-btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleUp {
+    0% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 600px) {
+    .custom-confirm-box {
+      width: 85%;
+      padding: 20px;
+    }
+  
+    .custom-confirm-box p {
+      font-size: 1rem;
+    }
+  
+    .custom-confirm-box button {
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      margin: 8px 0;
+      width: 100%; /* Full width for buttons on small screens */
+    }
+    
+    .custom-confirm-box button:first-child {
+      margin-bottom: 10px;
+    }
+  }
+  

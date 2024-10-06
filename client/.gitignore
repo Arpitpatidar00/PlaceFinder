@@ -4,3 +4,5 @@
 /node_modules
 /Videos
 /.DS_Store
+/.env
+/buildgit remote add origin https://github.com/Arpitpatidar00/PlaceFinder-Frontend.git

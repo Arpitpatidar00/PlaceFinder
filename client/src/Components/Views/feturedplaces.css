@@ -1,0 +1,104 @@
+/* Main featured container */
+.featured {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+/* Shared styles for both featured places */
+.featured-places1,
+.featured-places2 {
+  width: 100%; /* Use full width on small screens */
+  max-width: 800px; /* Max width for larger screens */
+  min-height: 400px; /* Ensure minimum height for better layout */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* mask-image: url("https://e7.pngegg.com/pngimages/485/443/png-clipart-black-painting-illustration-brush-ink-brush-pen-and-ink-ink-text.png"); */
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px;
+  transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+.featured-places1:hover,
+.featured-places2:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Specific backgrounds for each place */
+.featured-places1 {
+  background-image: url("https://vl-prod-static.b-cdn.net/system/images/000/695/823/912291ec3c8e103355422c30aa0579fa/original/pachmahri_adventure_geek.jpg?1691554980");
+}
+
+.featured-places2 {
+  background-image: url("https://media1.thrillophilia.com/filestore/lfzzd0l9a8ugbkkkcnra44qaxpfz_1604757284_shutterstock_1227338428.jpg?w=400&dpr=2");
+}
+
+/* Content container styling */
+.place-content {
+  width: 90%; /* Responsive width */
+  max-width: 500px; /* Max width */
+  padding: 15px;
+  margin: 10px auto; /* Center align */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "Lucida Handwriting", Cursive;
+}
+
+/* H1 style inside content */
+.place-content h1 {
+  font-size: 3rem; /* Adjusted for better scaling */
+  margin-bottom: 10px;
+}
+
+/* Paragraph styling */
+.place-content p {
+  font-size: 1.1rem; /* Adjust for better readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .featured-places1,
+  .featured-places2 {
+      height: 300px; /* Adjust height for smaller screens */
+  }
+
+  .place-content {
+      width: 95%; /* Full width on small screens */
+  }
+
+  .place-content h1 {
+      font-size: 1.5rem;
+  }
+
+  .place-content p {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .featured-places1,
+  .featured-places2 {
+      height: 250px;
+  }
+
+  .place-content {
+      padding: 10px;
+  }
+
+  .place-content h1 {
+      font-size: 1.3rem;
+  }
+
+  .place-content p {
+      font-size: 0.9rem;
+  }
+}
