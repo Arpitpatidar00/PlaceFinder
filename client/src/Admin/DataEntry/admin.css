@@ -1,15 +1,25 @@
+/* General Container Styling */
 .app {
   display: flex;
-  flex-direction: column; /* Default to column for smaller screens */
+  flex-direction: column;
+  /* Default to column for smaller screens */
+  background-color: #000;
+  /* Black background */
+  color: #fff;
+  /* White text */
 }
-.container{
+
+.container {
   display: flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
+
 .main-content {
   flex: 1;
   padding: 20px;
+  background-color: #111;
+  /* Slightly lighter black for contrast */
 }
 
 .Placedata-container {
@@ -34,6 +44,8 @@ align-items: center;
 
 .Placedata-form label {
   font-weight: bold;
+  color: #fff;
+  /* White text */
 }
 
 .Placedata-form input[type="text"],
@@ -42,33 +54,43 @@ align-items: center;
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
+  /* Light gray border */
   border-radius: 4px;
+  background-color: #222;
+  /* Dark background for input */
+  color: #fff;
+  /* White text */
 }
 
 .Placedata-form textarea {
   resize: vertical;
-  height: 100px; /* Adjust height as needed */
+  height: 100px;
+  /* Adjust height as needed */
 }
 
 .Placedata-form button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #444;
+  /* Dark gray for buttons */
   color: #fff;
+  /* White text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .Placedata-form button:hover {
-  background-color: #0056b3;
+  background-color: #666;
+  /* Lighter gray on hover */
 }
 
 /* Sidebar */
 .sidebar {
   width: 100%;
   height: auto;
-  background-color: #8a8989;
+  background-color: #333;
+  /* Dark gray */
   padding: 10px;
 }
 
@@ -78,7 +100,8 @@ align-items: center;
   margin-bottom: 20px;
   border: 0;
   height: 1.5px;
-  background-color: #000000;
+  background-color: #fff;
+  /* White line */
 }
 
 .buttonsdiv {
@@ -95,20 +118,21 @@ align-items: center;
   border: none;
   transition: background-color 0.3s ease;
   margin-bottom: 10px;
- 
 }
 
 .button.active {
-  background-color: #7c7c7c;
-  /* Change to the color you want for the active button */
+  background-color: #777;
+  /* Active button color */
 }
 
 .button:hover {
-  background-color: #b3a8a8;
+  background-color: #555;
+  /* Hover color */
 }
 
 .button b {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  /* White text */
 }
 
 .catbutton {
@@ -116,130 +140,180 @@ align-items: center;
 }
 
 .catbutton:hover {
-  background-color: #686769;
+  background-color: #444;
+  /* Dark gray on hover */
 }
 
 .headings {
-  display: flex; /* Display headings horizontally */
-  justify-content: space-between; /* Spacing between headings */
-  background: #a7a7a7;
+  display: flex;
+  /* Display headings horizontally */
+  justify-content: space-between;
+  /* Spacing between headings */
+  background: #444;
+  /* Dark gray background */
   border-radius: 5px;
-  padding: 10px; /* Add padding for better spacing */
+  padding: 10px;
+  /* Add padding for better spacing */
 }
 
 #allcommentscontainer {
-  display: flex; /* Display comments horizontally */
-  flex-wrap: wrap; /* Allow wrapping of comment containers */
-  gap: 10px; /* Add gap between comment containers */
+  display: flex;
+  /* Display comments horizontally */
+  flex-wrap: wrap;
+  /* Allow wrapping of comment containers */
+  gap: 10px;
+  /* Add gap between comment containers */
 }
 
 .comment-container {
-  width: calc(100% - 10px); /* Set width for each comment container */
-  background-color: #f0f0f0; /* Example background color */
-  border-radius: 5px; /* Example border radius */
+  width: calc(100% - 10px);
+  /* Set width for each comment container */
+  background-color: #222;
+  /* Dark background for comments */
+  border-radius: 5px;
+  /* Example border radius */
 }
 
 .comment-info {
-  padding: 5px; /* Padding for comment info */
-  display: flex; /* Display headings horizontally */
-  justify-content: space-between; /* Spacing between headings */
+  padding: 5px;
+  /* Padding for comment info */
+  display: flex;
+  /* Display headings horizontally */
+  justify-content: space-between;
+  /* Spacing between headings */
 }
 
 .delete-btn {
-  padding: 5px 10px; /* Adjust padding */
-  background-color: #ff0000; /* Example background color */
-  color: #ffffff; /* Example text color */
-  border: none; /* Remove border */
-  border-radius: 3px; /* Example border radius */
-  cursor: pointer; /* Add cursor pointer */
+  padding: 5px 10px;
+  /* Adjust padding */
+  background-color: #ff0000;
+  /* Red color for delete button */
+  color: #ffffff;
+  /* White text color */
+  border: none;
+  /* Remove border */
+  border-radius: 3px;
+  /* Example border radius */
+  cursor: pointer;
+  /* Add cursor pointer */
 }
 
 /* Media Queries */
 @media (min-width: 768px) {
   .app {
-    flex-direction: row; /* Switch to row for larger screens */
+    flex-direction: row;
+    /* Switch to row for larger screens */
   }
 
   .sidebar {
     width: 300px;
-    height: 100vh; /* Full height for larger screens */
+    height: 100vh;
+    /* Full height for larger screens */
   }
 
   .buttonsdiv .button {
-    width: 100%; /* Adjust button width */
+    width: 100%;
+    /* Adjust button width */
   }
 
   #allcommentscontainer {
-    margin: 0; /* Remove margin for larger screens */
+    margin: 0;
+    /* Remove margin for larger screens */
   }
 
   .comment-container {
-    width: calc(33.33% - 20px); /* Adjust width for larger screens */
+    width: calc(33.33% - 20px);
+    /* Adjust width for larger screens */
   }
 
   .user-container {
-    width: calc(33.33% - 20px); /* Adjust width for larger screens */
+    width: calc(33.33% - 20px);
+    /* Adjust width for larger screens */
   }
 }
 
 @media (min-width: 1024px) {
   .main-content {
-    padding: 40px; /* Increase padding for larger screens */
+    padding: 40px;
+    /* Increase padding for larger screens */
   }
 
   .Placedata-container {
-    max-width: 800px; /* Increase max-width for larger screens */
+    max-width: 800px;
+    /* Increase max-width for larger screens */
   }
 }
+
 /* UserPage component styles */
 .user-container-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap onto new lines */
-  gap: 10px; /* Space between cards */
-  justify-content: center; /* Center the cards horizontally */
+  flex-wrap: wrap;
+  /* Allow cards to wrap onto new lines */
+  gap: 10px;
+  /* Space between cards */
+  justify-content: center;
+  /* Center the cards horizontally */
 }
 
 .user-container {
-  flex: 1 1 calc(100% - 20px); /* Full width on small screens with spacing */
-  max-width: 100%; /* Prevents the card from exceeding its container */
-  background-color: #ffffff; /* Background color of card */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Card shadow */
-  margin: 10px; /* Margin around each card */
-  overflow: hidden; /* Prevent content overflow */
+  flex: 1 1 calc(100% - 20px);
+  /* Full width on small screens with spacing */
+  max-width: 100%;
+  /* Prevents the card from exceeding its container */
+  background-color: #444;
+  /* Dark gray for user cards */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 15px rgba(255, 255, 255, 0.1);
+  /* Light shadow for cards */
+  margin: 10px;
+  /* Margin around each card */
+  overflow: hidden;
+  /* Prevent content overflow */
 }
 
 .user-container img {
-  width: 100px; /* Fixed width */
-  height: 100px; /* Fixed height */
-  object-fit: cover; /* Ensure the image covers the entire area */
-  border-radius: 50%; /* Make the image circular */
-  display: block; /* Ensure it's treated as a block element */
-  margin: 0 auto; /* Center the image horizontally */
+  width: 100px;
+  /* Fixed width */
+  height: 100px;
+  /* Fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the entire area */
+  border-radius: 50%;
+  /* Make the image circular */
+  display: block;
+  /* Ensure it's treated as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
 }
 
 .p-6 {
-  padding: 1.5rem; /* Adjust padding */
+  padding: 1.5rem;
+  /* Adjust padding */
 }
 
 /* Responsive adjustments */
 @media (min-width: 576px) {
   .user-container {
-    flex: 1 1 calc(50% - 20px); /* 2 cards per row on small screens */
+    flex: 1 1 calc(50% - 20px);
+    /* 2 cards per row on small screens */
   }
 }
 
 @media (min-width: 768px) {
   .user-container {
-    flex: 1 1 calc(33.33% - 20px); /* 3 cards per row on medium screens */
+    flex: 1 1 calc(33.33% - 20px);
+    /* 3 cards per row on medium screens */
   }
 }
 
 @media (min-width: 1024px) {
   .user-container {
-    flex: 1 1 calc(25% - 20px); /* 4 cards per row on large screens */
+    flex: 1 1 calc(25% - 20px);
+    /* 4 cards per row on large screens */
   }
 }
+
 /* admin.css */
 
 /* General Container Styling */
@@ -254,15 +328,17 @@ align-items: center;
 .block {
   width: 300px;
   background-color: white;
+  /* Card background */
   border-radius: 10px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.07), 0 10px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 15px rgba(255, 255, 255, 0.07), 0 10px 20px rgba(255, 255, 255, 0.04);
+  /* Light shadow */
   margin: 15px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .block:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1), 0 10px 25px rgba(255, 255, 255, 0.1);
 }
 
 .block img {
@@ -283,16 +359,20 @@ align-items: center;
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 10px;
+  color: #fff;
+  /* White text */
 }
 
 .text-base {
   font-size: 1rem;
-  color: #555;
+  color: #aaa;
+  /* Light gray text */
 }
 
 /* Button Styling */
 button {
   background-color: #3b71ca;
+  /* Button color */
   color: white;
   border: none;
   padding: 8px 16px;
@@ -302,64 +382,34 @@ button {
   letter-spacing: 1px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #2e59a6;
+  background-color: #1d4d98;
+  /* Darker blue on hover */
 }
 
-button:focus {
-  outline: none;
-}
-
-/* Load More Button */
-.load-more-btn {
-  display: block;
-  margin: 30px auto;
-  background-color: #333;
+/* Admin Page Specific Styles */
+.admin-container {
+  background-color: #000;
+  /* Black background */
   color: #fff;
-  padding: 12px 24px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* White text */
+  padding: 20px;
 }
 
-.load-more-btn:hover {
-  background-color: #555;
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-  .user-container-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .block {
-    width: 90%;
-  }
-
-  .p-6 {
-    padding: 15px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
+.admin-header h1 {
+  font-size: 24px;
 }
 
-@media screen and (max-width: 480px) {
-  .block {
-    width: 100%;
-  }
-
-  button {
-    font-size: 12px;
-    padding: 8px 16px;
-  }
+.admin-header button {
+  margin-left: 10px;
 }
